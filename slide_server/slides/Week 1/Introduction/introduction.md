@@ -9,11 +9,16 @@
 
 ---
 
-## Teachers
+<!-- .slide: data-background-image="./img/teachers.png" -->
+
+## Teachers <!-- .element: style="color:#003d73; background-color: #ffffff" -->
+
+
 
 ----
 
 ### Michel Vedel Howard
+
 
 ----
 
@@ -28,6 +33,13 @@
     * Mj&#248;lner 2015-2017
     * ECE 2017-
 
+![Henrik Kirk](./img/henrik.png) <!-- .element: style="position: absolute; top: 50%; right: 10%; width: 300px" -->
+
+----
+
+### TA's
+
+* We have three TAs
 
 ---
 
@@ -107,6 +119,15 @@ Note:
 
 ----
 
+### Github
+
+TODO: Material on github
+
+
+
+
+----
+
 ### Schedule
 
 Will properly change a bit
@@ -144,10 +165,10 @@ Kilde: https://www.fmbygningsdrift.dk/referencer/det-nye-universitetshospital-sk
 * You tell us if something could be made better / is not working
 * You read and watch given material **and** look at the exercises before classe
 * You ask questions if something is difficult
-    * If you have problems others are to
+    * If you have problems others have to
 * You write a lots and lots of code before the exam
     * You practice at home.
-    * We have TA + 'lektiecafe' where you can get help
+    * We have **TA's** plus '**lektiecafe**' where you can get help
 
 ----
 
@@ -159,3 +180,14 @@ Talk to student sitting next to you.
 * What do expect to be difficult?
 * What do you look forward to?
 * What should we do as teachers?
+
+----
+
+<!-- .slide: data-background-image="./img/learning_pit.jpg" -->
+
+
+---
+
+### References
+
+* [BigLifeJournal](https://biglifejournal.com/ "")
