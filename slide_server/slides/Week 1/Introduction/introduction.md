@@ -17,6 +17,8 @@
 
 ----
 
+<!-- .slide: style="font-size: 36px" -->
+
 ### Michel Vedel Howard
 
 * Fysik hovedfag, matematik
@@ -24,11 +26,11 @@
 * Work
     * AAU
     * Boch Telecom Pandrup
-    * Datamatikerlærer Aalborg
+    * Datamatikerl&#230;rer Aalborg
     * Softwareudv conscius
-    * Gymnasielærer Aalborg katskole
-    * Udvikler: silkeborgdata, nykredit, Axacon, CSC, Yousee, CGI, Jysk, Systematic, Miracle,Netcompany, Systematic Beumer group, Trifork
-    * Datamatikerlærer Aarhus erhvervs akademi
+    * Gymnasiel&#230;rer Aalborg katskole
+    * Udvikler: Silkeborg Data, Nykredit, Axacon, CSC, Yousee, CGI, Jysk, Systematic, Miracle, Netcompany, Systematic Beumer Group, Trifork
+    * Datamatikerl&#230;rer Aarhus Erhvervs akademi
 
 ![Michel Vedel](./img/michel.png) <!-- .element: style="position: absolute; top: 10%; right: -10%; width: 300px" -->
 
@@ -59,7 +61,7 @@
 
 ![Karen](./img/karen.png) <!-- .element: style="position: absolute; top: 50%; left: -15%; width: 300px; height: 300px;" -->
 
-![Ehab](./img/ehab.png) <!-- .element: style="position: absolute; top: 100%; left: 40%; width: 300px; height: 300px;" -->
+![Ehab](./img/ehab.png) <!-- .element: style="position: absolute; top: 100%; left: 35%; width: 300px; height: 300px;" -->
 
 ![Mustafa](./img/mustafa.png) <!-- .element: style="position: absolute; top: 50%; right: -15%; width: 300px; height: 300px;" -->
 
@@ -144,9 +146,14 @@ Note:
 
 ### Github
 
-TODO: Material on github
+[Github material](https://github.com/hkirk/ST2ITS2_Material)
 
+*
+*
 
+![Server](./img/browser.png "") <!-- .element: style="position: absolute; top: 60%; right: 10%;" -->
+
+![Server](./img/server.png "") <!-- .element: style="position: absolute; top: 90%; right: 30%; height: 600px;" -->
 
 
 ----
@@ -155,18 +162,15 @@ TODO: Material on github
 
 Will properly change a bit
 
-![Schedule](./img/schedule.png "")
+![Schedule](./img/schedule.png "") <!-- .element: style="height: 500px;" -->
 
-
-
-TODO: Update with final :)
 
 ----
 
 ### Exam
 
 * Oral exam approx. 30 minutes with grading
-    * Draw unknown UML exercise (diagram)
+    * Drag unknown UML exercise (diagram)
     * Explain and implement part of this.
 * No prerperation
 * External co-examiner, 7-point grading scale
