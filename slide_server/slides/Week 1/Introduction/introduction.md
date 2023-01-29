@@ -19,6 +19,18 @@
 
 ### Michel Vedel Howard
 
+* Fysik hovedfag, matematik
+* PhD matematik
+* Work
+    * AAU
+    * Boch Telecom Pandrup
+    * Datamatikerlærer Aalborg
+    * Softwareudv conscius
+    * Gymnasielærer Aalborg katskole
+    * Udvikler: silkeborgdata, nykredit, Axacon, CSC, Yousee, CGI, Jysk, Systematic, Miracle,Netcompany, Systematic Beumer group, Trifork
+    * Datamatikerlærer Aarhus erhvervs akademi
+
+![Michel Vedel](./img/michel.png) <!-- .element: style="position: absolute; top: 10%; right: -10%; width: 300px" -->
 
 ----
 
@@ -39,7 +51,18 @@
 
 ### TA's
 
-* We have three TAs
+* We have skilled three TAs
+* All are 4th semester ST students
+* Karen Bonefeld
+* Ehab Bashar Basha
+* Mustafa Ahmed Al-Uabeidi
+
+![Karen](./img/karen.png) <!-- .element: style="position: absolute; top: 50%; left: -15%; width: 300px; height: 300px;" -->
+
+![Ehab](./img/ehab.png) <!-- .element: style="position: absolute; top: 100%; left: 40%; width: 300px; height: 300px;" -->
+
+![Mustafa](./img/mustafa.png) <!-- .element: style="position: absolute; top: 50%; right: -15%; width: 300px; height: 300px;" -->
+
 
 ---
 
