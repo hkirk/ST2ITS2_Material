@@ -201,7 +201,7 @@ Kilde: https://www.fmbygningsdrift.dk/referencer/det-nye-universitetshospital-sk
 
 ### Your expectations
 
-Talk to student sitting next to you.
+Talk to student(s) sitting next to you.
 
 * What do you expect to learn from this course?
 * What do expect to be difficult?
