@@ -54,9 +54,47 @@
 
 ----
 
-### Examples
+### Soybean Incubator
 
-TODO: What should we show them - properly depends on the Samuel and data
+![Soyabean incubator](https://github.com/INTO-CPS-Association/example-incubator/raw/main/figures/system.png "")
+
+----
+
+### The acutal system
+
+![Actual system](https://github.com/INTO-CPS-Association/example-incubator/blob/main/datasets/lid_opening_experiment_mar_2021/add%20water.jpg?raw=true "") <!-- .element: style="height: 600px" -->
+
+----
+
+### Data
+
+```txt
+time,t1,time_t1,t2,time_t2,t3,time_t3,average_temperature,heater_on,fan_on,execution_interval,elapsed
+1614859007119846022,20.937,1614859005360261879,23.437,1614859006240283419,23.312,1614859007119842744,23.3745,False,True,3,2.6085093021392822
+1614859010160238574,20.937,1614859008400317992,23.437,1614859009280255885,23.25,1614859010160233463,23.3435,False,True,3,2.6484806537628174
+```
+
+----
+
+### Stunt code <!-- .element: style="color:#003d73; background-color: #ffffff" -->
+
+<!-- .slide: data-background-image="https://lh5.googleusercontent.com/-Ux8GveYkSeM/TXjtNB_06tI/AAAAAAAAAoE/vt_gCiXGuVE/s1600/MOTION+FLYING+WOMAN.jpg" -->
+
+Note:
+
+Remember: 
+- Static
+- Paths (absolute, relative or copy)
+- String.Split
+
+----
+
+### Your turn <!-- .element: style="color:#003d73; background-color: #ffffff" -->
+
+Work on exercises 1-3<br/>
+Continue on optional exercises <!-- .element: style="color:#000000; background-color: #ffffff" -->
+
+<!-- .slide: data-background-image="./img/your_turn.png" -->
 
 ---
 
@@ -71,7 +109,7 @@ TODO: What should we show them - properly depends on the Samuel and data
 * Generic way to work with sequences of bytes (come to this later)
     * Specific for Files, Network, ...
 * Reader/Writer - reads/writes specific types of data
-    * Stream, String, bıinary, ...
+    * Stream, String, Binary, ...
 
 ----
 
@@ -124,13 +162,12 @@ public static void WriteLinesToStream(string filename)
 
 * Data can flow through multiple steams
 
-```cs
+```cs[3-5]
 public static void WriteZippedToStreams(string filename)
 {
     FileStream fs = new FileStream(filename, FileMode.Create);
     var gZipStream = new GZipStream(fs, CompressionLevel.Fastest);
     StreamWriter streamWriter = new StreamWriter(gZipStream);
-
     for (int i = 0; i < 100; i++)
     {
         streamWriter.Write(i);
@@ -139,7 +176,7 @@ public static void WriteZippedToStreams(string filename)
 }
 ```
 * Data flows through `GZipStream` -> `FileStream`
-* Can be accessed with `GZipStream.Read()` or [`gzip`](https://sourceforge.net/projects/gzip-for-windows/)
+* Can be read back with `GZipStream.Read()` or [`gzip`](https://sourceforge.net/projects/gzip-for-windows/)
 
 Note:
 
@@ -155,7 +192,7 @@ ExampleApplications/bin/Debug/net6.0/test.txt already exists -- do you wish to o
 ### `StreamWriter.ReadLine()`
 
 * `ReadLine` reads file line by line
-* `Read` Reads one or more bytes
+* `Read` reads 1...n bytes
 
 ```cs[3|4|6|8]
 public static void ReadLinesFromStream(string filename)
@@ -208,8 +245,51 @@ public static void ReadLinesFromStream(string filename)
 
 ----
 
-TODO: Should we go through the most importent things in the hexDump applications in the book?
+### Building a HexDump in C#
 
+```csharp [1|2|4]
+using (var reader = new StreamReder("textdata.txt")) {
+    while (!reader.EndOfStream) {
+        var buffer = new char[16];
+        var bytesRead = reader.ReadBlock(buffer, 0, 16);
+        ...
+    }
+}
+```
+
+note:
+
+- using() - awailable on some classe - used to help us (developers) clean up after our self.
+- EndOfStream: flag that signifies if stream is at the end.
+- ReadBlock: blocking version of Read - meaning that it blocks (does not continue) until we are read count bytes or are at end of stream
+
+----
+
+### Data manipulation
+
+```csharp
+var buffer = new char[16];
+var bytesRead = reader.ReadBlock(buffer, 0, 16);
+...
+Console.Write("{0:x2}", (byte) buffer[i]);
+...
+var bufferContent = new string(buffer);
+bufferContent.Substring, 0, bytesRead);
+```
+
+note:
+- `"{0:x2}"`: Format (`{<interpolationExpression>[,<alignment>][:<formatString>]}`). :x2 is hex and 2 char long
+- cast `(byte)`: buffer contains char, but we need the byte value, so we can convert char to byte - by casting.
+- Substring": Returns part of the string, from and length har given.
+
+----
+
+### Your turn <!-- .element: style="color:#003d73; background-color: #ffffff" -->
+
+Work on exercises 4-5<br/>
+Continue on optional exercises  <!-- .element: style="color:#000000; background-color: #ffffff" -->
+
+<!-- .slide: data-background-image="./img/your_turn.png" -->
 
 ---
 
@@ -236,8 +316,8 @@ class Patient {
 ### JSON
 
 * Industry standard format for transfering data
-* Contains mete data about format.
-* Simple and easy to read
+* Contains meta data about content.
+* Simple and fairly easy to read (once you get use to it)
 ```js
 {
     Name: "Lars Larsen",
@@ -331,12 +411,19 @@ outputs
 
 ![Error encoding](./img/error.png "") <!-- .element: style="width: 150px;" -->
 
+----
 
+### Your turn <!-- .element: style="color:#003d73; background-color: #ffffff" -->
+
+Continue with exercises <!-- .element: style="color:#000000; background-color: #ffffff" -->
+
+<!-- .slide: data-background-image="./img/your_turn.png" -->
 
 ---
 
 ## References
 
 * [XKCD: Standards](https://xkcd.com/927/)
+* [Incubator](https://github.com/INTO-CPS-Association/example-incubator)
 
 
