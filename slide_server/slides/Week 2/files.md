@@ -189,7 +189,7 @@ ExampleApplications/bin/Debug/net6.0/test.txt already exists -- do you wish to o
 
 ----
 
-### `StreamWriter.ReadLine()`
+### `StreamReader.ReadLine()`
 
 * `ReadLine` reads file line by line
 * `Read` reads 1...n bytes
@@ -274,7 +274,7 @@ var bytesRead = reader.ReadBlock(buffer, 0, 16);
 Console.Write("{0:x2}", (byte) buffer[i]);
 ...
 var bufferContent = new string(buffer);
-bufferContent.Substring, 0, bytesRead);
+bufferContent.Substring(0, bytesRead);
 ```
 
 note:
