@@ -7,6 +7,9 @@
 ![AU Logo](./../img/aulogo_uk_var2_white.png "AU Logo") <!-- .element style="width: 200px; position: fixed; bottom: 50px; left: 50px" -->
 
 
+![Exceptions](./img//LiningUp4AftermathX50.jpg) <!-- .element: style="width: 500px;"  -->
+
+
 ----
 
 ### Agenda
@@ -23,20 +26,28 @@
 
 * Test for every little thing in our code
 * Still unexpected events will happen
+* Forces us to handle errors
 
 ----
 
-#### Files
+#### E.g. Files
 
-TODO: Test for:
 * File exists
 * Is readable/writable
 * Contains the correct data
-* Is not changed after we test it
+* Is not changed after we tested it
 
+----
+
+#### Data input
+
+* Is it available,
+* Correct format
+* Not illegal values?
 
 ---
 
+<!-- .slide: style="font-size: 36px" -->
 ### What
 
 When unexcpected (exceptions) happens in an application. A special object is created and thrown
@@ -92,7 +103,7 @@ File name: '/ST2ITS2_Material/source/Exception/ExceptionExamples/bin/Debug/net6.
    at ExceptionExamples.Faulty.ReadFileIntoString(String name) in /ST2ITS2_Material/source/Exception/ExceptionExamples/Faulty.cs:line 48
    at Program.<Main>$(String[] args) in /ST2ITS2_Material/source/Exception/ExceptionExamples/Program.cs:line 9
 ```
-<!-- .element: style="font-size: 8px;" -->
+<!-- .element: style="font-size: 14px;" -->
 
 ```
 Unhandled exception. System.IO.FileNotFoundException: Could not find file '/ST2ITS2_Material/source/Exception/ExceptionExamples/bin/Debug/net6.0/NoExistingFile.txt'.
@@ -112,8 +123,11 @@ File name: '/ST2ITS2_Material/source/Exception/ExceptionExamples/bin/Debug/net6.
 
 ### How
 
-* Test for every conceivable error **or**
-* Handle errors when they occur
+* Just let errors happen and handle somewhere else
+* Handle errors when they occurs
+
+![Catch](./img/4416446.jpg) <!-- .element: style="width: 500px" -->
+
 
 ----
 
@@ -137,7 +151,7 @@ try
 * Allowed to catch mulitple exceptions
 * Possible to handle different errors in specific ways
 
-```csharp
+```csharp [1, 5, 9]
 try
 {
     faulty.ReadFileIntoString("NotExistingFile.txt");
@@ -154,9 +168,13 @@ catch (ArgumentException)
 
 ----
 
+![Exceptions caught](./img/ExceptionHandling.jpg)
+
+----
+
 ### Catch all
 
-```csharp [5]
+```csharp [2, 5, 8]
 var filename = "NoExistingFile.txt";
 try
 {
@@ -165,7 +183,8 @@ try
 {
     Console.Error.WriteLine($"File '{filename}' do not exists");
     Console.Error.WriteLine(e.Message);
-}```
+}
+```
 
 ----
 
@@ -226,7 +245,11 @@ note:
 
 * Catch exceptions as close to where they are thrown
 * No errors in constructor
-* To log and then rethrow
+* If you can't handle exception
+    * log and then rethrow
+    * never swallow exception
+
+![Windows XP](./img/a22.jpg) <!-- .element: style="width: 300px" -->
 
 ----
 
@@ -241,17 +264,17 @@ try
 } catch (NoCoffeeException)
 {}
 ```
-* Atleast put in a log message
+* As a minimum put in a log message (WriteLine)
 
 
 ----
 
 ### Re-throw
 
-* May want to log (or simular) close the origin of exception
+* May want to log (or simular) close to the origin of error
     * But can't actually handle this
 
-```csharp
+```csharp [7,8]
 try
 {
     TestEnoughCoffee();
@@ -282,7 +305,26 @@ public class NoCoffeeException : Exception
 }
 
 // somewhere else throw this
-throw new NoCoffeeExceptin("No cofffee given", 30);
+throw new NoCoffeeException("No coffee given", 30);
+```
+
+----
+
+### Nest exceptions
+
+* Exception can be nested to add more context to an error
+
+```csharp [7-9]
+try
+{
+    TestEnoughCoffee();
+}
+catch (NoCoffeeException e)
+{
+    throw ArgumentException(
+        "Argument given failed in coffee making",
+         e);
+}
 ```
 
 
@@ -306,3 +348,4 @@ As they appear
 
 ### Links
 
+* [Front page comic](https://simply-the-test.blogspot.com/2015/07/)
