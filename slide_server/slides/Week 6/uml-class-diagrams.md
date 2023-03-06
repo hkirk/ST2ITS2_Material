@@ -20,9 +20,9 @@
 
 * As engineers you will design and build large software systems
 * How would you start designing
-    * an EPJ system?
-    * a suitcase management system?
     * a calendar?
+    * a suitcase management system?
+    * an EPJ system?
 * How to validate that the 'design' is good enough?
 
 ----
@@ -82,7 +82,7 @@
 
 * Static diagram type
 * Describe types in a system
-    * plus relationship between these
+    * and relationship between these
 
 ----
 
@@ -125,9 +125,16 @@
 
 * We talk about this next time in detail.
 
+---
+
+### Relations
+
+![https://dilbert.com/strip/2013-09-21](https://assets.amuniversal.com/e39e56e0f17201300f1f001dd8b71c47 "https://dilbert.com/strip/2013-09-21")
+[https://dilbert.com/strip/2013-09-21](https://dilbert.com/strip/2013-09-21)
+
 ----
 
-#### Relations
+#### Association
 
 ![Association](./img/association.png "Assocation in UML")
 
@@ -206,6 +213,10 @@ Lets see!
 
 * Can be attached to classes, relations etc.
 
+
 ---
 
 ### References
+
+* [https://dilbert.com/strip/2013-09-21](Dilbert commic)
+* [Hospital UML diagram](https://www.uml-diagrams.org/examples/hospital-management-example.html)
