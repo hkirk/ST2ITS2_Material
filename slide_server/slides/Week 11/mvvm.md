@@ -12,10 +12,18 @@
 
 ## Agenda
 
+* Last week
 * Problem
 * MVVM
 * Other GUI Patterns
 
+---
+
+### Solution from last week
+
+----
+
+![Events in UML](./img/events_uml.png "From SW4TEST")
 
 ---
 
@@ -45,7 +53,7 @@ foreach (var player in _roaster.Players) {
 
 ----
 
-### Lampda
+### Lambda
 
 ```
 (parameter) => method body
@@ -64,7 +72,7 @@ private Func<int, int, int> _sum = ((i1, i2) => i1 + i2);
 
 ### `Where` and `Select`
 
-* `Where(IEnumarable<TSource> source, Fuck<TSource, bool> predicate)`
+* `Where(IEnumarable<TSource> source, Func<TSource, bool> predicate)`
     * Returns a list which only contains the elements where predicate is true
 * `Select(IEnumarable<TScource> source, Func<TSource, TResult> selector)`
     * Returns a list, where each element is transformed with selector
@@ -82,7 +90,7 @@ var timesTwo = ints.Select(i => i * 2);
 
 ----
 
-### Lampda and LINQ
+### Lambda and LINQ
 
 We will come back to this in a later lecture.
 
@@ -171,6 +179,36 @@ We need a specific place to keep UI logic.
 
 ----
 
+### Bindings 
+
+* View is updated with data from ViewModel 
+    * Updated through data bindings
+* This can be Two-way - meaning ViewModel is updated from View
+```xml
+<TextBox
+    Text="{Binding Path=Height, StringFormat=F1, Mode=TwoWay}"
+```
+* [Binding declaration](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/data/binding-declarations-overview)
+
+----
+
+### Commands
+
+* Communication from View to ViewModel
+* ICommand interface exists in .NET
+    * `Execute(object)` called when command is actuated 
+    * `CanExecute(object)` returns boolen and determines if UI 'unluck' command
+    * `CanExecuteChanged` should be raised when 'CanExecute` should be reevaluated
+* RelayCommand is an implementation of this interface
+```xml
+<Button 
+    Command="{Binding CalcBMICommand, Mode=OneTime}"/>
+```
+
+<!-- .slide: style="font-size: 34px" -->
+
+---
+
 #### Model in C#
 
 BMI calculator
@@ -191,80 +229,34 @@ public class BMIModel
 
 ----
 
-#### ViewModel in C# (1/4)
+#### DataContext in C#
 
-Properties
+Creating a ViewModel 
 
 ```csharp
 public class BMIViewModel : INotifyPropertyChanged {
-    BMIModel bmiModel = new BMIModel();
-    public double Height {
-        get { return bmiModel.Height; }
-        set {
-            if (value != bmiModel.Height)
-            {
-                bmiModel.Height = value;
-                NotifyPropertyChanged();
-            }
-        }
-    }
-    ...
 }
+```
+
+Defining a DataContext
+
+```xaml [3-5]
+<Window x:Class="BMICalculator.MainWindow"
+        ...>
+    <Window.DataContext>
+        <local:BMIViewModel/>
+    </Window.DataContext>
+    ...
+</Window>
 ```
 
 ----
 
-#### ViewModel in C# (2/4)
-
-Read-only property
-
-```csharp
-public class BMIViewModel : INotifyPropertyChanged {
-    ...
-    double bmi;
-    public double BMI {
-        get { return bmi; }
-    }
-
-    private void CalcBMI()
-    {
-        bmi = bmiModel.CalculateBMI();
-        NotifyPropertyChanged("BMI");
-    }
-    ...
-}
-```
-
-----
-
-#### ViewModel in C# (3/4)
-
-Relay commands
-
-```csharp
-public class BMIViewModel : INotifyPropertyChanged {
-    ...
-    ICommand _calcBMICommand;
-    public ICommand CalcBMICommand {
-        get { return _calcBMICommand ?? (_calcBMICommand = new RelayCommand(CalcBMI, CalcBMICanExecute)); }
-    }
-    private bool CalcBMICanExecute() {
-        if (Weight != 0.0 && Height != 0.0)
-            return true;
-        else
-            return false;
-    }
-    ...
-}
-```
-
-----
-
-#### ViewModel in C# (4/4)
+#### ViewModel in C# 
 
 INotifyPropertyChanged implementation
 
-```csharp
+```csharp [3, 5-13]
 public class BMIViewModel : INotifyPropertyChanged {
     ...
     public event PropertyChangedEventHandler PropertyChanged;
@@ -283,23 +275,53 @@ public class BMIViewModel : INotifyPropertyChanged {
 
 ----
 
-#### View in C# (1/3)
+#### ViewModel Binding
 
-Defining a DataContext
+Properties
 
-```xaml [3-5]
-<Window x:Class="BMICalculator.MainWindow"
-        ...>
-    <Window.DataContext>
-        <local:BMIViewModel/>
-    </Window.DataContext>
+```csharp [3-12]
+public class BMIViewModel : INotifyPropertyChanged {
+    BMIModel bmiModel = new BMIModel();
+    public double Height {
+        get { return bmiModel.Height; }
+        set {
+            if (value != bmiModel.Height)
+            {
+                bmiModel.Height = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
     ...
-</Window>
+}
 ```
 
 ----
 
-#### View in C# (2/3)
+#### ViewModel Read-Only
+
+Read-only property
+
+```csharp [3-6, 10-11]
+public class BMIViewModel : INotifyPropertyChanged {
+    ...
+    double bmi;
+    public double BMI {
+        get { return bmi; }
+    }
+
+    private void CalcBMI()
+    {
+        bmi = bmiModel.CalculateBMI();
+        NotifyPropertyChanged("BMI");
+    }
+    ...
+}
+```
+
+----
+
+#### Bingings in XAML
 
 Input data
 
@@ -317,7 +339,32 @@ Input data
 
 ----
 
-#### View in C# (3/3)
+#### ViewModel in C# 
+
+Relay commands
+
+```csharp [4-8]
+public class BMIViewModel : INotifyPropertyChanged {
+    ...
+    ICommand _calcBMICommand;
+    public ICommand CalcBMICommand {
+        get { return _calcBMICommand ??
+            (_calcBMICommand = new RelayCommand(CalcBMI,
+                                 CalcBMICanExecute)); }
+    }
+    private bool CalcBMICanExecute() {
+        if (Weight != 0.0 && Height != 0.0)
+            return true;
+        else
+            return false;
+    }
+    ...
+}
+```
+
+----
+
+#### Commands in XAML
 
 Executing commands
 
@@ -331,14 +378,14 @@ Executing commands
 </Windows>
 ```
 
-----
+---
 
 ## MVVM and 3-layers achitecture
 
 ![MVVM vs 3 layered arhitecture](./img/mvvm-in-arhitecture.png "")
 
 
----
+----
 
 ## Other GUI Patterns
 
