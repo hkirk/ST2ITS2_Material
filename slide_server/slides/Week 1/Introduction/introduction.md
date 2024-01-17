@@ -13,26 +13,18 @@
 
 ## Teachers <!-- .element: style="color:#003d73; background-color: #ffffff" -->
 
-
-
 ----
 
-<!-- .slide: style="font-size: 36px" -->
+### TA's
 
-### Michel Vedel Howard
+* We have two skilled  TAs
+* Both are 4th semester ST students
+* Marwo Xasan
+* Nikolaj Matzen
 
-* Fysik hovedfag, matematik
-* PhD matematik
-* Work
-    * AAU
-    * Boch Telecom Pandrup
-    * Datamatikerl&#230;rer Aalborg
-    * Softwareudv conscius
-    * Gymnasiel&#230;rer Aalborg katskole
-    * Udvikler: Silkeborg Data, Nykredit, Axacon, CSC, Yousee, CGI, Jysk, Systematic, Miracle, Netcompany, Systematic Beumer Group, Trifork
-    * Datamatikerl&#230;rer Aarhus Erhvervs akademi
+![Marwo](./img/marwo.jpeg) <!-- .element: style="position: absolute; top: 50%; left: -15%; width: 300px; height: 300px;" -->
 
-![Michel Vedel](./img/michel.png) <!-- .element: style="position: absolute; top: 10%; right: -10%; width: 300px" -->
+![Nikolaj](./img/nikolaj.jpg) <!-- .element: style="position: absolute; top: 50%; right: -15%; width: 300px; height: 300px;" -->
 
 ----
 
@@ -48,22 +40,6 @@
     * ECE 2017-
 
 ![Henrik Kirk](./img/henrik.png) <!-- .element: style="position: absolute; top: 50%; right: 10%; width: 300px" -->
-
-----
-
-### TA's
-
-* We have skilled three TAs
-* All are 4th semester ST students
-* Karen Bonefeld
-* Ehab Bashar Basha
-* Mustafa Ahmed Al-Uabeidi
-
-![Karen](./img/karen.png) <!-- .element: style="position: absolute; top: 50%; left: -15%; width: 300px; height: 300px;" -->
-
-![Ehab](./img/ehab.png) <!-- .element: style="position: absolute; top: 100%; left: 35%; width: 300px; height: 300px;" -->
-
-![Mustafa](./img/mustafa.png) <!-- .element: style="position: absolute; top: 50%; right: -15%; width: 300px; height: 300px;" -->
 
 
 ---
@@ -172,13 +148,13 @@ Will properly change a bit
 * Oral exam approx. 30 minutes with grading
     * Drag unknown UML exercise (diagram)
     * Explain and implement part of this.
-* No prerperation
-* External co-examiner, 7-point grading scale
+* No preperation
+* **Internal** co-examiner, **7-point** grading scale
 
 
 ---
 
-## New course <!-- .element: style="color:#003d73; background-color: #ffffff" -->
+## 2nd time <!-- .element: style="color:#003d73; background-color: #ffffff" -->
 
 <!-- .slide: data-background-image="./img/byggeriet-i-skejby-i-2014.jpg" -->
 
@@ -189,13 +165,14 @@ Kilde: https://www.fmbygningsdrift.dk/referencer/det-nye-universitetshospital-sk
 
 ## Our Expectations
 
-* You tell us if something could be made better / is not working
-* You read and watch given material **and** look at the exercises before classe
-* You ask questions if something is difficult
-    * If you have problems others have to
-* You write a lots and lots of code before the exam
+* You tell us 
+    * if something could be made better
+    * is not working
+* Read and watch given material **and** look at the exercises before classe
+* You ask questions when something is difficult
+    * We have **TA's** in the course, plus '**lektiecafe**' where you can get help outside lectures
+* You write lots and lots of code before the exam
     * You practice at home.
-    * We have **TA's** plus '**lektiecafe**' where you can get help
 
 ----
 
@@ -210,7 +187,7 @@ Talk to student(s) sitting next to you.
 
 ----
 
-<!-- .slide: data-background-image="./img/learning_pit.jpg" -->
+<!-- .slide: data-background-image="./img/learning_pit.jpeg" data-background-size="contain" -->
 
 
 ---

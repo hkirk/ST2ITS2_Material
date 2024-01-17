@@ -46,11 +46,15 @@ TODO: https://www.mentimeter.com/app/presentation/al1reenfab34j6ehho35rpsaq5b72u
 *"Apply the basic principles of object-based programming"*
 
 * [class](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/classes)
+* fields
+* properties
+    * immutable
 * constructor
     * with parameters
 * method
     * void
     * return types
+
 
 ---
 
