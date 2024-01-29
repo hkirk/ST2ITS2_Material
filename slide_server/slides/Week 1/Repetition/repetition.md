@@ -11,10 +11,10 @@
 
 Use 5 minutes to figure out what has been hard in ST1ITS1
 
-Go to [menti.com - 7165 5350](https://www.menti.com/al3of75qwx4f)
+Go to [menti.com - 6534 8148](https://www.menti.com/ali9ei2a5j9b)
 
 Note:
-TODO: https://www.mentimeter.com/app/presentation/al1reenfab34j6ehho35rpsaq5b72u62/8bqouip4uyso/edit
+TODO: https://www.mentimeter.com/app/presentation/aldpc2kvc7vqcpzpvvo4csxfgxt6s7ne/rujqcv1sex8r/edit
 
 
 ----
@@ -37,7 +37,6 @@ TODO: https://www.mentimeter.com/app/presentation/al1reenfab34j6ehho35rpsaq5b72u
 
 * [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-7.0)
 * Arrays
-* Dictionary
 
 ----
 
