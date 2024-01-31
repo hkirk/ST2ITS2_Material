@@ -113,7 +113,7 @@ Note:
 * Lectures (theory, code examples, exercise solutions)
 * Lots of exercises
 * Curriculium
-    * Head First C#
+    * The C# Players Guide
     * Extra chapters from github
     * A few articles
 
