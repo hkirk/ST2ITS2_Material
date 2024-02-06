@@ -54,6 +54,37 @@
 
 ----
 
+### Path parameter
+
+* Windows
+    * Absolute path:<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" --> `C:\Users\Henrik\Documents/harry_potter.txt` <!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
+    * Relative path:&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" --> `..\Documents\harry_potter.txt` <!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
+
+* Mac
+    * Absolute path: <!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`/Users/henrik/Documents/harry_potter.txt`<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
+    * Relative path:&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" --> `../Documents/harry_potter.txt` <!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
+
+* Linux
+    * Absolute path: <!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`/home/henrik/Documents/harray_potter.txt`<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
+    * Relative path:&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" --> `../Documents/harry_potter.txt` <!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
+
+----
+
+### Empty spaces
+
+* Windows
+    * Quote:&nbsp;&nbsp;<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`"C:\Users\Henrik Kirk\"`<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
+    * or:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" -->`C:\Users\"Henrik Kirk"\`<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
+    * Escape: <!-- .element: class="fragment" data-fragment-index="3" style="font-size: 28px" -->`C:\Users\Henrik^ Kirk\`<!-- .element: class="fragment" data-fragment-index="3" style="font-size: 22px" -->
+* Mac
+    * Escape: <!-- .element: class="fragment" data-fragment-index="3" style="font-size: 28px" -->`/Users/Henrik\ Kirk/`<!-- .element: class="fragment" data-fragment-index="3" style="font-size: 22px" -->
+
+* Linx
+    * Escape: <!-- .element: class="fragment" data-fragment-index="3" style="font-size: 28px" -->`/home/Henrik\ Kirk/`<!-- .element: class="fragment" data-fragment-index="3" style="font-size: 22px" -->
+
+
+----
+
 ### Soybean Incubator
 
 ![Soyabean incubator](https://github.com/INTO-CPS-Association/example-incubator/raw/main/figures/system.png "")
@@ -374,8 +405,8 @@ outputs
 * C# supports many [encodings](https://learn.microsoft.com/en-us/dotnet/api/system.text.encoding?view=net-7.0#list-of-encodings)
 * But there are a couple of encodings we use more than other
     * ASCII
-    * UTF8/32
     * Unicode
+        * UTF8/32
 
 
 ----
