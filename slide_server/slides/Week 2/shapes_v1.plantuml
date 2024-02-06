@@ -1,0 +1,51 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+Shape <|-- Circle
+Shape <|-- Line
+Shape <|-- Rectangle
+Circle --> Point
+Line --> Point
+Rectangle --> Point
+
+abstract class Shape {
+  +{abstract} Area():double
+  +{abstract} Circumference(): double
+  +{abstract} Draw(): void
+}
+
+class Circle {
+  -center: Point
+  -radius: double 
+}
+
+class Line {
+  -start: Point
+  -end: Point
+}
+
+class Rectangle {
+  upperLeft: Point
+  height: double
+  width: double
+}
+
+class Point {
+  +X: double
+  +Y: double
+
+  +DistanceTo(other: Point): double
+}
+
+note left of Point::X
+  Optional: Make this readonly - and
+  only set value in constructor
+end note
+note left of Point::Y
+  Optional: Make this readonly - and
+  only set value in constructor
+end note
+
+
+@enduml

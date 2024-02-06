@@ -100,7 +100,7 @@ public class Person {
 ### Reuse in OOP 
 
 * Depend on same class from multiple classes
-* Delegate work to this class
+* Delegate work to this class (`Hammer`)
 
 ```language-plantuml
 @startuml
@@ -204,7 +204,7 @@ class BrickLayer {
 Syntax to inherit<br/>
  `class <NameOfClass> : <NameOfBase>`
 
-```csharp [2, 7, 9]
+```csharp [1,7| 2, 9|1-2,7,9]
 public class Hammer {
     public void HitWithForce(object item) {
         Console.WriteLine($"Hit {item} with force");
@@ -222,7 +222,7 @@ public class BrickLayer : Hammer {
 
 ### Using the new BrickLayer
 
-```csharp [1-3|4-6]
+```csharp [1-3|4-6|1-6]
 BrickLayer bl = new BrickLayer();
 bl.BreakBrick(new Brick());
 bl.HitWithForce(new Brick()); // is also possible
@@ -266,7 +266,7 @@ public class BrickLayer : Hammer {
 
 * Constructing of `BrickLayer` means constructing `Hammer`
 * The `BrickLayer` needs to call the `Hammer` constructor
-* Why only when base class has a non-empty constructor? <!-- .element: class="fragment" data-fragment-index="1"  -->
+* Why only when base class has a <mark>non-empty</mark> constructor? <!-- .element: class="fragment" data-fragment-index="1"  -->
 
 ----
 
@@ -283,7 +283,7 @@ public class BrickLayer : Hammer {
 ```
 
 * These constructors are <mark>genereted</mark> for us
-* plus all classes inherits from `object`
+    * \+ all classes inherits from `object`
 
 ---
 
@@ -327,7 +327,7 @@ Hammer hammer = new BrickLayer();
 * How should we as developers make sense of the `hammer` object?
 * Derieved classes are forced to inherit from `base` classe
 
-Inheritance can give all sorts of problems - especially as the code evolves - and it <mark>will</mark>
+Inheritance can give all sorts of problems - especially as the code <mark>evolves</mark> - and it will
 
 ----
 
@@ -404,6 +404,13 @@ class Person {
 
 @enduml
 ```
+
+----
+
+### Are these sensible hierarchies
+
+![In 2-2 or 3-3](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGNwYWV4MGczMWdrajQ1MnQxams2OXZrNzU1eXJvcHZ4dW1hNnI4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6MbsWjZwURvye0ko/giphy.gif "")
+
 
 ---
 

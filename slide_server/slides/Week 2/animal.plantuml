@@ -1,0 +1,47 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Animal {
+-name: String
++sound(): String
+}
+
+class Mammal  {
++furColor: string
++giveBirth(): void
+}
+
+class Bird {
++wingSpan: double
++fly(): void
+}
+
+class Dog {
++breed: string
++bark(): string
+}
+
+class Cat {
++whiskerLength: double
++meow(): string
+}
+
+class Eagle {
++beakLength: double
++soar(): void
+}
+
+class Sparrow {
+ +nestBuildingSkill: int
+ +chirp(): string
+}
+
+Animal <|-- Mammal
+Animal <|-- Bird
+Bird <|-- Eagle
+Bird <|-- Sparrow
+Mammal <|-- Dog
+Mammal <|-- Cat
+
+@enduml
