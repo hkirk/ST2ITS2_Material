@@ -26,9 +26,9 @@ class Line {
 }
 
 class Rectangle {
-  upperLeft: Point
-  height: double
-  width: double
+  -upperLeft: Point
+  -height: double
+  -width: double
 }
 
 class Point {
