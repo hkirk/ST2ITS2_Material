@@ -1,3 +1,7 @@
+<!-- .slide: data-background-image="./img/shesharp.jpg" -->
+
+----
+
 <!-- .slide: data-background="#003d73" -->
 
 ## Files
