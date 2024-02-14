@@ -22,6 +22,10 @@
 
 ---
 
+TODO: hvilket problem løser vi her?
+
+----
+
 ## Files in C# <!-- .element: style="color:#003d73; background-color: #ffffff" -->
 
 <!-- .slide: data-background-image="./img/files.jpeg" -->
