@@ -30,12 +30,13 @@
 
 ----
 
-#### E.g. Files
+#### Files
 
 * File exists
 * Is readable/writable
 * Contains the correct data
-* Is not changed after we tested it
+* Has not changed after we tested it
+    * not on windows
 
 ----
 
@@ -54,7 +55,7 @@ When unexcpected (exceptions) happens in an application. A special object is cre
 
 * `Exception` is a special class in .NET
     * also classes derived from `Exception`
-* CLR (Common Language Runtim) populate state for these objects
+* CLR (Common Language Runtim&#x1F41E;) populate state for these objects
 * An `Exception` has state
     * Message
     * StackTrace
@@ -65,8 +66,8 @@ When unexcpected (exceptions) happens in an application. A special object is cre
 
 ### Throw
 
-* Throwing and exception object 
-* Means that any statement after the exception occurs is never executed
+* Throwing an exception object 
+* Means that any statement after the exception is <mark>thrown</mark> is ignored
 
 ----
 
@@ -123,8 +124,9 @@ File name: '/ST2ITS2_Material/source/Exception/ExceptionExamples/bin/Debug/net6.
 
 ### How
 
-* Just let errors happen and handle somewhere else
-* Handle errors when they occurs
+* Just let errors happen
+    * &#x25B6; handle somewhere else
+* Handle errors when they occur
 
 ![Catch](./img/4416446.jpg) <!-- .element: style="width: 500px" -->
 
@@ -148,8 +150,8 @@ try
 
 ### Multiple exceptions
 
-* Allowed to catch mulitple exceptions
-* Possible to handle different errors in specific ways
+* Allowed to catch different exceptions
+* Possibility to handle different errors in specific ways
 
 ```csharp [1, 5, 9]
 try
@@ -190,7 +192,7 @@ try
 
 ### Finally
 
-* Make sure you execute some code even if error occur
+* Force execution of code even when an error occur
 
 ```csharp [1,4,9-13]
 MemoryStream stream = null;
@@ -243,11 +245,11 @@ note:
 
 ### When
 
-* Catch exceptions as close to where they are thrown
 * No errors in constructor
+* Catch exceptions as close to where they are thrown
 * If you can't handle exception
     * log and then rethrow
-    * never swallow exception
+    * never swallow exception (empty catch clause)
 
 ![Windows XP](./img/a22.jpg) <!-- .element: style="width: 300px" -->
 
@@ -264,7 +266,7 @@ try
 } catch (NoCoffeeException)
 {}
 ```
-* As a minimum put in a log message (WriteLine)
+* As a minimum put in a log message (or WriteLine)
 
 
 ----
@@ -272,7 +274,7 @@ try
 ### Re-throw
 
 * May want to log (or simular) close to the origin of error
-    * But can't actually handle this
+    * But can't actually handle error at this point
 
 ```csharp [7,8]
 try
