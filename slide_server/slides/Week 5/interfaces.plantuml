@@ -1,0 +1,26 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+
+IPoint <|.. Point
+IPrintable <|.. Point
+
+interface IPrintable {
+   + Print(): void
+}
+
+interface IPoint {
+   + X : int {get; set;}
+   + Y : int {get; set;}
+   + Distance(IPoint): double
+}
+
+class Point {
+   + X : int {get; set;}
+   + Y : int {get; set;}
+   + Distance(IPoint): double
+   + Print(): void
+}
+
+@enduml
