@@ -117,7 +117,7 @@ File name: '/ST2ITS2_Material/source/Exception/ExceptionExamples/bin/Debug/net6.
    at Program.<Main>$(String[] args) in 
         /ST2ITS2_Material/source/Exception/ExceptionExamples/Program.cs:line 9
 ```
-<!-- .element: style="font-size: 18px;" class="fragment"-->
+<!-- .element: style="font-size: 18px;" class="fragment" -->
 
 
 ---
