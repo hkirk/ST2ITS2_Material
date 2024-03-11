@@ -43,9 +43,12 @@
 
 ### Discuss
 
+![Your turn](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTVia3VzYXhrM3BkOWMwbXZ5anNwdWNrandhanZkNm81aXZleTNhbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AEHPS520DUgJF8wnon/giphy.gif "") <!-- .element: style="position: absolute; right: 30px; top: 200px; width:200px" -->
+
 * In groups of 2 (approx 10 min)
     * How have you been given programmings exercises until now?
     * How do you solve these?
+
 
 ----
 
@@ -59,6 +62,8 @@
 * In groups of 3 (approx 10 min)
     * How would you find a solution to a problem you haven't encountered before?
 
+![Your turn](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTBoaXk5Nmd3YzRvNGoxMWkyNG9rdnBvbjdtYnAzczY1MWg0NmZzMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/27sT7J8QTn4ITbFqmZ/giphy.gif "") <!-- .element: style="float: right; height="200px" -->
+
 
 ----
 
@@ -66,7 +71,7 @@
 
 ---
 
-### Technics from Think Like a Programmer
+### Technics from `Think Like a Programmer`
 
 * Always have plan
 * Restate the problem
@@ -84,7 +89,7 @@
 
 * Keep a container filled with water at excatly 59 degrees
 
-* You have a course with 60 students in 20 grups
+* You have a course with 140 students in 40 grups
     * Each working on a choosen exercise from a list
     * Now divide students so they review a group with a different exercise
         * All students should make 2 reviews
@@ -116,7 +121,7 @@ How to keep a container filled with a fluid at excatly 59 degrees?
 Work in pairs
 
 * How would you solve 1-5?
-* **Don't** code yet
+* <mark>Do not</mark> code yet
 * Just figure out how you would solve the excerses?
 
 ----
@@ -141,7 +146,7 @@ Find another group and compare your way of solving the problem?
 * What worked?
 * What didn't work?
 * Did any of your planning work?
-* Could this plan be transfered to C#?
+* Could your plan be transfered to C#?
 
 ----
 
@@ -156,3 +161,5 @@ Remember to plan first
 
 
 ## References
+
+![Think like a programmer](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1378752167i/18469872._UY630_SR1200,630_.jpg "")
