@@ -10,6 +10,7 @@
 
 ## Agenda
 
+* Midterm evaluation
 * What is MAUI
 * Creating a project
     * with all the problems :(
