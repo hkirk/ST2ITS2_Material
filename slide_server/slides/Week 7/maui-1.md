@@ -14,7 +14,8 @@
 * Creating a project
     * with all the problems :(
 * Event handlers
-* Controls
+* Running a project
+* Controls + Views
 
 
 ---
@@ -45,6 +46,9 @@
 ## Create a project
 
 * [Prerequisites](https://learn.microsoft.com/en-us/dotnet/maui/get-started/installation?view=net-maui-8.0&tabs=vswin)
+    1. open Visual Studio install
+    2. install MAUI develment
+    3. in CMD: `dotnet new install Goldie.BlankMauiTemplate`
 * [Build your first app](https://learn.microsoft.com/en-us/dotnet/maui/get-started/first-app?pivots=devices-windows&view=net-maui-8.0&tabs=vswin)
 * Here you can also find information about Android, iOS
     * we focus on desktop applications
@@ -173,6 +177,7 @@ public partial class App : Application
 ## `MainPage.xaml.cs`
 
 * Again a code-behind file
+* `ContentPage` is a fullscreen 
 
 ```csharp
 public partial class MainPage : ContentPage
@@ -193,15 +198,96 @@ public partial class MainPage : ContentPage
 
 ---
 
-## Event handler
+## Event handlers
 
+* These are special methods in C#
+    * which are called when an event is triggered
+* You have seen one :)
 
+```csharp
+private void OnCounterClicked(object sender, EventArgs e) {
+    ...
+}
+```
+
+----
+
+### Event handler form
+
+* Event handlers 
+    * normally starts with <mark>On</mark>
+    * must have <mark>2</mark> parameters
+        * first is sender (invoker) of the event
+        * second is optional events
+* Visual Studio can auto create method from xaml file
+* We will cover this 3 and 4 semester.
 
 ---
 
-### Controls
+## Running and debugging
+
+* Choose windows target platform
+![Target platform](./img/windows-debug-target.png "")
+* Press Windows to build and rund
+![Build and run](./img/windows-run-button.png "")
+
+----
+
+### Setting developer permission
+
+* On Windows 11: 
+* Enable developer settings on windows
+![Developer settings](./img/windows-enable-developer-mode.png "") <!-- .element: style="height:250px" -->
+* And enable developer mode<br/>
+![Developer mode](./img/windows-developer-mode-win11.png "") <!-- .element: style="height:100px" -->
+
+---
+
+## Controls + Views
+
+* MAUI has 3 types of vies
+    * Pages
+        * displays an app + render layouts
+    * Layouts 
+        * can render controles
+    * Controls
+
+----
+
+### Essential Controls
+
+* Label - can show text
+* ProgressBar - can show progress to lengthy process
+* ActivityIndicator - show progress
+
+----
+
+### Essential Controls - input
+
+* Entry - can take online input
+* Editor - can take multiline input
+* Checkbox, DatePicker, Slider ...
+
+----
+
+### Essential Controls - Commands
+
+* Button - do action on tab
+* ImageButton - show image + above
+* SearchBar
+
+
+----
+
+### Controls, View and layouts
+
+* Many many more - around 50 exists
+* We talk more about styling and layout next week
+
 
 ---
 
 ## References
 
+* Learn Windows (https://learn.microsoft.com/en-us/dotnet/maui/?view=net-maui-8.0)
+* .NET MAUI in Action TODO: right name?
