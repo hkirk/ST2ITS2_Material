@@ -1,0 +1,93 @@
+------ v1
+
+@startuml
+
+ContentPage <|-- MainPage
+MainPage -> Astronaut
+
+
+class MainPage {
+   Astronauts: Collection<Astronaut>
+}
+
+class Astronaut {
+  Name: string
+  TimeInSpace: TimeSpan
+  Agency: string
+  ImageURL: string
+}
+@enduml
+
+---  v2
+
+@startuml
+
+ContentPage <|-- MainPage
+ContentPage <|-- NewPage
+MainPage -> NewPage
+
+NewPage -> Astronaut
+MainPage -> Astronaut
+
+class MainPage {
+   Astronauts: Collection<Astronaut>
+   - OnSelectionChanged(sender: object, e: SelectionChangedEventArgs)
+}
+
+class NewPage {
+  Astronaut: Astronaut
+}
+
+class Astronaut {
+  Name: string
+  TimeInSpace: TimeSpan
+  Agency: string
+  ImageURL: string
+}
+
+
+
+@enduml
+
+--- v3
+
+@startuml
+
+ContentPage <|-- MainPage
+ContentPage <|-- NewPage
+MainPage -> NewPage
+NewPage -> MainPage
+
+NewPage -> Astronaut
+MainPage -> Astronaut
+INotifyProperty <|.. Astronaut
+
+
+class MainPage {
+   Astronauts: Collection<Astronaut>
+   + SetRating(string name, int rating): void
+   - OnSelectionChanged(sender: object, e: SelectionChangedEventArgs)
+}
+
+class NewPage {
+  - _rating: int
+  - _mainPage: MainPage
+  + Astronaut: Astronaut
+  - Slider_OnValueChanged(sender: object, e: ValueChangedEventArgs)
+  - Button_OnClicked(sender: object, e: EventArgs)
+}
+
+class Astronaut {
+  - _rating: int
+  + Rating: int {get; set;}
+  + Name: string {get; set;}
+  + TimeInSpace: TimeSpan  {get; set;}
+  + Agency: string  {get; set;}
+  + ImageURL: string  {get; set;}
+  + PropertyChanged: PropertyChangedEventHandler {event}
+  # OnPropertyChanged([CallerMemberName] propertyName: string)
+}
+
+
+
+@enduml

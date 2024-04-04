@@ -18,6 +18,7 @@
 * Running a project
 * Controls + Views
 
+TODO: Add a little about xml - just enough
 
 ---
 
