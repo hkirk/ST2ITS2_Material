@@ -41,7 +41,7 @@ This we have already seen
     * Find(Predicate<T>): T
     * ForEach(Action<T>): void
     * Sort(): void
-    * IndxeOf(T t): int - Remember equals
+    * IndexOf(T t): int - Remember equals
 
 
 ----
@@ -221,7 +221,13 @@ public class Word: IComparable<Word> {
     }
 	
     public override bool Equals(object? other) {
-        return word.Equals(other);
+        if (other is Word)
+        {
+            Word otherWord = other as Word;
+            return word.Equals(otherWord.word);
+        }
+
+        return false;
     }
     public override int GetHashCode() {
         return word.GetHashCode();
