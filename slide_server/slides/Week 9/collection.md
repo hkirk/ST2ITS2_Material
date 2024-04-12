@@ -6,6 +6,9 @@
 
 ![AU Logo](./../img/aulogo_uk_var2_white.png "AU Logo") <!-- .element style="width: 200px; position: fixed; bottom: 50px; left: 50px" -->
 
+note:
+TODO: Husk at export med notes
+
 ----
 
 ## Agenda
@@ -190,6 +193,7 @@ public class Nudansk {
                 new Dictionary<Word, Meaning>();
 	public Nudansk() {
 		words.Add(new Word("Kilde"), new Meaning("..."));
+        //TODO: words.Add(new Word("Kilde"), new Meaning("..")); // Fails with excetion - since key is already added. Next updates value
 		words[new Word("Kilde")] = new Meaning("...");
 	}
     public Meaning GetMeaning(string word) {
@@ -253,6 +257,10 @@ public class Nudansk {
 }
 
 ```
+
+----
+
+TODO: Add why Dictionary
 
 ---
 
