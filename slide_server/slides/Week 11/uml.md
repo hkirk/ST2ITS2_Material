@@ -131,7 +131,7 @@
 * Interface specifies un-implemented methods
 * Sub-classes can have extra methods
 
-----
+---
 
 ##  Design Principles
 
@@ -151,10 +151,10 @@ We want <mark>high</mark> cohesion because
 
 ### Coupling
 
-We want <mark>low</mark> coupling because
-* avoid effect riples through 
-
-High coupling typically means its <mark>hard</mark> to make change / add features
+* We want <mark>low</mark> coupling because
+    * avoid effect riples through 
+* High coupling typically means
+    * its <mark>hard</mark> to make change / add features
 
 ----
 
