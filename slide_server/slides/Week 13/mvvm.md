@@ -12,103 +12,23 @@
 
 ## Agenda
 
-* Last week
 * Problem
 * MVVM
 * Other GUI Patterns
 
 ---
 
-### Solution from last week
-
-----
-
-![Events in UML](./img/events_uml.png "From SW4TEST")
-
----
-
-## Good to know
-
-![Via Giphy](https://media.giphy.com/media/AYkXq8pcc4RWxgbScj/giphy.gif)
-
-----
-
-### LINQ
-
-```csharp
-var startingPlayers = _roaster.Players
-    .Where(player => player.Starter)
-    .Select(player => 
-            new PlayerviewModel(player.Name, player.Number))
-// Same as
-List<PlayerviewModel> playerviewModels =
-                    new List<PlayerviewModel>();
-foreach (var player in _roaster.Players) {
-    if (player.Starter) {
-        var pvm = new PlayerviewModel(player.Name, player.Number);
-        playerviewModels.Add(pvm);
-    }
-}
-```
-
-----
-
-### Lambda
-
-```
-(parameter) => method body
-```
-
-e.g.
-
-```csharp
-private Func<Player, bool> _starterSelector =
-                player => player.Starter;
-// Or 
-private Func<int, int, int> _sum = ((i1, i2) => i1 + i2);
-```
-
-----
-
-### `Where` and `Select`
-
-* `Where(IEnumarable<TSource> source, Func<TSource, bool> predicate)`
-    * Returns a list which only contains the elements where predicate is true
-* `Select(IEnumarable<TScource> source, Func<TSource, TResult> selector)`
-    * Returns a list, where each element is transformed with selector
-
-Note:
-
-```csharp
-List<int> ints = new List<int>() {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-var even = ints.Where(i => i % 2 == 0);
-// even = [2, 4, 6, 8, 10]
-
-var timesTwo = ints.Select(i => i * 2);
-// timesTwo = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
-```
-
-----
-
-### Lambda and LINQ
-
-We will come back to this in a later lecture.
-
-----
-
 ### `ListBox`
 
-[ListBox](https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.listbox?view=windowsdesktop-7.0&viewFallbackFrom=net-6.0 "ListBox")
+[ListView](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/listview?view=net-maui-8.0 "ListView")
 
 
 ```xml
 // In XAML file
-<ListBox x:Name="rightDeckListBox" Grid.Row="1" Grid.Column="1"
-            Margin="10,0,10,10" ItemsSource="{DynamicResource rightDeck}" 
-            KeyDown="rightDeckListBox_KeyDown" />
+<ListView ItemsSource="{Binding Monkeys}" />
 ```
 
-* Shows a list of selectable items in a WPF application
+* Shows a list of selectable items in a MAUI application
 * Items can be static or dynamic.
     * Above examples is dynamic.
 
@@ -116,12 +36,12 @@ We will come back to this in a later lecture.
 
 ### `ObservableCollection<T>`
 
-[ObservableCollection<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.observablecollection-1?view=net-7.0)
+[ObservableCollection<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.observablecollection-1?view=net-8.0)
 
 * A dynamic collection like `List<T>`
-* Provides notifications when the list is mutate
+* Provides notifications when the list is mutated (changed)
     * E.g. `Add`, `Remove` and `Clear` operations
-* In WPF this means that bindings are automaticaly updated
+* In MAUI this means that bindings are automaticaly updated
 
 ---
 
@@ -142,6 +62,7 @@ Can we use this for both an operation and a practitioner consultation? <!-- .ele
 * UI Forms and controls
     * We can properly reuse the forms and controls
 * What a about alarms - showing when the presure is to high or low.
+    * And still have these testable
 
 note: 
 
@@ -183,26 +104,29 @@ We need a specific place to keep UI logic.
 
 * View is updated with data from ViewModel 
     * Updated through data bindings
-* This can be Two-way - meaning ViewModel is updated from View
+* This can be Two-way - meaning ViewModel is updated from View and back
+    * Some widgets are TwoWay: Date, Text...
+    * [Binding declaration](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/data-binding/binding-mode?view=net-maui-8.0)
+* Overriding default
 ```xml
-<TextBox
-    Text="{Binding Path=Height, StringFormat=F1, Mode=TwoWay}"
+<Label Text="TEXT"
+       Scale="{Binding Path=Value,
+                       Mode=TwoWay}" />
 ```
-* [Binding declaration](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/data/binding-declarations-overview)
 
 ----
 
 ### Commands
 
 * Communication from View to ViewModel
-* ICommand interface exists in .NET
+* `ICommand` interface exists in .NET
     * `Execute(object)` called when command is actuated 
-    * `CanExecute(object)` returns boolen and determines if UI 'unluck' command
+    * `CanExecute(object)` returns boolen and determines if UI 'unlock' command
     * `CanExecuteChanged` should be raised when 'CanExecute` should be reevaluated
-* RelayCommand is an implementation of this interface
+* `Command` is an implementation of this interface
 ```xml
 <Button 
-    Command="{Binding CalcBMICommand, Mode=OneTime}"/>
+    Command="{Binding CalcBMICommand}"/>
 ```
 
 <!-- .slide: style="font-size: 34px" -->
@@ -229,7 +153,7 @@ public class BMIModel
 
 ----
 
-#### DataContext in C#
+#### BindingContext in C#
 
 Creating a ViewModel 
 
@@ -240,14 +164,16 @@ public class BMIViewModel : INotifyPropertyChanged {
 
 Defining a DataContext
 
-```xaml [3-5]
-<Window x:Class="BMICalculator.MainWindow"
-        ...>
-    <Window.DataContext>
-        <local:BMIViewModel/>
-    </Window.DataContext>
-    ...
-</Window>
+```xaml [4,6-8]
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BmiCalculator"
+             x:Class="BmiCalculator.MainPage">
+       <ContentPage.BindingContext>
+              <local:BMIViewModel />
+       </ContentPage.BindingContext>
+</ContentPage>
 ```
 
 ----
@@ -261,14 +187,11 @@ public class BMIViewModel : INotifyPropertyChanged {
     ...
     public event PropertyChangedEventHandler PropertyChanged;
 
-    private void NotifyPropertyChanged(
-        [CallerMemberName] string propertyName = null) {
-        var handler = PropertyChanged;
-        if (handler != null)
-        {
-            handler(this, 
-                new PropertyChangedEventArgs(propertyName));
-        }
+    private void OnPropertyChanged(
+        [CallerMemberName] string propertyName = "")
+    {
+        PropertyChanged?.Invoke(this,
+            new PropertyChangedEventArgs(propertyName));
     }
 }
 ```
@@ -288,7 +211,7 @@ public class BMIViewModel : INotifyPropertyChanged {
             if (value != bmiModel.Height)
             {
                 bmiModel.Height = value;
-                NotifyPropertyChanged();
+                OnPropertyChanged();
             }
         }
     }
@@ -313,7 +236,7 @@ public class BMIViewModel : INotifyPropertyChanged {
     private void CalcBMI()
     {
         bmi = bmiModel.CalculateBMI();
-        NotifyPropertyChanged("BMI");
+        OnPropertyChanged("BMI");
     }
     ...
 }
@@ -325,32 +248,37 @@ public class BMIViewModel : INotifyPropertyChanged {
 
 Input data
 
-```xaml [4,7]
-<Window ..>
+```xaml [4-6,10-12]
+<ContentPage ..>
+    ...
+    <Entry ...
+        Text="{Binding Path=Weight,
+               StringFormat='{0:F1}',
+               Mode=TwoWay}"
+        />
     ...
     <TextBox ...
-        Text="{Binding Path=Weight, StringFormat=F1}" />
+        Text="{Binding BMI,
+               Mode=OneWay,
+               StringFormat='{0:F1}'}" />
     ...
-    <TextBox ...
-        Text="{Binding BMI, Mode=OneWay, StringFormat=F1}" />
-    ...
-</Windows>
+</ContentPage>
 ```
 
 ----
 
 #### ViewModel in C# 
 
-Relay commands
+`Commands`
 
-```csharp [4-8]
+```csharp [3,6-7]
 public class BMIViewModel : INotifyPropertyChanged {
     ...
-    ICommand _calcBMICommand;
-    public ICommand CalcBMICommand {
-        get { return _calcBMICommand ??
-            (_calcBMICommand = new RelayCommand(CalcBMI,
-                                 CalcBMICanExecute)); }
+    public ICommand CalcBMICommand { get; set; }
+    public MainPageViewModel()
+    {
+        CalcBMICommand =
+            new Command(CalcBMI, CalcBMICanExecute);
     }
     private bool CalcBMICanExecute() {
         if (Weight != 0.0 && Height != 0.0)
@@ -359,6 +287,28 @@ public class BMIViewModel : INotifyPropertyChanged {
             return false;
     }
     ...
+}
+```
+
+----
+
+### Command state update
+
+Update button state
+
+```csharp [10]
+public double Weight
+{
+  get { return calculator.Weight; }
+  set
+  {
+    if (value != calculator.Weight)
+    {
+      calculator.Weight = value;
+      OnPropertyChanged();
+      (CalcBMICommand as Command)?.ChangeCanExecute();
+    }
+  }
 }
 ```
 
