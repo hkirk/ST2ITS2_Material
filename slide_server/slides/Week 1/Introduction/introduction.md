@@ -17,29 +17,32 @@
 
 ### TA's
 
-* We have two skilled  TAs
-* Both are 4th semester ST students
-* Marwo Xasan
-* Nikolaj Matzen
+* We have three skilled TAs
+* All are 4th semester ST students
+* Kornelija Pociute
+* Asta Louise Vibe Laursen
+* Tim Reuber Larsen
 
-![Marwo](./img/marwo.jpeg) <!-- .element: style="position: absolute; top: 50%; left: -15%; width: 300px; height: 300px;" -->
+![Asta](./img/asta.jpg) <!-- .element: style="position: absolute; top: 50%; left: -15%; width: 300px; height: 300px;" -->
 
-![Nikolaj](./img/nikolaj.jpg) <!-- .element: style="position: absolute; top: 50%; right: -15%; width: 300px; height: 300px;" -->
+![Kornelija](./img/Kornelija.jpeg) <!-- .element: style="position: absolute; top: 50%; right: -15%; width: 300px; height: 300px;" -->
+
+![Tim](./img/tim.jpeg) <!-- .element: style="position: absolute; bottom: -115%; right: 40%; width: 25 0px; height: 300px;" -->
+
 
 ----
 
 ### Henrik Bitsch Kirk
 
 * Graduated from Computer Science 2009
-* Work (programmer)
-    * Danish National Library 2009-2010
-    * Visiolink 2011-2014
-    * Cetrea 2014
-    * Lapio 2014-2015
-    * Mj&#248;lner 2015-2017
-    * ECE 2017-
+* Teaching since 7+
+    * Introduction to programing
+    * Software design (Not user interfaces)
+    * Mobile development
+    * Functional programming
+    * Web orchestration
 
-![Henrik Kirk](./img/henrik.png) <!-- .element: style="position: absolute; top: 50%; right: 10%; width: 300px" -->
+![Henrik Kirk](./img/henrik.png) <!-- .element: style="position: absolute; top: 70%; right: 5%; width: 300px" -->
 
 
 ---
@@ -49,12 +52,12 @@
 ## Qualifications
 
 * Identify and use object-oriented concepts and principles
-* Explain and apply the basic principles in an object-oriented programming language, including inheritance, polymorphism, and interfaces for the development of easily maintained programs.
+* Explain and apply the basic principles in an object-oriented programming language, including inheritance, polymorphism, and interfaces to develop easily maintained programs.
 * Explain and implement the different types of class relationships
-* Design and implement simple generalisation and specialisation hierarchies using inheritance.
-* Identify and explain correlations in an object-oriented UML class diagram and implement this by dividing a program into modules.
-* Explain static and dynamic memory allocation and apply it in specific programs.
-* Know and apply the basic principles of exceptions in simple situations.
+* Design and implement simple generalization and specialization hierarchies using inheritance.
+* Identify and explain correlations in an object-oriented UML class diagram and implement this.
+* Explain and argue for the choice of simple data structures and implement the usage of these.
+* Apply the basic principles of exceptions in simple situations.
 * Be able to use the MVVM architecture to implement applications with a graphical user interface for Microsoft Windows.
 * Apply data binding to associate data in the model layer with their presentation in the view layer.
 
@@ -67,12 +70,12 @@
 ## Qualifications 
 
 * Identify and use **object-oriented concepts and principles**<!-- .element: style="color: #000000" -->
-* Explain and apply the basic principles in an object-oriented programming language, including **inheritance, polymorphism, and interfaces**<!-- .element: style="color: #000000" --> for the development of easily maintained programs.
+* Explain and apply the basic principles in an object-oriented programming language, *including inheritance, polymorphism, and interfaces*<!-- .element: style="color: #000000" --> to develop easily maintained programs.
 * Explain and implement the different types of **class relationships**<!-- .element: style="color: #000000" -->
-* Design and implement simple **generalisation and specialisation**<!-- .element: style="color: #000000" --> hierarchies using inheritance.
-* Identify and explain correlations in an object-oriented **UML class diagram**<!-- .element: style="color: #000000" --> and implement this by dividing a program into modules.
-* Explain **static and dynamic memory allocation**<!-- .element: style="color: #000000" --> and apply it in specific programs.
-* Know and apply the basic principles of **exceptions**<!-- .element: style="color: #000000" --> in simple situations.
+* Design and implement simple **generalization and specialization**<!-- .element: style="color: #000000" --> hierarchies using inheritance.
+* Identify and explain correlations in an object-oriented **UML class diagram**<!-- .element: style="color: #000000" --> and implement this.
+* Explain and argue for the choice of simple data structures and implement the usage of these.
+* Apply the basic principles of **exceptions**<!-- .element: style="color: #000000" --> in simple situations.
 * Be able to use the **MVVM architecture**<!-- .element: style="color: #000000" --> to implement applications with a graphical user interface for Microsoft Windows.
 * Apply **data binding**<!-- .element: style="color: #000000" --> to associate data in the model layer with their presentation in the view layer.
 
@@ -84,14 +87,15 @@
 
 ## Qualifications
 
-* **Identify**<!-- .element: style="color: #000000" --> and use object-oriented concepts and principles
-* **Explain**<!-- .element: style="color: #000000" --> and **apply**<!-- .element: style="color: #000000" --> the basic principles in an object-oriented programming language, including inheritance, polymorphism, and interfaces for the development of easily maintained programs.
+
+* **Identify**<!-- .element: style="color: #000000" --> and **use**<!-- .element: style="color: #000000" --> object-oriented concepts and principles
+* **Explain**<!-- .element: style="color: #000000" --> and **apply**<!-- .element: style="color: #000000" --> the basic principles in an object-oriented programming language, including inheritance, polymorphism, and interfaces to develop easily maintained programs.
 * **Explain**<!-- .element: style="color: #000000" --> and **implement**<!-- .element: style="color: #000000" --> the different types of class relationships
-* **Design**<!-- .element: style="color: #000000" --> and **implement**<!-- .element: style="color: #000000" --> simple generalisation and specialisation hierarchies using inheritance.
-* **Identify**<!-- .element: style="color: #000000" --> and **explain**<!-- .element: style="color: #000000" --> correlations in an object-oriented UML class diagram and implement this by dividing a program into modules.
-* **Explain**<!-- .element: style="color: #000000" --> static and dynamic memory allocation and apply it in specific programs.
-* **Know**<!-- .element: style="color: #000000" --> and **apply**<!-- .element: style="color: #000000" --> the basic principles of exceptions in simple situations.
-* Be able to use the MVVM architecture to implement applications with a graphical user interface for Microsoft Windows.
+* **Design**<!-- .element: style="color: #000000" --> and **implement**<!-- .element: style="color: #000000" --> simple generalization and specialization hierarchies using inheritance.
+* **Identify**<!-- .element: style="color: #000000" --> and **explain**<!-- .element: style="color: #000000" --> correlations in an object-oriented UML class diagram and **implement**<!-- .element: style="color: #000000" --> this.
+* **Explain**<!-- .element: style="color: #000000" --> and **argue**<!-- .element: style="color: #000000" --> for the choice of simple data structures and implement the usage of these.
+* **Apply**<!-- .element: style="color: #000000" --> the basic principles of exceptions in simple situations.
+* Be able to **use**<!-- .element: style="color: #000000" --> the MVVM architecture to **implement**<!-- .element: style="color: #000000" --> applications with a graphical user interface for Microsoft Windows.
 * **Apply**<!-- .element: style="color: #000000" --> data binding to associate data in the model layer with their presentation in the view layer.
 
 <!-- .slide: style="font-size: 28px; color: #00000055; " -->
@@ -114,7 +118,6 @@ Note:
 * Lots of exercises
 * Curriculium
     * The C# Players Guide
-    * Extra chapters from github
     * A few articles
 
 
@@ -153,15 +156,6 @@ Will properly change a bit
 
 
 ---
-
-## 2nd time <!-- .element: style="color:#003d73; background-color: #ffffff" -->
-
-<!-- .slide: data-background-image="./img/byggeriet-i-skejby-i-2014.jpg" -->
-
-note: 
-Kilde: https://www.fmbygningsdrift.dk/referencer/det-nye-universitetshospital-skejby-dnu-skejby/
-
-----
 
 ## Our Expectations
 
