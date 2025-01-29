@@ -148,25 +148,31 @@ Will properly change a bit
 
 ### Exam
 
-* Oral exam approx. 30 minutes with grading
+* Oral exam - 30 minutes with grading
     * Drag unknown UML exercise (diagram)
     * Explain and implement part of this.
 * No preperation
 * **Internal** co-examiner, **7-point** grading scale
 
+----
+
+### Exam example
+
+![UML example](https://www.uml-diagrams.org/class-diagrams/class-diagram-domain-overview.png)
+
 
 ---
 
-## Our Expectations
+## My Expectations
 
-* You tell us 
+* You tell me 
     * if something could be made better
     * is not working
-* Read and watch given material **and** look at the exercises before classe
+* Read and watch given material **and** look at the exercise text before lecture
 * You ask questions when something is difficult
     * We have **TA's** in the course, plus '**lektiecafe**' where you can get help outside lectures
 * You write lots and lots of code before the exam
-    * You practice at home.
+    * also practice at home / between lectures
 
 ----
 

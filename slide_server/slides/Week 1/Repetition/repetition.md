@@ -3,6 +3,8 @@
 
 ----
 
+<!-- .slide: data-visibility="hidden" -->
+
 <!-- .slide: data-background-image="./img/learning_pit.jpg" data-background-size="contain" -->
 
 ---
@@ -16,6 +18,15 @@
 * [while](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements)
 * for
 * foreach
+
+----
+
+### Datatypes
+
+* string, int, unit, float, double
+* Enums
+* tuples
+
 
 ----
 
@@ -54,6 +65,13 @@
     * return types
 
 </div>
+
+----
+
+## Why classses?
+
+* Cohesion
+* Coupling
 
 ----
 
