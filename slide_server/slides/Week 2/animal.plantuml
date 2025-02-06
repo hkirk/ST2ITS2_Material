@@ -4,37 +4,37 @@ skinparam classAttributeIconSize 0
 
 class Animal {
 -name: String
-+sound(): String
+#sound: String
++Sound(): String
 }
 
 class Mammal  {
 +furColor: string
-+giveBirth(): void
+GiveBirth(): void {abstract}
 }
 
 class Bird {
 +wingSpan: double
-+fly(): void
++Fly(): void
 }
 
 class Dog {
-+breed: string
-+bark(): string
+  +breed: string
+  +Sit(): void
 }
 
 class Cat {
-+whiskerLength: double
-+meow(): string
+  +whiskerLength: double
+  +ChaseMouse(): void
 }
 
 class Eagle {
-+beakLength: double
-+soar(): void
+  +beakLength: double
 }
 
 class Sparrow {
  +nestBuildingSkill: int
- +chirp(): string
+ 
 }
 
 Animal <|-- Mammal

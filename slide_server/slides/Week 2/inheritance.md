@@ -18,10 +18,10 @@
 
 ### Immutable
 
-* The ability to set a value once - when the object is created
-    * But never to change it again
+* The ability to set a value once - when the object is created<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* But never to change it again<!-- .element: class="fragment" data-fragment-index="1" -->
 
-```csharp
+```csharp [|2-5|9,12]
 public class Person {
     public readonly String CPR;
     public int Age { get; }
@@ -42,20 +42,23 @@ public class Person {
 
 ### Visibility
 
-* `public`
+* <!-- .element: class="fragment" data-fragment-index="0" --> public
     * Other classes and project can access
-* `internal`
+* <!-- .element: class="fragment" data-fragment-index="1" --> private
+    * Only the class itself can access
+* <!-- .element: class="fragment" data-fragment-index="2" -->internal
     * Other classes in same project can access
     * Visual Studio defaults to this
-* `private`
-    * Only the class it self can access
-* No modifier means internal (for classes and structs)
+* No modifier means internal (for classes and structs)<!-- .element: class="fragment" data-fragment-index="3" -->
 
 ----
 
 ```csharp
 public class Person {
     private string _cpr;
+    public Person(string cpr) {
+        this._cpr = cpr;
+    }
     string GetCPR() {
         return _cpr;
     }
@@ -70,7 +73,7 @@ public class Person {
 
 ### Structs
 
-* Definded with keyword `struct`
+* Defined with keyword `struct`
     ```csharp
     public struct Point2D {
         public int X {get;}
@@ -78,29 +81,40 @@ public class Person {
         // constructor
     }
     ```
-* Used for small data-centric classes - with little or no behavoir
-* As values - like int, string, ...
-* *Value* vs *Reference* semantic :)
+* Used for small data-centric classes - with little or no behavoir<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* As values - like int, string, ...<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* Value vs Reference semantic :)<br/><!-- .element: class="fragment" data-fragment-index="2" -->
+
+
+----
+
+### Organizing books in a libary
+
+* Write every detail seperatly or create a template?
+* Classes are the template - objects are the concrete books<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* Classes consits of<br/><!-- .element: class="fragment" data-fragment-index="2" -->
+    * Data: Author, #pages, ISBN, Title, ...
+    * Behavoior: Borrow(), Return(), Reserve()
 
 ---
 
-## Problemm
+## Problem (we solve to-day)
 
-* Reuse of code
+* Reuse of code<br/><!-- .element: class="fragment" data-fragment-index="0" -->
     * Increase efficiency
     * Improve quality
     * Consistency
     * Modularity
     * Collaboration
-* Extensability
-* Polymorphism
+* Extensibility<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* Polymorphism<br/><!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
 ### Reuse in OOP 
 
-* Depend on same class from multiple classes
-* Delegate work to this class (`Hammer`)
+* Depend on same class from multiple other classes<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* Delegate work to this class (Hammer)<br/><!-- .element: class="fragment" data-fragment-index="1" -->
 
 ```language-plantuml
 @startuml
@@ -123,11 +137,12 @@ class BrickLayer {
 @enduml
 ```
 
+
 ----
 
 ### In C# 
 
-```csharp
+```csharp [1-5|7-13]
 public class Hammer {
     public void HitWithForce(object item) {
         Console.WriteLine($"Hit {item} with force");
@@ -173,8 +188,8 @@ Hit Brick with force
 
 ### In UML
 
-* Mechanism that allows derieved classes to inherit <mark>properties</mark> and <mark>methods</mark> from base class
-* First we focus on syntax
+* <!-- .element: class="fragment" data-fragment-index="0" --> Mechanism that allows derieved classes to inherit <mark>properties</mark> and <mark>methods</mark> from base class<br/>
+* First we focus on syntax<br/><!-- .element: class="fragment" data-fragment-index="1" -->
     * then we talk about when its appropriate to inherit
     * warning silly example
 
@@ -232,8 +247,8 @@ hammer.HitWithForce(new Brick());
 
 ```
 
-* Notice that there now is no need to instantiate the `Hammer`.
-* `BrickLayer`` <mark>is-a</mark> hammer
+* <!-- .element: class="fragment" data-fragment-index="0" --> Notice _no_ need to instantiate the Hammer <br/>
+* <!-- .element: class="fragment" data-fragment-index="1" --> BrickLayer <mark>is-a</mark> hammer
 
 ----
 
@@ -264,9 +279,9 @@ public class BrickLayer : Hammer {
 
 ### Constructing a BrickLayer
 
-* Constructing of `BrickLayer` means constructing `Hammer`
-* The `BrickLayer` needs to call the `Hammer` constructor
-* Why only when base class has a <mark>non-empty</mark> constructor? <!-- .element: class="fragment" data-fragment-index="1"  -->
+* <!-- .element: class="fragment" data-fragment-index="0" --> Construction of BrickLayer means constructing Hammer<br/>
+* <!-- .element: class="fragment" data-fragment-index="1" --> The BrickLayer needs to call the Hammer constructor<br/>
+* <!-- .element: class="fragment" data-fragment-index="2" -->Why only when base class has a <mark>non-empty</mark> constructor?
 
 ----
 
@@ -289,8 +304,8 @@ public class BrickLayer : Hammer {
 
 ## When to use
 
-* `BrickLayer` and `Surgeon` is now depeneded on inner workings of `Hammer`
-* Extending `Hammer` with method `CalculatePrice()` based on materials
+* <!-- .element: class="fragment" data-fragment-index="1" -->BrickLayer and Surgeon is now depeneded on inner workings of Hammer<br/>
+* <!-- .element: class="fragment" data-fragment-index="2" --> Extending Hammer with method CalculatePrice() based on materials
     * then this apply to derived classes
 
 
@@ -324,10 +339,10 @@ class BrickLayer {
 ```csharp
 Hammer hammer = new BrickLayer();
 ```
-* How should we as developers make sense of the `hammer` object?
-* Derieved classes are forced to inherit from `base` classe
+* How should we as developers make sense of the hammer object?<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* Derieved classes are forced to inherit from base classe<br/><!-- .element: class="fragment" data-fragment-index="1" -->
 
-Inheritance can give all sorts of problems - especially as the code <mark>evolves</mark> - and it will
+<div class="fragment" data-fragment-index="2">Inheritance can give all sorts of problems - especially as the code <mark>evolves</mark> - and it will</div>
 
 ----
 
@@ -416,13 +431,13 @@ class Person {
 
 ### object class
 
-* Object class has 3 important methods
+* Object class has 3 important methods<br/><!-- .element: class="fragment" data-fragment-index="0" -->
     * `string ToString()`
     * `int GetHashCode()`
     * `bool Equals(object? obj)`
-* These can be overriden in your classes
+* These can be overriden in your classes<br/><!-- .element: class="fragment" data-fragment-index="1" --> 
     * meaning your class can <mark>change</mark> these methods behavior
-    * eg.
+    * eg.<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```csharp
 public override string ToString()
@@ -430,13 +445,14 @@ public override string ToString()
     return $"{FirstName} {LastName}";
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
 ### virtual methods
 
-* These methods in `object` are defined so they can be overriden.
-* This are done with the `virtual` keyword
+* These methods in object are defined so they can be overriden.<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* This are done with the virtual keyword<br/><!-- .element: class="fragment" data-fragment-index="1" -->
 
 ```csharp [3,8-10]
 public class Hammer {
@@ -460,7 +476,7 @@ public class BrickLayer : Hammer {
     * E.g. the base class is delivered by someone else?
 
 ```csharp
-public class Hammer { // Defined by 
+public class Hammer { // Defined by someone else
     ...
     public void HitWithForce(object item) {
         Console.WriteLine($"Hit {item} with {_force}");
@@ -473,6 +489,7 @@ public class BrickLayer : Hammer { // Written by us
     }
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
@@ -501,7 +518,7 @@ Why is there a difference?<!-- .element: class="fragment"  data-fragment-index="
 ### Hide method with `new`
 
 * The compiler is actually helping us?
-* And telling us how to be specific about this
+* And telling us how to be specific about hidding
 
 ```
 Warning CS0108 'BrickLayer.HitWithForce' hides inherited
@@ -517,6 +534,7 @@ public class BrickLayer : Hammer { // Written by us
     }
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
@@ -543,16 +561,16 @@ This does not compile!! Why not?
 
 ### Visibility
 
-* `public`
+* <!-- .element: class="fragment" data-fragment-index="0" -->public
     * Other classes and project can access
-* `internal`
+* <!-- .element: class="fragment" data-fragment-index="0" -->private
+    * Only the class it self can access
+* <!-- .element: class="fragment" data-fragment-index="0" -->internal
     * Other classes in same project can access
     * Visual Studio defaults to this
-* `private`
-    * Only the class it self can access
-* `protected`
+* <!-- .element: class="fragment" data-fragment-index="1" -->protected
     * Only class itself and derieved classes can access
-* No modifier means internal (for classes and structs)
+* <!-- .element: class="fragment" data-fragment-index="0" -->No modifier means internal (for classes and structs)
 
 ----
 
@@ -593,12 +611,12 @@ public class BrickLayer : Hammer {
 
 ### Polymorphism
 
-* We have already seen this in Hammer
+* We have already seen this in Hammer<!-- .element: class="fragment" data-fragment-index="0" -->
 ```csharp
 Hammer hammer1 = new Hammer()
 Hammer hammer2 = new BrickLayer();
 ```
-* The hammer type is Polymorph
+* The hammer type is Polymorph<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ----
 
@@ -624,8 +642,8 @@ class Brightspace {
 @enduml
 ```
 
-* Brightspace only has knowledge about Person - where it aggregates these
-* Don't know anything about `Student`, `Teacher`, or `TeachingAssistent`
+* Brightspace only has knowledge about Person - where it aggregates these<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* Don't know anything about Student, Teacher, or TeachingAssistent<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ----
 
@@ -663,7 +681,7 @@ class Brightspace {
 
 ### Abstract classes
 
-Does the <mark>Person</mark> class make sense in this context?
+Does a <mark>Person</mark> instance make sense in this context?
 
 ```language-plantuml
 @startuml
@@ -686,7 +704,7 @@ class Brightspace {
 @enduml
 ```
 
-This is properly to general a class to have in this context <!-- .element: class="fragment" data-fragment-index="1"  -->
+<br/>This is properly to general a class, to create instances of, in context <!-- .element: class="fragment" data-fragment-index="1"  -->
 
 ----
 
@@ -743,7 +761,7 @@ public class Student : Person {
 ```
 
 * `GetName()` is abstract and have not implemention in Person
-     * is overriden in Student
+* `GetName()` is overriden in Student
 
 
 ----
