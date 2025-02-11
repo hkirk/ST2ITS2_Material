@@ -1,6 +1,3 @@
-<!-- .slide: data-background-image="./img/shesharp.jpg" -->
-
-----
 
 <!-- .slide: data-background="#003d73" -->
 
@@ -15,49 +12,64 @@
 
 ### Agenda
 
-* Files
-* Streams
-* Encoding
-* Serilization
+* Repitition<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* Files<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* Streams<br/><!-- .element: class="fragment" data-fragment-index="2" -->
+* Encoding<br/><!-- .element: class="fragment" data-fragment-index="3" -->
+* Serilization<br/><!-- .element: class="fragment" data-fragment-index="4" -->
 
 ---
 
-TODO: hvilket problem løser vi her?
+## Inheritance
+
+* A class can inherit from a super (or base) class<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+    * but only one
+* Inherits its (the class') functionality<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* Can access all properties that are public, internal or protected<br/><!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
-## Files in C# <!-- .element: style="color:#003d73; background-color: #ffffff" -->
+## Abstract classes
 
-<!-- .slide: data-background-image="./img/files.jpeg" -->
+* Abstract class cannot be instantiated<br/><!-- .element: class="fragment" -->
+* Can have abstract methods<br/><!-- .element: class="fragment" -->
+    * methods with no body (and abstract keyword)
+* Methods must be overriden in inheriting classes<br/><!-- .element: class="fragment" -->
+
+---
+
+## Problem <!-- .element: style="color:#003d73; background-color: #ffffff" --> 
+
+<!-- .slide: data-background-image="./img/carlos-muza-hpjSkU2UYSU-unsplash.jpg" -->
 
 ----
 
-### File
+### `File` class
 
 "Provides static methods for the creation, copying, deletion, moving, and opening of a single file, and aids in the creation of FileStream objects."
 
-*Remember the `static` keyword?*
+* static keyword??<br/><!-- .element: class="fragment"  -->
 
 ----
 
-### File methods
+### `File` methods
 
 
-* [Read|Write]AllLines
-* [Read|Write]AllText
-* Open[Read|Write|Text]
-* Create[Write]
-* [Complete List](https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-6.0#methods)
+* [Read|Write]AllLines<br/><!-- .element: class="fragment"  -->
+* [Read|Write]AllText<br/><!-- .element: class="fragment"  -->
+* Open[Read|Write|Text]<br/><!-- .element: class="fragment"  -->
+* Create[Write]<br/><!-- .element: class="fragment"  -->
+* [Complete List](https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-6.0#methods)<br/><!-- .element: class="fragment"  -->
 
 ----
 
-### Directory methods
+### `Directory` methods
 
-* CreateDirectory
-* Delete
-* Exist
-* Enumerate[Files|Directories]
-* [Complete List](https://learn.microsoft.com/en-us/dotnet/api/system.io.directory?view=net-6.0#methods)
+* CreateDirectory<br/><!-- .element: class="fragment"  -->
+* Delete<br/><!-- .element: class="fragment"  -->
+* Exist<br/><!-- .element: class="fragment"  -->
+* Enumerate[Files|Directories]<br/><!-- .element: class="fragment"  -->
+* [Complete List](https://learn.microsoft.com/en-us/dotnet/api/system.io.directory?view=net-6.0#methods)<br/><!-- .element: class="fragment"  -->
 
 
 ----
@@ -131,7 +143,7 @@ Remember:
 ### Your turn <!-- .element: style="color:#003d73; background-color: #ffffff" -->
 
 Work on exercises 1-3<br/>
-Continue on optional exercises <!-- .element: style="color:#000000; background-color: #ffffff" -->
+Continue on 4-> <!-- .element: style="color:#000000; background-color: #ffffff" -->
 
 <!-- .slide: data-background-image="./img/your_turn.png" -->
 
@@ -145,23 +157,24 @@ Continue on optional exercises <!-- .element: style="color:#000000; background-c
 
 ### Streams and Reader/Writer
 
-* Generic way to work with sequences of bytes (come to this later)
+* Generic way to work with sequences of bytes (come to this later)<br/><!-- .element: class="fragment"  -->
     * Specific for Files, Network, ...
-* Reader/Writer - reads/writes specific types of data
+* Reader/Writer - reads/writes specific types of data<br/><!-- .element: class="fragment"  -->
     * Stream, String, Binary, ...
 
 ----
 
 ### `StreamWriter.Write()`
 
-* `Write` can write simple types to a stream
+* `Write()` can write simpel types to a stream
     * `int`, `double`, `string`, ...
 
 
-```cs[3|4|8]
+```cs[3-4|5|9]
 public static void WriteNumbersToStreams(string filename)
 {
-    FileStream fs = new FileStream(filename, FileMode.Create);
+    FileStream fs = new FileStream(filename,
+                                   FileMode.Create);
     StreamWriter streamWriter = new StreamWriter(fs);
 
     for (int i = 0; i < 100; i++)
@@ -178,7 +191,7 @@ public static void WriteNumbersToStreams(string filename)
 
 ### `StreamWriter.WriteLine()`
 
-* `WriteLine` works like `Console.WriteLine`
+* `WriteLine` works 'like' `Console.WriteLine`
 
 ```cs[8]
 public static void WriteLinesToStream(string filename)
@@ -215,7 +228,8 @@ public static void WriteZippedToStreams(string filename)
 }
 ```
 * Data flows through `GZipStream` -> `FileStream`
-* Can be read back with `GZipStream.Read()` or [`gzip`](https://sourceforge.net/projects/gzip-for-windows/)
+* Can be read back with GZipStream.Read()<br/><!-- .element: class="fragment" -->
+    * [`gzip`](https://sourceforge.net/projects/gzip-for-windows/)
 
 Note:
 
@@ -230,8 +244,7 @@ ExampleApplications/bin/Debug/net6.0/test.txt already exists -- do you wish to o
 
 ### `StreamReader.ReadLine()`
 
-* `ReadLine` reads file line by line
-* `Read` reads 1...n bytes
+* ReadLine() reads file line by line<br/><!-- .element: class="fragment" -->
 
 ```cs[3|4|6|8]
 public static void ReadLinesFromStream(string filename)
@@ -248,12 +261,15 @@ public static void ReadLinesFromStream(string filename)
 }
 ```
 
+* Read() reads 1...n bytes<br/><!-- .element: class="fragment" -->
+
+
 ----
 
 ### Binary
 
-* Computers works with binary representation of data
-* BinaryWriter (and Reader) can write binary data
+* Computers works with binary representation of data<br/><!-- .element: class="fragment" -->
+* BinaryWriter (and Reader) can write binary data<br/><!-- .element: class="fragment" -->
 
 ```cs
     public static void WriteBinaryToFile(string filename)
@@ -268,8 +284,11 @@ public static void ReadLinesFromStream(string filename)
         binaryWriter.Close();
     }
 ```
+<!-- .element: class="fragment" -->
 
 ----
+
+<!-- .slide: data-visibility="hidden" -->
 
 ### `hexdump`
 
@@ -283,6 +302,8 @@ public static void ReadLinesFromStream(string filename)
 ```
 
 ----
+
+<!-- .slide: data-visibility="hidden" -->
 
 ### Building a HexDump in C#
 
@@ -303,6 +324,8 @@ note:
 - ReadBlock: blocking version of Read - meaning that it blocks (does not continue) until we are read count bytes or are at end of stream
 
 ----
+
+<!-- .slide: data-visibility="hidden" -->
 
 ### Data manipulation
 
@@ -325,7 +348,8 @@ note:
 
 ### Your turn <!-- .element: style="color:#003d73; background-color: #ffffff" -->
 
-Work on exercises 4-5<br/>
+
+Continues where you left of. Work until exercises 4-8<br/>
 Continue on optional exercises  <!-- .element: style="color:#000000; background-color: #ffffff" -->
 
 <!-- .slide: data-background-image="./img/your_turn.png" -->
@@ -334,8 +358,8 @@ Continue on optional exercises  <!-- .element: style="color:#000000; background-
 
 ## Serilization
 
-* Convert a structure into a series of bytes
-* Flatten e.g. an object to some data. 
+* Convert a structure into a series of bytes<br/><!-- .element: class="fragment" -->
+* 'Flatten' e.g. an object to some data. <br/><!-- .element: class="fragment" -->
 
 ```cs
 class Patient {
@@ -346,21 +370,22 @@ class Patient {
     ...
 }
 ```
+<!-- .element: class="fragment" -->
 
-* byte array containing the data fields in the object.
+* byte array containing the data fields in the object.<br/><!-- .element: class="fragment" -->
 
 
 ----
 
 ### JSON
 
-* Industry standard format for transfering data
-* Contains meta data about content.
-* Simple and fairly easy to read (once you get use to it)
+* Industry standard format for transfering data<br/><!-- .element: class="fragment" -->
+* Contains meta data about content.<br/><!-- .element: class="fragment" -->
+* Simple and fairly easy to read (once you get use to it)<br/><!-- .element: class="fragment" -->
 ```js
 {
-    Name: "Lars Larsen",
-    BirthYear: 1948,
+    "Name": "Lars Larsen",
+    "BirthYear": 1948,
     ...
 }
 ```
