@@ -77,15 +77,15 @@
 ### Path parameter
 
 * Windows
-    * Absolute path:<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" --> `C:\Users\Henrik\Documents/harry_potter.txt` <!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
+    * Absolute path:<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" --> `C:\Users\Henrik\Documents\harry_potter.txt` <br/><!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
     * Relative path:&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" --> `..\Documents\harry_potter.txt` <!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
 
 * Mac
-    * Absolute path: <!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`/Users/henrik/Documents/harry_potter.txt`<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
+    * Absolute path: <!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`/Users/henrik/Documents/harry_potter.txt` <br/><!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
     * Relative path:&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" --> `../Documents/harry_potter.txt` <!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
 
 * Linux
-    * Absolute path: <!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`/home/henrik/Documents/harray_potter.txt`<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
+    * Absolute path: <!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`/home/henrik/Documents/harray_potter.txt` <br/><!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
     * Relative path:&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" --> `../Documents/harry_potter.txt` <!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
 
 ----
@@ -93,8 +93,8 @@
 ### Empty spaces
 
 * Windows
-    * Quote:&nbsp;&nbsp;<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`"C:\Users\Henrik Kirk\"`<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
-    * or:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" -->`C:\Users\"Henrik Kirk"\`<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
+    * Quote:&nbsp;&nbsp;<!-- .element: class="fragment" data-fragment-index="1" style="font-size: 28px" -->`"C:\Users\Henrik Kirk\"`<br/><!-- .element: class="fragment" data-fragment-index="1" style="font-size: 22px" -->
+    * or:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- .element: class="fragment" data-fragment-index="2" style="font-size: 28px" -->`C:\Users\"Henrik Kirk"\`<br/><!-- .element: class="fragment" data-fragment-index="2" style="font-size: 22px" -->
     * Escape: <!-- .element: class="fragment" data-fragment-index="3" style="font-size: 28px" -->`C:\Users\Henrik^ Kirk\`<!-- .element: class="fragment" data-fragment-index="3" style="font-size: 22px" -->
 * Mac
     * Escape: <!-- .element: class="fragment" data-fragment-index="3" style="font-size: 28px" -->`/Users/Henrik\ Kirk/`<!-- .element: class="fragment" data-fragment-index="3" style="font-size: 22px" -->
@@ -115,6 +115,10 @@
 
 ![Actual system](https://github.com/INTO-CPS-Association/example-incubator/blob/main/datasets/lid_opening_experiment_mar_2021/add%20water.jpg?raw=true "") <!-- .element: style="height: 600px" -->
 
+Note:
+
+tempeh
+
 ----
 
 ### Data
@@ -124,6 +128,7 @@ time,t1,time_t1,t2,time_t2,t3,time_t3,average_temperature,heater_on,fan_on,execu
 1614859007119846022,20.937,1614859005360261879,23.437,1614859006240283419,23.312,1614859007119842744,23.3745,False,True,3,2.6085093021392822
 1614859010160238574,20.937,1614859008400317992,23.437,1614859009280255885,23.25,1614859010160233463,23.3435,False,True,3,2.6484806537628174
 ```
+
 
 ----
 
