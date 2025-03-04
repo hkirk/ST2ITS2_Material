@@ -14,6 +14,30 @@
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="../css/highlight.js/idea.css" id="highlight-theme">
 		<script src="../../../plugin/math/math.js"></script>
+		<style>
+			.reveal ul {
+				list-style-type: none;
+			}
+			.reveal ul ul {
+				list-style-type: none;
+			}
+
+			.reveal .slides section .fragment:not(.current-fragment) {
+				opacity: 0.3;
+				display: inline;
+				}
+			.reveal .slides section .fragment.current-fragment {
+				opacity: 1;
+				display: inline;
+			}
+
+			.print-pdf .reveal .slides section .fragment {
+				opacity: 1 !important; /* Make all fragments fully visible */
+				display: block !important; /* Ensure fragments are displayed as block elements */
+			}
+			
+		</style>
+		<!-- TODO: insert style to help with animations -->
 	</head>
 	<body>
 		<div class="reveal">
@@ -46,6 +70,7 @@
 				"slideNumber": true,
 				"theme": "au",
 				"transition": "slide",
+				"pdfSeparateFragments": false,
 				"controls": true,
 				"progress": true,
 				"history": true,

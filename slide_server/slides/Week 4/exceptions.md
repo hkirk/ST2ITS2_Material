@@ -15,48 +15,48 @@
 ### Agenda
 
 
-* What are exceptions
-* Handling exceptions
-* When to use exceptions
-* Defining exceptions
+* What are exceptions<br/><!-- .element: class="fragment"  -->
+* Handling exceptions<br/><!-- .element: class="fragment" -->
+* When to use exceptions<br/><!-- .element: class="fragment" -->
+* Defining exceptions<br/><!-- .element: class="fragment" -->
 
 ---
 
 ### Why
 
-* Test for every little thing in our code
-* Still unexpected events will happen
-* Forces us to handle errors
+* Avoid testing for every little thing in our code<br/><!-- .element: class="fragment" -->
+* Still unexpected events will happen<br/><!-- .element: class="fragment" -->
+* Exceptions forces us to handle errors<br/><!-- .element: class="fragment" -->
 
 ----
 
-#### Files
+#### E.g. Testing everything with files
 
-* File exists
-* Is readable/writable
-* Contains the correct data
-* Has not changed after we tested it
+* File exists<br/><!-- .element: class="fragment" -->
+* Is readable/writable<br/><!-- .element: class="fragment" -->
+* Contains the correct data<br/><!-- .element: class="fragment" -->
+* Has not changed after we tested it<br/><!-- .element: class="fragment" -->
     * not on windows
 
 ----
 
 #### Data input
 
-* Is it available,
-* Correct format
-* Not illegal values?
+* Is it available<br/><!-- .element: class="fragment" -->
+* Correct format<br/><!-- .element: class="fragment" -->
+* Not illegal values?<br/><!-- .element: class="fragment" -->
 
 ---
 
 <!-- .slide: style="font-size: 36px" -->
 ### What
 
-When unexcpected (exceptions) happens in an application. A special object is created and thrown
+When unexcpected (exceptions) happens in an application. A special object is created and thrown<br/><!-- .element: class="fragment" -->
 
-* `Exception` is a special class in .NET
-    * also classes derived from `Exception`
-* CLR (Common Language Runtim&#x1F41E;) populate state for these objects
-* An `Exception` has state
+* Exception is a special class in .NET<br/><!-- .element: class="fragment" -->
+    * also classes derived from Exception
+* CLR (Common Language Runtim&#x1F41E;) populate state for these objects<br/><!-- .element: class="fragment" -->
+* Common state for all exceptions<br/><!-- .element: class="fragment" -->
     * Message
     * StackTrace
     * InnerException
@@ -66,8 +66,8 @@ When unexcpected (exceptions) happens in an application. A special object is cre
 
 ### Throw
 
-* Throwing an exception object 
-* Means that any statement after the exception is <mark>thrown</mark> is ignored
+* Throwing an exception object <br/><!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" --> Means that any statement after the exception is <mark>thrown</mark> is ignored
 
 ----
 
@@ -124,11 +124,10 @@ File name: '/ST2ITS2_Material/source/Exception/ExceptionExamples/bin/Debug/net6.
 
 ### How
 
-* Just let errors happen
+* Just let errors happen<br/><!-- .element: class="fragment" -->
     * &#x25B6; handle somewhere else
-* Handle errors when they occur
 
-![Catch](./img/4416446.jpg) <!-- .element: style="width: 500px" -->
+![Catch](./img/4416446.jpg) <!-- .element: style="width: 500px" class="fragment" -->
 
 
 ----
@@ -148,10 +147,10 @@ try
 
 ----
 
-### Multiple exceptions
+### Multiple exceptions types
 
-* Allowed to catch different exceptions
-* Possibility to handle different errors in specific ways
+* Allowed to catch different exceptions<br/><!-- .element: class="fragment" -->
+* Possibility to handle different errors in specific ways<br/><!-- .element: class="fragment" -->
 
 ```csharp [1, 5, 9]
 try
@@ -167,6 +166,7 @@ catch (ArgumentException)
     Console.Error.WriteLine("Filename supplied is empty, retry");
 }
 ```
+<!-- .element: class="fragment" -->
 
 ----
 
@@ -201,7 +201,7 @@ try
     stream = new MemoryStream();
     faulty.ReadFileIntoString("NotExistingFile.txt");
 }
-catch (FileNotFoundException e) { // ...
+catch (FileNotFoundException e) { // TODO handle
 }
 finally
 {
@@ -245,19 +245,19 @@ note:
 
 ### When
 
-* No errors in constructor
-* Catch exceptions as close to where they are thrown
-* If you can't handle exception
+* No errors in constructor<br/><!-- .element: class="fragment" -->
+* Catch exceptions as close to where they are thrown<br/><!-- .element: class="fragment" -->
+* If you can't handle exception<br/><!-- .element: class="fragment" -->
     * log and then rethrow
-    * never swallow exception (empty catch clause)
+    * never 'swallow' exception (empty catch clause)
 
-![Windows XP](./img/a22.jpg) <!-- .element: style="width: 300px" -->
+![Windows XP](./img/a22.jpg) <!-- .element: style="width: 300px" class="fragment" -->
 
 ----
 
 ### Empty catch block
 
-* Do **not** leave catch block empty, even when developing
+* <!-- .element: class="fragment" -->Do **not** leave catch block empty, even when developing<br/>
     * It will stay empty
 ```csharp
 try
@@ -266,14 +266,14 @@ try
 } catch (NoCoffeeException)
 {}
 ```
-* As a minimum put in a log message (or WriteLine)
+* As a minimum put in a log message (or WriteLine)<br/><!-- .element: class="fragment" -->
 
 
 ----
 
 ### Re-throw
 
-* May want to log (or simular) close to the origin of error
+* May want to log (or simular) close to the origin of error<br/><!-- .element: class="fragment" -->
     * But can't actually handle error at this point
 
 ```csharp [7,8]
@@ -287,12 +287,13 @@ catch (NoCoffeeException)
     throw;
 }
 ```
+<!-- .element: class="fragment" -->
 
 ---
 
 ### Creating Exceptions
 
-* Inherite for Exception
+* Extend Exception<br/><!-- .element: class="fragment" -->
     * or one of the other existing exception classes
 
 ```csharp [1,11-12]
@@ -309,6 +310,7 @@ public class NoCoffeeException : Exception
 // somewhere else throw this
 throw new NoCoffeeException("No coffee given", 30);
 ```
+<!-- .element: class="fragment" -->
 
 ----
 
