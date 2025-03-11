@@ -1,0 +1,53 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+Shape <|-- Circle
+Shape <|-- Line
+Shape <|-- Rectangle
+Circle --> Point
+Line --> Point
+Rectangle --> Point
+Shape <|-- Drawing
+Shape "*" <--* Drawing  : composition
+
+abstract class Shape {
+  +{abstract} Area():double
+  +{abstract} Circumference(): double
+  +{abstract} Draw(): void
+}
+
+class Circle {
+  -center: Point
+  -radius: double 
+}
+
+class Line {
+  -start: Point
+  -end: Point
+}
+
+class Rectangle {
+  upperLeft: Point
+  height: double
+  width: double
+}
+
+class Drawing {
+  -shapes: List<Shape>
+  +AddShape(Shape shape)
+}
+note left of Drawing
+  Optional: Add a private Point which
+  defines '0,0' for this sub drawing
+end note
+
+class Point {
+  +X: double
+  +Y: double
+
+  +DistanceTo(other: Point): double
+}
+
+
+@enduml

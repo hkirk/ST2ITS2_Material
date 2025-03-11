@@ -11,22 +11,22 @@
 
 ### Agenda
 
-* Interface
+* Interface<br/><!-- .element: class="fragment" -->
     * What are interfaces
     * Interfaces as a type
     * Inheritance vs implementation
-* Casting
-* interfaces + interfaces
-* Object
-* Nullable
+* Casting<br/><!-- .element: class="fragment" -->
+* Object<br/><!-- .element: class="fragment" -->
+* Nullable<br/><!-- .element: class="fragment" -->
 
 ---
 
 ### Remember abstract classes?
 
-* Able to define methods
-    * some left **un**implemented
-* Possible to reuse code and make it custom
+* Define and implement methods<br/><!-- .element: class="fragment" -->
+    * some left <mark>un</mark>implemented
+    * no instances
+* Possible to reuse code and customize<br/><!-- .element: class="fragment" -->
 
 ```csharp
 public abstract class Child {
@@ -41,6 +41,7 @@ public class Girl : Child {
     }
 }
 ```
+<!-- .element: class="fragment" -->
 
 ----
 
@@ -82,8 +83,7 @@ class Girl {
 
 ## Interfaces is excatly that
 
-* Special class with **no** data and **only** abstract methods
-
+* <!-- .element: class="fragment" -->Special class with <b>no</b> data and <b>only</b> abstract methods
 ```csharp
 public interface IPoint {
     int X {get; set;}
@@ -91,16 +91,16 @@ public interface IPoint {
     double Distance(Point to);
 }
 ```
-
-* Name starts with an <mark>I</mark> (uppercase i)
-* Pascal Case in addition to that
+<!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->Name starts with an <mark>I</mark> (uppercase i)<br/>
+* Pascal Case in addition to that<br/><!-- .element: class="fragment" -->
     * Upper case begining word + including first
 
 ----
 
 ## Implementing an interface
 
-```csharp
+```csharp [7-14]
 public interface IPoint {
     int X {get; set;}
     int Y {get; set;}
@@ -111,7 +111,8 @@ public class Point : IPoint {
     public int X {get; set;}
     public int Y {get; set;}
     public double Distance(IPoint to) {
-        return 0.0;
+        return Math.Sqrt(Math.Pow(to.X - X, 2) 
+                    + Math.Pow(to.Y - Y, 2));
     }
 }
 ```
@@ -164,21 +165,21 @@ List<IPoint> points = new List<IPoint>();
 
 ## Why interfaces
 
-1. A class can implement <mark>multiple</mark> interfaces
+1. <!-- .element: class="fragment" -->A class can implement <mark>multiple</mark> interfaces<br/>
     * but only <mark>one</mark> class
-1. Abstract classes tends include implementation
+1. <!-- .element: class="fragment" -->Abstract classes tends include implementation<br/>
     * interface is only a specification
         * changed in C# 8.0 - but **not** covered
-1. Interfaces is a <mark>type</mark>
+1. <!-- .element: class="fragment" -->Interfaces is a <mark>type</mark><br/>
     * code towards an interface
-1. Specification is often used between teams
+1. <!-- .element: class="fragment" -->Specification is often used between teams<br/>
     * each team adheres to a defined interface
 
 ----
 
-### Interface
+### Multiple inheritance
 
-```csharp
+```csharp [4, 14, 15]
 interface IPrintable {
     void Print();
 }
@@ -192,10 +193,9 @@ public class Point : IPoint, IPrintable {
         // Print 
     }
 }
+// Inherit from class and implement interface
+public class Point: Object, IPoint, IPrintable { }
 ```
-
-* If class also <mark>inherits</mark> from a class - then class is first
-    * `public class Point: Object, IPoint, IPrintable`
 
 ----
 
@@ -232,8 +232,8 @@ class Point {
 
 ## interfaces extending interfaces
 
-* Interfaces can extend interfaces
-* Same as with classes, one interface can extend multiple interfaces
+* Interfaces can extend interfaces<br/><!-- .element: class="fragment" -->
+* Same as with classes, one interface can extend multiple interfaces<br/><!-- .element: class="fragment" -->
 ```csharp
 interface IArea {
 	double Area();
@@ -267,7 +267,7 @@ public abstract class Shape: IShape {
 
 Work on starter exercises<br/>  <!-- .element: style="color:#000000; background-color: #ffffff" -->
 
-Continue on Shapes exercises  <!-- .element: style="color:#000000; background-color: #ffffff" -->
+Continue with Shapes exercises  <!-- .element: style="color:#000000; background-color: #ffffff" -->
 
 <!-- .slide: data-background-image="../img/your_turn.png" -->
 
@@ -275,21 +275,21 @@ Continue on Shapes exercises  <!-- .element: style="color:#000000; background-co
 
 ## Casting
 
-* Casting means converting an object from one type to another
-* This can be done in a couple of ways
-* First lets look at the <mark>safe</mark> way of casting
+* Casting means converting an object from one type to another<br/><!-- .element: class="fragment" -->
+* This can be done in a couple of ways<br/><!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->First lets look at the <mark>safe</mark> way of casting<br/>
 ```csharp
 object obj = "Hello I'm a String";
 if (obj is string str) {
     Console.WriteLine(str.ToLower());
 }
 ```
-* Here we cast an object to a string
+* Here we cast an object to a string<!-- .element: class="fragment" -->
 
 ----
 
 ## Alternative casting
-### Unsafe
+### Unsafe<!-- .element: class="fragment" data-fragment-index="0" -->
 
 ```csharp
 Shape shape = new Circle(); // when can we do this?
@@ -297,17 +297,15 @@ Shape shape = new Circle(); // when can we do this?
 Circle? cirle = shape as Circle; // 1 
 var circle = (Circle) shape; // 2
 ```
+<!-- .element: class="fragment" data-fragment-index="0" -->
 
-1. '`as`' casts shape to a circle if possible, otherwise null
-2. '`(Type)`' cast the shape to a cicle, or throw an exception
+1. <!-- .element: class="fragment" data-fragment-index="1" -->'<mark>as</mark>' casts shape to a circle if possible, otherwise null<br/>
+2. <!-- .element: class="fragment" data-fragment-index="2" -->'<mark>(Typename)</mark>' cast the shape to a cicle, or throw an exception<br/>
 
 ----
 
 ## Nullable
 
-* Represent the underlaying value or null, meaning
-    * `bool?` is either `true`, `false`, and `null`
-* Helps us avoid mistakes in our code
 ```csharp
 int? value = 10
 if (value is int v) {}
@@ -317,10 +315,15 @@ if (value.HasValue) {
 if (value != null) {}
 int v = value ?? -1
 ```
+<!-- .element: class="fragment" -->
+
+* Represent the underlaying value or null, meaning<!-- .element: class="fragment" -->
+    * `bool?` is either `true`, `false`, and `null`
+* Helps us avoid mistakes in our code<!-- .element: class="fragment" -->
 
 ---
 
-## Object
+## Object class
 
 
 ----
@@ -330,19 +333,21 @@ int v = value ?? -1
 ```csharp
 public virtual string? ToString()
 ```
+<!-- .element: class="fragment" data-fragment-index="0" -->
 
-This can be overridden in our classes
+This can be overridden in our classes<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ```csharp
 public class Student {
-    public override string ToString() {
+    public override string? ToString() {
         return $"Student: AuID: {AuID}, " +
             "Name: {FirstName} {LastName}";
     }
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-Will automatically be used when object is transformed to a string
+Automatically called when object is transformed to a string<!-- .element: class="fragment" data-fragment-index="2" -->
 
 
 ----
@@ -352,10 +357,11 @@ Will automatically be used when object is transformed to a string
 ```csharp
 public extern Type GetType();
 ```
+<!-- .element: class="fragment" -->
 
-* `GetType` method returns information about the current objects type
-* `Type` type holds <mark>runtime</mark> information about the object
-* `extern` means that the method is defined elsewhere - performance reasons
+* <!-- .element: class="fragment" --><mark>GetType</mark> method returns information about the current object type<br/>
+* <!-- .element: class="fragment" --><mark>Type</mark> type holds <mark>runtime</mark> information about the object<br/>
+* <!-- .element: class="fragment" --><mark>extern</mark> means that the method is defined elsewhere - performance reasons<br/>
 
 ----
 
@@ -364,10 +370,11 @@ public extern Type GetType();
 ```csharp
 public virtual bool Equals(object? obj)
 ```
-* Used to compare if objects are equal
-* On numerical types `Equals` and `==` operator works as expected
-* In general if not overriden it will not work as `==` but
-    * will test for <mark>reference equality</mark>
+<!-- .element: class="fragment" -->
+* Used to compare if objects are equal<br/><!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->On numerical types <mark>Equals</mark> and <code>==</code> operator works as expected<br/>
+* <!-- .element: class="fragment" -->In general if not overriden it will not work as <code>==</code> but<br/>
+    * will test for <mark>reference equality</mark>, meaning same object
 
 ```csharp
 Point p1 = new Point(1,1);
@@ -376,12 +383,13 @@ Point p3 = p1;
 Console.Writeline(p1.Equals(p2)) // will print false
 Console.Writeline(p1.Equals(p3)) // will print true
 ```
+<!-- .element: class="fragment" -->
 
 ----
 
 ### Override `Equals`
 
-* This can be done to make `Equals()` behave more like you would expect
+* To make `Equals()` behave like you would expect
 
 ```csharp [2|3|4-5|9|1-10]
 public override bool Equals(object? obj) {
@@ -400,14 +408,14 @@ public bool Equals(Point p) {
 
 ### 'Secret' use of `Equals`
 
-* Overriden `Equals()` can be very usefull and important
+* <!-- .element: class="fragment" -->Overriden <code>Equals()</code> can be very usefull and important
 ```csharp
 List<Points> points = new List<Point>();
 list.Remove(p2);
 ```
-* Remove the first element where `Equals()` return true
-* Same with `Contains()`, `IndexOf()`
-    * basicly all methods taking a object of [`T` as argument](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-8.0)
+* <!-- .element: class="fragment" -->Remove the first element where <code>Equals()</code> return true<br/>
+* <!-- .element: class="fragment" -->Same with <code>Contains()</code>, <code>IndexOf()</code>
+    * basicly all [methods](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-8.0) taking a object of `T` as argument
 
 ----
 
@@ -416,10 +424,11 @@ list.Remove(p2);
 ```csharp
 public virtual int GetHashCode()
 ```
-* `GetHashCode()` also have hidden usage as with `Equals()`
-* Generates an aggregate integer from the object
+<!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" --><code>GetHashCode()</code> also have hidden usage as with <code>Equals()</code><br/>
+* Generates an aggregate integer from the object<br/><!-- .element: class="fragment" -->
     * Default is an hash code based on the memory location
-* This means different instances of an object will in general have same hash code
+* This means different instances of an object will in general have different hash codes<br/><!-- .element: class="fragment" -->
 
 ----
 
@@ -433,11 +442,11 @@ public virtual int GetHashCode()
 
 ### Rules for overriding `GetHashCode`
 
-* If two objects are equal that should have same hash code
-* Should consistently return same hash code - while not being modified
-* Distribute hash code evenly
-* Be 'cheap' to compute
-* Not throw exceptions
+* If two objects are considered equal that should have same hash code<br/><!-- .element: class="fragment" -->
+* Should consistently return same hash code - while not being modified<br/><!-- .element: class="fragment" -->
+* Distribute hash code evenly<br/><!-- .element: class="fragment" -->
+* Be 'cheap' to compute<br/><!-- .element: class="fragment" -->
+* Not throw exceptions<br/><!-- .element: class="fragment" -->
 
 ----
 
