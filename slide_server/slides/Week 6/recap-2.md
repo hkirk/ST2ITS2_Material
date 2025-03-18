@@ -2,7 +2,7 @@
 
 ## Problem Solving
 
-### Recap
+### Git
 
 ![AU Logo](./../img/aulogo_uk_var2_white.png "AU Logo") <!-- .element style="width: 200px; position: fixed; bottom: 50px; left: 50px" -->
 
@@ -122,7 +122,7 @@ Work in pairs
 
 * How would you solve 1-5?
 * <mark>Do not</mark> code yet
-* Just figure out how you would solve the excerses?
+* Just figure out how you would solve the exercises?
 
 ----
 
@@ -148,6 +148,76 @@ Find another group and compare your way of solving the problem?
 * Did any of your planning work?
 * Could your plan be transfered to C#?
 
+---
+
+# Git
+
+- Distributed version control system
+- Tracks changes in source code during software development
+- Can be used for everything
+
+----
+
+### Why
+
+- Collboration
+    - multiple developers on the same project
+- Version history
+    - Track changes
+    - allow reverts
+- Branching
+    - develop features in isolation
+- Industry
+    - used everywhere
+
+----
+
+## Installation
+
+- Either use the built in in Visual Studio
+- or install from https://git-scm.com/downloads
+    - for the correct Operation System
+
+----
+
+## Repository
+
+- A folder with files called 'working directory'
+- Track changes over time
+
+----
+
+## Tracked, stages
+
+![File stages](./img/image14_bfaa7bb66e.png)
+
+----
+
+## Creating a repository
+
+```
+git init
+```
+
+![in visual studio](./img/git-repository-create-local.png) <!-- .element: style="height: 450px" -->
+
+----
+
+## Commit a file
+
+- Command-line
+
+```
+git add file_we_have_changes
+git commit -m "Commit messages"
+```
+
+----
+
+## Commit a file
+
+![Commit file in VS](./img/git-commit-message.png)
+
 ----
 
 ### Continue 
@@ -162,4 +232,8 @@ Remember to plan first
 
 ## References
 
-![Think like a programmer](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1378752167i/18469872._UY630_SR1200,630_.jpg "")
+![Think like a programmer](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1378752167i/18469872._UY630_SR1200,630_.jpg "") <!-- .element: style="height: 300px" -->
+
+- Git in visual studio
+    - [Create a local repository](https://learn.microsoft.com/en-us/visualstudio/version-control/git-create-repository?view=vs-2022#work-with-local-repos)
+    - [Commit](https://learn.microsoft.com/en-us/visualstudio/version-control/git-make-commit?view=vs-2022)
