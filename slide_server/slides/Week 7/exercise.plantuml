@@ -14,7 +14,7 @@ package "AstronautSystem" {
         class AstronautService {
             + GetAllAstronauts()
             + SearchAstronautsByName(name: string)
-            + SearchAstronautsByTimeInSpace(timeInSpace: int)
+            + SearchAstronautsByTimeInSpace(timeInSpace: TimeSpan)
             + AddAstronaut(astronaut: Astronaut)
         }
     }
@@ -23,26 +23,24 @@ package "AstronautSystem" {
         interface IAstronautRepository {
             + GetAllAstronauts()
             + FindAstronautsByName(name: string)
-            + FindAstronautsByTimeInSpace(timeInSpace: int)
+            + FindAstronautsByTimeInSpace(timeInSpace: TimeSpan)
             + SaveAstronaut(astronaut: Astronaut)
-            + DeleteAstronaut(astronautId: int)
         }
 
         class AstronautRepository {
             + GetAllAstronauts()
             + FindAstronautsByName(name: string)
-            + FindAstronautsByTimeInSpace(timeInSpace: int)
+            + FindAstronautsByTimeInSpace(timeInSpace: TimeSpan)
             + SaveAstronaut(astronaut: Astronaut)
-            + DeleteAstronaut(astronautId: int)
         }
     }
 
     package "Models" {
         class Astronaut {
-            - Name: string
-            - TimeInSpace: int
-            - Agency: string
-            - Image: string
+            + Name: string
+            + TimeInSpace: TimeSpan
+            + Agency: string
+            + ImageURL: string
         }
     }
 

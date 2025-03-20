@@ -6,6 +6,10 @@
 
 ----
 
+TODO: Exercise UML - return types are missing - is that importent - otherwise  write it?
+TODO: Maybe add a reason for DAL BLL
+
+
 ## Agenda
 
 * Evalution 
@@ -128,6 +132,18 @@ Known and battle tested
 ## .NET project setup
 
 ![.NET project setup](./img/dotnet-setup.png "")
+
+----
+
+# Other architectural styles
+
+- Many existing styles can be found
+    - Client / server
+    - N-Tier
+    - Pipe and adapters
+    - Service architecture
+- Normally you end up using a combination.
+
 
 ---
 
