@@ -10,7 +10,6 @@
 
 ## Agenda
 
-* Midterm evaluation
 * What is MAUI
 * Creating a project
     * with all the problems :(
@@ -24,9 +23,9 @@ TODO: Add a little about xml - just enough
 
 ## MAUI
 
-* Multiplatform App UI
+* Multiplatform App UI<br/><!-- .element: class="fragment" -->
     * Meaning you can target Android, iOS, Windows, MacOS
-* Everything run on .NET
+* Everything run on .NET<br/><!-- .element: class="fragment" -->
     * You write in C# (or F#, VB.NET) and XAML
 
 ----
@@ -37,11 +36,11 @@ TODO: Add a little about xml - just enough
 
 ### What and how
 
-* You can write your applicatin .NET and compile to multiple platforms
+* You can write your applicatin .NET and compile to multiple platforms<br/><!-- .element: class="fragment" -->
     * but you need envirioment for each :(
-* You can write platform specific code
+* You can write platform specific code<br/><!-- .element: class="fragment" -->
     * but do not need to
-* You do not need to understand how code is transformed to each platform
+* You do not need to understand how code is transformed to each platform<br/><!-- .element: class="fragment" -->
 
 ---
 
@@ -50,10 +49,11 @@ TODO: Add a little about xml - just enough
 * [Prerequisites](https://learn.microsoft.com/en-us/dotnet/maui/get-started/installation?view=net-maui-8.0&tabs=vswin)
     1. open Visual Studio install
     2. install MAUI develment
-    3. in CMD: `dotnet new install Goldie.BlankMauiTemplate`
 * [Build your first app](https://learn.microsoft.com/en-us/dotnet/maui/get-started/first-app?pivots=devices-windows&view=net-maui-8.0&tabs=vswin)
 * Here you can also find information about Android, iOS
     * we focus on desktop applications
+
+TODO: Which workloads
 
 ----
 
@@ -168,10 +168,10 @@ public partial class App : Application
     HorizontalOptions="Center" />
 ```
 * **`Button`**: Control name/type
-* **`x:Name`**: Name to access Control from C#
+* **`x:Name`**: Name to access C# CounterBtn
 * **`Text`**: Shown text
 * **SematicProperties**: Accessibility properties
-* **`Clicked`**: Event handler
+* **`Clicked`**: Event handler in C#
 * **`HorizontalOptions`**: Placement
 
 ----
@@ -179,7 +179,7 @@ public partial class App : Application
 ## `MainPage.xaml.cs`
 
 * Again a code-behind file
-* `ContentPage` is a fullscreen 
+* `ContentPage` is a fullscreen page
 
 ```csharp
 public partial class MainPage : ContentPage
@@ -202,35 +202,36 @@ public partial class MainPage : ContentPage
 
 ## Event handlers
 
-* These are special methods in C#
+* These are special methods in C#<br/><!-- .element: class="fragment" data-fragment-index="1" -->
     * which are called when an event is triggered
-* You have seen one :)
+* You have seen one :)<br/><!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```csharp
 private void OnCounterClicked(object sender, EventArgs e) {
     ...
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
 ### Event handler form
 
-* Event handlers 
+* Event handlers <br/><!-- .element: class="fragment"-->
     * normally starts with <mark>On</mark>
     * must have <mark>2</mark> parameters
         * first is sender (invoker) of the event
-        * second is optional events
-* Visual Studio can auto create method from xaml file
-* We will cover this 3 and 4 semester.
+        * second is optional data
+* Visual Studio can auto create methods from xaml file<br/><!-- .element: class="fragment"-->
+* You will see the details on 3rd and 4th semester.<br/><!-- .element: class="fragment" -->
 
 ---
 
 ## Running and debugging
 
-* Choose windows target platform
-![Target platform](./img/windows-debug-target.png "")
-* Press Windows to build and rund
+* Choose windows target platform<!-- .element: class="fragment" -->
+![Target platform](./img/windows-debug-target.png "")<br/>
+* Press Windows to build and run<br/><!-- .element: class="fragment" -->
 ![Build and run](./img/windows-run-button.png "")
 
 ----
@@ -247,12 +248,12 @@ private void OnCounterClicked(object sender, EventArgs e) {
 
 ## Controls + Views
 
-* MAUI has 3 types of vies
-    * Pages
+* MAUI has 3 types of views
+    * Pages<br/><!-- .element: class="fragment" data-fragment-index="1" -->
         * displays an app + render layouts
-    * Layouts 
+    * Layouts <br/><!-- .element: class="fragment" data-fragment-index="1" -->
         * can render controles
-    * Controls
+    * Controls<br/><!-- .element: class="fragment" data-fragment-index="1" -->
 
 ----
 
