@@ -25,7 +25,7 @@
 
 ---
 
-## Slider Controle
+## Slider Control
 
 ![Slider](https://learn.microsoft.com/en-us/dotnet/xml/microsoft.maui.controls/_images/slider.triplescreenshot.png?view=net-maui-8.0 "Slider Control") <!-- .element: style=" height: 300px"-->
 
@@ -35,8 +35,7 @@
 
 ## Bindings
 
-* To update the `Value` property we need to manually create an event handler for all `Controls`
-
+* <!-- .element: class="fragment" data-fragment-index="0" --> To update the `Value` property we need to manually create an event handler for all `Controls`
 ```csharp
 // in code-behind
 private void Slider_OnValueChanged(object sender,
@@ -115,15 +114,15 @@ public MainPage()
 
 ### Bind without setting `BindingContext`
 
-* When you want to bind to multiple things
+* When you want to bind to multiple things<!-- .element: class="fragment" -->
     * bindings can be set per item
-* in code
+* in code<!-- .element: class="fragment" -->
 ```csharp
 label.SetBinding(
     Label.FontSizeProperty,
     new Binding("Value", source: slider));
 ```
-* or from XAML
+* or from XAML<!-- .element: class="fragment" -->
 ```xml
 <Label ...
     FontSize="{Binding
@@ -135,10 +134,10 @@ label.SetBinding(
 
 ### BindableObject
 
-* `BindableObject` is the class that makes this possible
+* <!-- .element: class="fragment" -->BindableObject is the class that makes this possible
     * `View`, `Page` both inherits from this.
 
-* This means we can also bind to properties in the `ContentPage` (code-behind file)
+* This means we can also bind to properties in the ContentPage (code-behind file)<!-- .element: class="fragment" -->
 
 ----
 
@@ -166,20 +165,20 @@ In MainPage.xaml
 
 ## Collections
 
-* Showing a list of something is a very common UI pattern.
-* Think
+* Showing a list of something is a very common UI pattern.<!-- .element: class="fragment" -->
+* Think<!-- .element: class="fragment" -->
     * mails, messages, threads, images, videos ....
     * patients, students, sickness, ...
-* Showing these in an efficient manner is important
+* Showing these in an efficient manner is important<!-- .element: class="fragment" -->
 
 ----
 
 ## `ListView` and `CollectionView`
 
-* We will focus on `ListView` and `CollectionView`
-* Same general pattern is used for
+* <!-- .element: class="fragment" -->We will focus on `ListView` and `CollectionView`
+* Same general pattern is used for<!-- .element: class="fragment" -->
     * Picker, TableView, IndicatorView, CarouselView
-* Showing a collection consists of
+* Showing a collection consists of<!-- .element: class="fragment" -->
     * <mark>ItemSource</mark> - the List of items to be displayed
     * <mark>ItemTemplate</mark> - specify a template for showing a single item from the collection
 
@@ -187,28 +186,28 @@ In MainPage.xaml
 
 ### Item Source
 
-* This is defined as a binding (which we now know all about :))
-* either in XAML 
+* This is defined as a binding (which we now know all about :))<br/><!-- .element: class="fragment" -->
+* either in XAML<br/><!-- .element: class="fragment" -->
 ```xml
 <ListView
     x:Name="listView"
     ItemsSource="{Binding Elements}" />
 ```
-* or in C# (code-behind)
+* or in C# (code-behind)<br/><!-- .element: class="fragment" -->
 ```csharp
 CollectionView.SetBinding(
         CollectionView.ItemsSourceProperty,
         "Elements");
 ```
-* Here `Elements` is the collection property in the `BindingContext`
+* <!-- .element: class="fragment" -->Here 'Elements' is the collection property in the 'BindingContext'
 
 ----
 
 ### Item Template
 
-* `ItemTemplate` is a property on both `CollectionView` and `ListView`
-* The type of this is a [DataTemplate](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.datatemplate?view=net-maui-8.0)
-* DataTemplate must reference a [Cell](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.cell?view=net-maui-8.0)
+* ItemTemplate is a property on both CollectionView and ListView<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* The type of this is a<!-- .element: class="fragment" data-fragment-index="2" --> [DataTemplate](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.datatemplate?view=net-maui-8.0)<br/><!-- .element: class="fragment" data-fragment-index="2" -->
+* DataTemplate must reference a <!-- .element: class="fragment" data-fragment-index="3" -->[Cell](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.cell?view=net-maui-8.0)<!-- .element: class="fragment" data-fragment-index="2" -->
     * TextCell, ImageCell - kinda standard
     * ViewCell - custom
 
@@ -217,7 +216,7 @@ CollectionView.SetBinding(
 
 ### Cell examples
 
-* TextCell - which holds just text
+* TextCell - which holds just text<!-- .element: class="fragment" -->
 ```xml
 <DataTemplate>
     <TextCell Text="{Binding Name}"
@@ -225,7 +224,7 @@ CollectionView.SetBinding(
         />
 </DataTemplate>
 ```
-* ImageCell - Also holds and image
+* ImageCell - TextCell + Image<!-- .element: class="fragment" -->
 ```xml
 <DataTemplate>
     <ImageCell
@@ -260,10 +259,10 @@ CollectionView.SetBinding(
 
 ## Navigation
 
-* Navigation in MAUI means navigating
+* Navigation in MAUI means navigating<!-- .element: class="fragment" -->
     * to new pages
     * and showing modals
-* Basic this can be done in two ways
+* Basic this can be done in two ways<!-- .element: class="fragment" -->
     * Shell navigation
     * Navigation class
 
@@ -271,22 +270,22 @@ CollectionView.SetBinding(
 
 ### Shell Navigation
 
-* URL based (like a browser)
-* Properly more flexible in larger applications
-* Consists of 
+* URL based (like a browser)<br/><!-- .element: class="fragment" -->
+* Properly more flexible in larger applications<br/><!-- .element: class="fragment" -->
+* Consists of <!-- .element: class="fragment" -->
     * route
     * page
     * query parameters
-* This matches how you navigate in a browser
-* Require a Shell XAML file, which cannot be found in the template we are using
+* This matches how you navigate in a browser<br/><!-- .element: class="fragment" -->
+* [Shell Navigation](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation?view=net-maui-8.0)<br/><!-- .element: class="fragment" -->
 
 ----
 
 ### Navigation class
 
-* Is stack based
-* Allows you to push and pop pages onto the stack
-* To have multiple pages, you need a root page
+* Is stack based<br/><!-- .element: class="fragment" -->
+* Allows you to push and pop pages onto the stack<br/><!-- .element: class="fragment" -->
+* To have multiple pages, you need a root page<br/><!-- .element: class="fragment" -->
 ```csharp
 public partial class App : Application
 {
@@ -302,7 +301,7 @@ public partial class App : Application
 
 ### Push and Pop pages
 
-* Push a new page (going forward)
+* Push a new page (going forward)<br/><!-- .element: class="fragment" -->
 ```csharp
 // From MainPage
 private async void OnClick(object s,
@@ -312,7 +311,7 @@ private async void OnClick(object s,
         new DetailsPage());
 }
 ```
-* Pop page (going back)
+* Pop page (going back)<br/><!-- .element: class="fragment" -->
 ```csharp
 // From DetailsPage
 private async void OnClick(object s,
@@ -334,12 +333,12 @@ private async void OnClick(object s,
 
 ### Auto layouts
 
-* Stack layout
+* Stack layout<br/><!-- .element: class="fragment" -->
     * Can be horizontal or vertial
     * Often used as parent layout
     * Should not be nested to complex
         * then Grid/flex is better
-* FlexLayout
+* FlexLayout<br/><!-- .element: class="fragment" -->
     * Can wrap children if there are to many
 
 
