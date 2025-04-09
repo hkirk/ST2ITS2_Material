@@ -28,8 +28,8 @@
 <ListView ItemsSource="{Binding Monkeys}" />
 ```
 
-* Shows a list of selectable items in a MAUI application
-* Items can be static or dynamic.
+* Shows a list of selectable items in a MAUI application<br/><!-- .element: class="fragment" -->
+* Items can be static or dynamic.<br/><!-- .element: class="fragment" -->
     * Above examples is dynamic.
 
 ----
@@ -38,30 +38,30 @@
 
 [ObservableCollection<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.observablecollection-1?view=net-8.0)
 
-* A dynamic collection like `List<T>`
-* Provides notifications when the list is mutated (changed)
+* <!-- .element: class="fragment" -->A dynamic collection like List<T><br/>
+* Provides notifications when the list is mutated (changed)<br/><!-- .element: class="fragment" -->
     * E.g. `Add`, `Remove` and `Clear` operations
-* In MAUI this means that bindings are automaticaly updated
+* In MAUI this means that bindings are automaticaly updated<br/><!-- .element: class="fragment" -->
 
 ---
 
 ## Problem
 
 
-![ECG Monitor](./img/ecg_monitor.webp "") <!-- .element: style="height: 400px" -->
+![ECG Monitor](./img/ecg_monitor.webp "") <!-- .element: style="height: 300px" -->
 
-Can we use this for both an operation and a practitioner consultation? <!-- .element: class="fragment" -->
+Can we reuse our current both an operation setup and a practitioner consultation? <!-- .element: class="fragment" -->
 
 ----
 
 ### Reuse
 
-* Hopefully we could reuse
+* Hopefully we could reuse<br/><!-- .element: class="fragment" -->
     * Data access code
     * Business logic code
-* UI Forms and controls
+* UI Forms and controls<br/><!-- .element: class="fragment" -->
     * We can properly reuse the forms and controls
-* What a about alarms - showing when the presure is to high or low.
+* What a about alarms - showing when the presure is to high or to low<br/><!-- .element: class="fragment" --> 
     * And still have these testable
 
 note: 
@@ -88,8 +88,8 @@ We need a specific place to keep UI logic.
 
 ![MVVM dependencies](./img/mvvm.png "MVVM") <!-- .element: style="float: right; margin-right: 200px" -->
 
-* **M**odel
-* **V**iew
+* **M**odel<br/><br/>
+* **V**iew<br/><br/>
 * **V**iew**M**odel
 
 ----
@@ -102,12 +102,12 @@ We need a specific place to keep UI logic.
 
 ### Bindings 
 
-* View is updated with data from ViewModel 
+* View is updated with data from ViewModel<br/><!-- .element: class="fragment" -->
     * Updated through data bindings
-* This can be Two-way - meaning ViewModel is updated from View and back
+* This can be Two-way - meaning ViewModel is updated from View and back<br/><!-- .element: class="fragment" -->
     * Some widgets are TwoWay: Date, Text...
     * [Binding declaration](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/data-binding/binding-mode?view=net-maui-8.0)
-* Overriding default
+* Overriding default<br/><!-- .element: class="fragment" --> 
 ```xml
 <Label Text="TEXT"
        Scale="{Binding Path=Value,
@@ -118,12 +118,12 @@ We need a specific place to keep UI logic.
 
 ### Commands
 
-* Communication from View to ViewModel
-* `ICommand` interface exists in .NET
+* Communication from View to ViewModel<br/><!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->ICommand exists in .NET for this purpose<br/>
     * `Execute(object)` called when command is actuated 
     * `CanExecute(object)` returns boolen and determines if UI 'unlock' command
     * `CanExecuteChanged` should be raised when 'CanExecute` should be reevaluated
-* `Command` is an implementation of this interface
+* <!-- .element: class="fragment" -->Command is an implementation of this interface<br/>
 ```xml
 <Button 
     Command="{Binding CalcBMICommand}"/>

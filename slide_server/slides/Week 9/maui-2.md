@@ -6,6 +6,8 @@
 
 ![AU Logo](./../img/aulogo_uk_var2_white.png "AU Logo") <!-- .element style="width: 200px; position: fixed; bottom: 50px; left: 50px" -->
 
+TODO: There are a couple of slides in Week 10 (MVVM) which belong here.
+
 ----
 
 <!-- .slide: data-background-image="./img/goal.jpeg" -->
