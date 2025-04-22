@@ -164,6 +164,8 @@ public class BMIViewModel : INotifyPropertyChanged {
 
 Defining a DataContext
 
+TODO: This looks different when ViewModel is in another namespace
+
 ```xaml [4,6-8]
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"

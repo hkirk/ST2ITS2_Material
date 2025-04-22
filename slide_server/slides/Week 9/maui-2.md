@@ -177,6 +177,8 @@ In MainPage.xaml
 
 ## `ListView` and `CollectionView`
 
+TODO: Not the same. CollectionView has no concept of *Cell, so please show this.
+
 * <!-- .element: class="fragment" -->We will focus on `ListView` and `CollectionView`
 * Same general pattern is used for<!-- .element: class="fragment" -->
     * Picker, TableView, IndicatorView, CarouselView
