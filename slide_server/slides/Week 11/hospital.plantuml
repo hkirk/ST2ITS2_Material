@@ -1,0 +1,97 @@
+@startuml
+
+' Only greyscale
+skinparam monochrome true
+' Display UML icons (-, +, ~, #) instead of visibility icons
+skinparam classAttributeIconSize 0
+' Disable class / interface / ... icons
+hide circles
+' Hide empty boxes
+hide empty fields
+hide empty methods
+' Display packages as frame
+skinparam packageStyle frame
+' Disable shadows
+skinparam shadowing false
+
+
+class Hospital {
+        - HospitalName: string
+        - _listOfStaff: List<HospitalStaff>
+
+        + Hospital(hospitalName: string)
+        + AddNewStaff(staff: HospitalStaff): void
+        + SeeStaff(): void
+        + SeePatientsAssignedToStaff(staff: HospitalStaff): void
+        + AdmitPatient(patient: Patient): bool
+    }
+
+    abstract class HospitalStaff {
+        - StaffId: string
+        # Patients: List<Patient>
+        + FullName: string {get; private set;}
+
+        + GetInfo(): StaffInfo
+        + GetAllPatientInfo(): List<Patient>
+        + AddNewPatient(patient: Patient): Patient
+    }
+
+    class Doctor {
+        + Specialization: ISpecialization {get; private set;}
+
+        + AddNewPatient(patient: Patient): Patient {override}
+        + GetPatients(): List<Patient>
+        + SetSpecialization(specialization: ISpecializatation)
+    }
+
+    class Nurse {
+      - section: Section
+
+      + AssignToSection(section: Section): void
+    }
+
+    interface ISpecialization {
+        + Name: string { get; private set;}
+
+        + GetDiagnosis(): List<string>
+    }
+
+    class Oncologists {}
+    class Allergist {}
+    class Neurologist {}
+
+    class Patient {
+        + Ssn: Ssn {readonly}
+        - FirstName: string;
+        - LastName: string;
+        + Record: Record {get; private set}
+
+        + GetFullName(): string
+    }
+
+    class Record {
+        + RecordId: int {readonly}
+        + Diagnosis: string {get; private set}
+        - age: int
+        + AssignedDoctor {get; private set}
+        
+        + ChangeDiagnosis(diagnosis: string)
+        + AssignDoctor(doctor: Doctor): void
+    }
+
+    Hospital "1" --> "0..*" HospitalStaff : _listOfStaff
+    HospitalStaff <|-- Doctor
+    HospitalStaff <|-- Nurse
+
+    HospitalStaff "1" --> "0..*" Patient : AddNewPatient
+    Doctor "1" --> "1" ISpecialization : Specialization
+    ISpecialization <|.. Oncologists
+    ISpecialization <|.. Allergist
+    ISpecialization <|.. Neurologist
+
+    Patient "1" --> "1" Record : Record
+
+
+    note left of Record: Age should be 0 <= age <= 120\nAssigned doctor should have a suitable specilization according to:\nhttps://www.webmd.com/health-insurance/insurance-doctor-types
+
+@enduml
