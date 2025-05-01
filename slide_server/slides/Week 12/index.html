@@ -14,6 +14,8 @@
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="../css/highlight.js/idea.css" id="highlight-theme">
 		<script src="../../plugin/math/math.js"></script>
+		<link rel="stylesheet" href="../css/thingy.css">
+
 	</head>
 	<body>
 		<div class="reveal">
@@ -42,11 +44,12 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-				// "showNotes": true,
-				"showNotes": 'separate-page',
+				// "showNotes": false,
+				// "showNotes": 'separate-page',
 				"slideNumber": true,
 				"theme": "au",
 				"transition": "slide",
+				"pdfSeparateFragments": false,
 				"controls": true,
 				"progress": true,
 				"history": true,

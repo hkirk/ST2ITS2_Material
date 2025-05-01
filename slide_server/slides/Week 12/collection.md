@@ -13,11 +13,50 @@ TODO: Husk at export med notes
 
 ## Agenda
 
-* List
+* Lambda<br/><!-- .element: class="fragment" -->
+* List <!-- .element: class="fragment" -->
     * IReadOnlyList
-* Queue
-* Set
-* Dictionary
+* Queue<br/><!-- .element: class="fragment" -->
+* Set<br/><!-- .element: class="fragment" -->
+* Dictionary<br/><!-- .element: class="fragment" -->
+
+---
+
+## Lambda
+
+* params => body; <!-- .element: class="fragment" data-fragment-index="0"  -->
+```csharp
+Func<int, int> square = x => x * x;
+int result = square(5);
+```
+<!-- .element: class="fragment" data-fragment-index="0"  -->
+* Can be used without assigning to variable (square) <!-- .element: class="fragment" data-fragment-index="1" -->
+```csharp
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+List<int> evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
+```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+* Func<...,TReturn> <!-- .element: class="fragment" data-fragment-index="2" -->
+
+----
+
+### Action<TIn>
+
+* Lambda that do not return anything
+```csharp
+Action<string> printMessage =
+    message => Console.WriteLine(message)
+```
+
+----
+
+### Predicate<TIn>
+
+* Lambda that returns a boolean
+```csharp
+Predicate<int> isEven =
+    number => number % 2 == 0;
+```
 
 ---
 
@@ -25,13 +64,13 @@ TODO: Husk at export med notes
 
 ----
 
-## `List`
+## `List<T>`
 
-This we have already seen
+This we have already seen<!-- .element: class="fragment" -->
 
-* Encapsulates an array
-* Resizes when necessary
-* When to use
+* Encapsulates an array<br/><!-- .element: class="fragment" -->
+* Resizes when necessary<br/><!-- .element: class="fragment" -->
+* When to use<br/><!-- .element: class="fragment" -->
     * size is no fixed over timer
     * access elements by index
     * or iterate
@@ -41,17 +80,17 @@ This we have already seen
 ## `List` methods
 
 * [List methods](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-8.0#methods)
-    * Find(Predicate<T>): T
-    * ForEach(Action<T>): void
-    * Sort(): void
-    * IndexOf(T t): int - Remember equals
+    * Find(Predicate\<T\>): T<br/><!-- .element: class="fragment" -->
+    * ForEach(Action\<T\>): void<br/><!-- .element: class="fragment" -->
+    * Sort(): void<br/><!-- .element: class="fragment" -->
+    * IndexOf(T t): int - Remember equals?<br/><!-- .element: class="fragment" -->
 
 
 ----
 
 ### `IReadOnlyList`
 
-* Sometimes you need a collection that is unchangable (umutable)
+* Sometimes you need a collection that is unchangable (immutable)<br/><!-- .element: class="fragment" -->
     1. clients don't need to change
     1. fewer option of usage for client
 
@@ -61,6 +100,7 @@ List<int> ints = new List<int>();
 IReadOnlyList<int> readOnlyList = (IReadOnlyList<int>) ints;
 IReadOnlyList<int> readOnlyListCopy = ints.AsReadOnly();
 ```
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -68,38 +108,38 @@ IReadOnlyList<int> readOnlyListCopy = ints.AsReadOnly();
 
 ![Queue](https://media.istockphoto.com/vectors/tourists-in-queue-air-flight-check-passengers-registration-in-airport-vector-id1260514439?k=6&m=1260514439&s=170667a&w=0&h=2qtAfguE27Petj-ZJTpq9Tvq8fIdpYu-cuyoahOXJLE= "Queue")
 
-* Generic collection type (like List<T>)
-* First in, First out (FIFO)
+* Generic collection type (like List\<T\>)<br/><!-- .element: class="fragment" -->
+* First in, First out (FIFO)<br/><!-- .element: class="fragment" -->
 
 ----
 
 ### `Queue` Methods
 
-* `Enqueue(T t): void`
+* Enqueue(T t): void<!-- .element: class="fragment" -->
     * Adds a new element to the end
-* `Peek(): T`
+* Peek(): T<!-- .element: class="fragment" -->
     * Returns first element without altering
-* `Dequeue(): T`
+* Dequeue(): T<!-- .element: class="fragment" -->
     * Returns first element and removes
 
 ----
 
 ## When to use
 
-* When we want elements in a specific order
-* Efficiently mutatation
-* Dynamic size - liked List
-* Alternative to FIFO
-    * `Stack` - Last in, First out (LIFO)
-    * `PriorityQueue` - out based on Priority
+* When we want elements in a specific order<br/><!-- .element: class="fragment" -->
+* Efficient mutatation<br/><!-- .element: class="fragment" -->
+* Dynamic size - liked List<br/><!-- .element: class="fragment" -->
+* Alternative to FIFO<br/><!-- .element: class="fragment" -->
+    * `Stack<T>` - Last in, First out (LIFO)
+    * `PriorityQueue<TE, TP>` - out, based on Priority
 
 ---
 
-## `ISet`
+## `ISet<T>`
 
-* Stores unique values
-* No order
-* Implementations
+* Stores only unique values<br/><!-- .element: class="fragment" -->
+* No order<br/><!-- .element: class="fragment" -->
+* Implementations<br/><!-- .element: class="fragment" -->
     * `HashSet`
     * `SortedSet`
     * `FrozenSet`
@@ -108,10 +148,11 @@ IReadOnlyList<int> readOnlyListCopy = ints.AsReadOnly();
 
 ### `HashSet`
 
-* Dynamic size
-* Elements are added/retrived by `GetHashCode` and `Equals`
-    * Remember `GetHashCode`?
-    * Remeber `Equals`?
+* Dynamic size<br/><!-- .element: class="fragment" -->
+* Elements are added/retrived by GetHashCode and Equals<br/><!-- .element: class="fragment" -->
+    * Remember `GetHashCode`? 
+    * Remember `Equals`?
+    * [Object](http://localhost:8010/slides/Week%205/#/4)
 
 ![HashSet](./img/hash_set.png "") <!-- .element: class="fragment" -->
 
@@ -119,19 +160,20 @@ IReadOnlyList<int> readOnlyListCopy = ints.AsReadOnly();
 
 ### `HashSet` Methods
 
-* `Add`, `Remove`, `Contains`
-* Set methods
+* Add, Remove, Contains<br/><!-- .element: class="fragment" -->
+* Set methods<br/><!-- .element: class="fragment" -->
     * `Overlaps`
     * `UnionWith`
+    * ....
 
 ----
 
 ### When to use a ISet
 
-* To remove duplicates from a list (or other collection)
+* To remove duplicates from a list (or other collection)<br/><!-- .element: class="fragment" -->
     * List -> Set -> List
-* To make sure there are no duplicates
-* Fast lookup of element
+* To make sure there are no duplicates<br/><!-- .element: class="fragment" -->
+* Fast lookup of element<br/><!-- .element: class="fragment" -->
 
 ----
 
@@ -149,9 +191,10 @@ public interface IComparable<T> {
 
 ### IComparable 'rules'
 
-* *Less than zero* - This object precedes the object specified by the CompareTo method in the sort order.
-* *Zero* - This current instance occurs in the same position in the sort order as the object specified by the CompareTo method argument.
-* *Greater than zero* - This current instance follows the object specified by the CompareTo method argument in the sort order.
+* `int CompareTo(T t)`
+    * Less than zero - This object precedes the object specified by the CompareTo method in the sort order.<br/><!-- .element: class="fragment" -->
+    * Zero - This current instance occurs in the same position in the sort order as the object specified by the CompareTo method argument.<br/><!-- .element: class="fragment" -->
+    * Greater than zero - This current instance follows the object specified by the CompareTo method argument in the sort order.<br/><!-- .element: class="fragment" -->
 
 note:
 
@@ -174,14 +217,14 @@ public class Word: IComparable<Word> {
 
 ---
 
-## Dictionary
+## `Dictionary<TKey, TEle>`
 
-* Almost like as Set
+* Almost like as Set<br/><!-- .element: class="fragment" -->
     * but with a key and a value
     * Key determines uniqueness
     * Value is bound to Key
 
-![Nudansk ordbog](./img/nudansk.jpeg "")
+![Nudansk ordbog](./img/nudansk.jpeg "")<!-- .element: class="fragment" -->
 
 ----
 
@@ -192,9 +235,8 @@ public class Nudansk {
     private Dictionary<Word, Meaning> words =
                 new Dictionary<Word, Meaning>();
 	public Nudansk() {
-		words.Add(new Word("Kilde"), new Meaning("..."));
-        //TODO: words.Add(new Word("Kilde"), new Meaning("..")); // Fails with excetion - since key is already added. Next updates value
-		words[new Word("Kilde")] = new Meaning("...");
+		words.Add(new Word("Kilde (vb)"), new Meaning("..."));
+        words[new Word("Kilde (sb)")] = new Meaning("...");
 	}
     public Meaning GetMeaning(string word) {
         return words[new Word(word)];
@@ -260,7 +302,12 @@ public class Nudansk {
 
 ----
 
-TODO: Add why Dictionary
+
+## Use dictionary whey
+
+* Key/value pair<br/><!-- .element: class="fragment" -->
+* Fast lookup<br/><!-- .element: class="fragment" -->
+* Keys are unique<br/><!-- .element: class="fragment" -->
 
 ---
 
