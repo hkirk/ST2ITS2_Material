@@ -1,4 +1,4 @@
-namespace InheritanceApp;
+namespace InheritanceApp.Bricks;
 
 public class Hammer {
     protected int force;

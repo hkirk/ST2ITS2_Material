@@ -1,4 +1,4 @@
-namespace InheritanceApp;
+namespace InheritanceApp.Bricks;
 
 public class BrickLayer : Hammer {
     public BrickLayer() : base(10)

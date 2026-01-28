@@ -777,52 +777,8 @@ public class Brightspace {
 
 ---
 
-### Code example - Hammer
+### Code examples
 
+* [Hammer](https://github.com/hkirk/ST2ITS2_Material/tree/master/source/Inheritance/Bricks)
+* [Peson](https://github.com/hkirk/ST2ITS2_Material/tree/master/source/Inheritance/BS)
 
-
----
-
-### Code example Person
-
-```csharp
-using System.Collections.Generic;
-using System;
-
-Brightspace bs = new Brightspace();
-bs.AddPerson(new Student("au1234", "Nick Cave"));
-// bs.AddPerson(new Person("au1234")); // dont' compile
-
-
-public abstract class Person {
-	protected string name;
-	private string auid;
-	protected Person(string auid) {
-		this.auid = auid;
-	}
-	public abstract string GetName();
-}
-
-public class Student : Person {
-	public Student(string auid, string name): base(auid) {
-		base.name = name;
-	}
-	public override string GetName() {
-		return base.name;
-	}
-}
-
-public class Brightspace {
-	private List<Person> _persons = new List<Person>();
-	
-	public void addPerson(Person person) {
-		_persons.Add(person);
-	}
-	
-	public void PrintPersons() {
-		foreach (Person person in _persons) {
-			Console.WriteLine(person.GetName());
-		}
-	}
-}
-```

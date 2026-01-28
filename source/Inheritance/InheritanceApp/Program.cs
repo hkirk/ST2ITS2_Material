@@ -1,5 +1,7 @@
 namespace InheritanceApp;
 
+using InheritanceApp.Bricks;
+
 public class Program
 {
     public static void Main(string[] args)
