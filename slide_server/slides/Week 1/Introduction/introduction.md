@@ -19,15 +19,15 @@
 
 * We have three skilled TAs
 * All are 4th semester ST students
-* Kornelija Pociute
-* Asta Louise Vibe Laursen
-* Tim Reuber Larsen
+* Helena Schultz Ingerslev<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* Signe Soevang Eisby<br/><!-- .element: class="fragment" data-fragment-index="2" -->
+* Simone Fjendbo Damgaard<br/><!-- .element: class="fragment" data-fragment-index="3" -->
 
-![Asta](./img/asta.jpg) <!-- .element: style="position: absolute; top: 50%; left: -15%; width: 300px; height: 300px;" -->
+![Helena](./img/helena.jpg) <!-- .element: style="position: absolute; top: 50%; left: -15%; width: 300px;" class="fragment" data-fragment-index="1" -->
 
-![Kornelija](./img/Kornelija.jpeg) <!-- .element: style="position: absolute; top: 50%; right: -15%; width: 300px; height: 300px;" -->
+![Signe](./img/signe.jpg) <!-- .element: style="position: absolute; top: 50%; right: -15%; width: 300px;" class="fragment" data-fragment-index="2" -->
 
-![Tim](./img/tim.jpeg) <!-- .element: style="position: absolute; bottom: -115%; right: 40%; width: 25 0px; height: 300px;" -->
+![Simone](./img/simone.jpeg) <!-- .element: style="position: absolute; bottom: -100%; right: 30%; width: 25 0px; height: 300px;" class="fragment" data-fragment-index="3" -->
 
 
 ----
@@ -35,7 +35,7 @@
 ### Henrik Bitsch Kirk
 
 * Graduated from Computer Science 2009
-* Teaching since 7+
+* Teaching 7+
     * Introduction to programing
     * Software design (Not user interfaces)
     * Mobile development
@@ -114,9 +114,9 @@ Note:
 
 ## Course
 
-* Lectures (theory, code examples, exercise solutions)
-* Lots of exercises
-* Curriculium
+* Lectures (theory, code examples, exercise solutions)<br/><!-- .element: class="fragment" -->
+* Lots of exercises<br/><!-- .element: class="fragment" -->
+* Curriculium<br/><!-- .element: class="fragment" -->
     * The C# Players Guide
     * A few articles
 
@@ -148,11 +148,12 @@ Will properly change a bit
 
 ### Exam
 
-* Oral exam - 30 minutes with grading
-    * Drag unknown UML exercise (diagram)
-    * Explain and implement part of this.
-* No preperation
-* **Internal** co-examiner, **7-point** grading scale
+* Oral exam<br/><!-- .element: class="fragment" -->
+    * 20 minutes preperation + 20 min oral
+    * Draw an unknown UML exercise (diagram)
+    * Implement and explain parts of the diagram.
+* No preperation<br/><!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" --> <b>Internal</b> co-examiner, <b>7-point</b> grading scale<br/>
 
 ----
 
@@ -165,14 +166,14 @@ Will properly change a bit
 
 ## My Expectations
 
-* You tell me 
+* You tell me <br/><!-- .element: class="fragment" -->
     * if something could be made better
     * is not working
-* Read and watch given material **and** look at the exercise text before lecture
-* You ask questions when something is difficult
+* <!-- .element: class="fragment" -->Read and watch given material <b>and</b> look at the exercise text before lecture<br/>
+* You ask questions when something is difficult<br/><!-- .element: class="fragment" -->
     * We have **TA's** in the course, plus '**lektiecafe**' where you can get help outside lectures
-* You write lots and lots of code before the exam
-    * also practice at home / between lectures
+* You write lots and lots of code before the exam<br/><!-- .element: class="fragment" -->
+    * meaning at home / between lectures
 
 ----
 

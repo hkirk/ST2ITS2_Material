@@ -24,8 +24,7 @@
 ### Datatypes
 
 * string, int, unit, float, double
-* Enums
-* tuples
+* enums
 
 
 ----
@@ -57,7 +56,6 @@
 </div>
 <div id="right">
 
-* [struct](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct)
 * constructor
     * with parameters
     * primary
@@ -80,7 +78,7 @@
 
 Use 5 minutes to figure out what has been hard in ST1ITS1
 
-Go to [menti.com - 3340 2035](https://www.menti.com/al3of75qwx4f)
+Go to [menti.com - 2876 1137](https://www.menti.com/al3of75qwx4f)
 
 Note:
 TODO: https://www.mentimeter.com/app/presentation/al1reenfab34j6ehho35rpsaq5b72u62/edit?question=8bqouip4uyso
