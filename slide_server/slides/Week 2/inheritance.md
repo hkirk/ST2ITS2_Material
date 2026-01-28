@@ -49,7 +49,7 @@ public class Person {
 * <!-- .element: class="fragment" data-fragment-index="2" -->internal
     * Other classes in same project can access
     * Visual Studio defaults to this
-* No modifier means internal (for classes and structs)<!-- .element: class="fragment" data-fragment-index="3" -->
+* No modifier means internal (for classes and other types)<!-- .element: class="fragment" data-fragment-index="3" -->
 
 ----
 
@@ -71,34 +71,18 @@ public class Person {
 
 ----
 
-### Structs
-
-* Defined with keyword `struct`
-    ```csharp
-    public struct Point2D {
-        public int X {get;}
-        public int Y {get;}
-        // constructor
-    }
-    ```
-* Used for small data-centric classes - with little or no behavoir<br/><!-- .element: class="fragment" data-fragment-index="0" -->
-* As values - like int, string, ...<br/><!-- .element: class="fragment" data-fragment-index="1" -->
-* Value vs Reference semantic :)<br/><!-- .element: class="fragment" data-fragment-index="2" -->
-
-
-----
-
 ### Organizing books in a libary
 
-* Write every detail seperatly or create a template?
-* Classes are the template - objects are the concrete books<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* Write every detail seperatly or create a template?<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* Classes are the book template<!-- .element: class="fragment" data-fragment-index="1" -->
+    * objects are the concrete books<br/>
 * Classes consits of<br/><!-- .element: class="fragment" data-fragment-index="2" -->
     * Data: Author, #pages, ISBN, Title, ...
     * Behavoior: Borrow(), Return(), Reserve()
 
 ---
 
-## Problem (we solve to-day)
+## Problem (we solve today)
 
 * Reuse of code<br/><!-- .element: class="fragment" data-fragment-index="0" -->
     * Increase efficiency
@@ -191,7 +175,7 @@ Hit Brick with force
 * <!-- .element: class="fragment" data-fragment-index="0" --> Mechanism that allows derieved classes to inherit <mark>properties</mark> and <mark>methods</mark> from base class<br/>
 * First we focus on syntax<br/><!-- .element: class="fragment" data-fragment-index="1" -->
     * then we talk about when its appropriate to inherit
-    * warning silly example
+    * *warning silly example*
 
 ```language-plantuml
 @startuml
@@ -216,9 +200,11 @@ class BrickLayer {
 
 ### Derieve from base class
 
-Syntax to inherit<br/>
- `class <NameOfClass> : <NameOfBase>`
-
+* Syntax to inherit
+    * `class <NameOfClass> : <NameOfBase>`
+    * BrickLayer is child of Hammer
+    * Hammer is parent to BrickLayer
+    
 ```csharp [1,7| 2, 9|1-2,7,9]
 public class Hammer {
     public void HitWithForce(object item) {
@@ -232,6 +218,8 @@ public class BrickLayer : Hammer {
     }
 }
 ```
+
+
 
 ----
 
@@ -281,7 +269,7 @@ public class BrickLayer : Hammer {
 
 * <!-- .element: class="fragment" data-fragment-index="0" --> Construction of BrickLayer means constructing Hammer<br/>
 * <!-- .element: class="fragment" data-fragment-index="1" --> The BrickLayer needs to call the Hammer constructor<br/>
-* <!-- .element: class="fragment" data-fragment-index="2" -->Why only when base class has a <mark>non-empty</mark> constructor?
+    * when base class has a <mark>non-empty</mark> constructor?
 
 ----
 
@@ -340,7 +328,7 @@ class BrickLayer {
 Hammer hammer = new BrickLayer();
 ```
 * How should we as developers make sense of the hammer object?<br/><!-- .element: class="fragment" data-fragment-index="0" -->
-* Derieved classes are forced to inherit from base classe<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* Derieved classes are forced to inherit from base classes<br/><!-- .element: class="fragment" data-fragment-index="1" -->
 
 <div class="fragment" data-fragment-index="2">Inheritance can give all sorts of problems - especially as the code <mark>evolves</mark> - and it will</div>
 
@@ -365,6 +353,7 @@ class Tool {
 
 @enduml
 ```
+
 
 ```language-plantuml
 @startuml
@@ -436,7 +425,7 @@ class Person {
     * `int GetHashCode()`
     * `bool Equals(object? obj)`
 * These can be overriden in your classes<br/><!-- .element: class="fragment" data-fragment-index="1" --> 
-    * meaning your class can <mark>change</mark> these methods behavior
+    * meaning your class can <mark>change</mark> how these methods behavior
     * eg.<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```csharp
@@ -457,13 +446,13 @@ public override string ToString()
 ```csharp [3,8-10]
 public class Hammer {
     ...
-    public virutal void HitWithForce(object item) {
-        Console.WriteLine($"Hit {item} with {_force}");
+    public virtual void HitWithForce(object item) {
+        Console.WriteLine($"Hit {item} with {force}");
     }
 }
 public class BrickLayer : Hammer {
     public override void HidWithForce(object item) {
-        Console.WriteLine($"Hit {item} with {_force} with a brick hammer");
+        Console.WriteLine($"Hit {item} with {force} with a brick hammer");
     }
 }
 ```
@@ -479,12 +468,12 @@ public class BrickLayer : Hammer {
 public class Hammer { // Defined by someone else
     ...
     public void HitWithForce(object item) {
-        Console.WriteLine($"Hit {item} with {_force}");
+        Console.WriteLine($"Hit {item} with {force}");
     }
 }
 public class BrickLayer : Hammer { // Written by us
     public void HitWithForce(object item) {
-        Console.WriteLine($"Hit {item} with {_force} with "
+        Console.WriteLine($"Hit {item} with {force} with "
             + "a brick hammer");
     }
 }
@@ -497,19 +486,19 @@ public class BrickLayer : Hammer { // Written by us
 
 ```csharp
 Hammer hammer = new BrickLayer();
-hammer.HitWithForce(new object()); // What happens?
+hammer.HitWithForce(new Brick()); // What happens?
 ```
 
-<mark>"Hit Brick with 10 with a brick hammer"</mark><!-- .element: class="fragment" data-fragment-index="0" -->
+<mark>"Hit Brick with 10"</mark><!-- .element: class="fragment" data-fragment-index="0" -->
 
 
 ```csharp
 BrickLayer brickLayer = new BrickLayer();
-brickLayer.HitWithForce(new object()); // What about this?
+brickLayer.HitWithForce(new Brick()); // What about this?
 ```
 <!-- .element: class="fragment" data-fragment-index="0" -->
 
-<mark>"Hit Brick with 10"</mark><!-- .element: class="fragment" data-fragment-index="1" -->
+<mark>"Hit Brick with 10 with a brick hammer"</mark><!-- .element: class="fragment" data-fragment-index="1" -->
 
 Why is there a difference?<!-- .element: class="fragment"  data-fragment-index="1" -->
 
@@ -544,12 +533,12 @@ public class BrickLayer : Hammer { // Written by us
 
 ```csharp
 public class Hammer {
-	private int _force;
+	private int force;
     ...
 }
 public class BrickLayer : Hammer { // Written by us
     public new void HidWithForce(object item) {
-        Console.WriteLine($"Hit {item} with {_force} with "
+        Console.WriteLine($"Hit {item} with {force} with "
          + " a brick hammer");
     }
 }
@@ -790,39 +779,6 @@ public class Brightspace {
 
 ### Code example - Hammer
 
-```csharp
-using System;
-
-BrickLayer bl = new BrickLayer();
-bl.BreakBrick(new Brick());
-bl.HitWithForce(new Brick()); // is also possible
-Hammer hammer = new BrickLayer();
-hammer.HitWithForce(new Brick());
-//hammer.BreakBrick(new Brick()); // Not possible
-
-public class Brick {}
-	
-public class Hammer {
-	protected int _force;
-	
-	public Hammer(int force) {
-		_force = force;
-	}
-    public void HitWithForce(object item) {
-        Console.WriteLine($"Hit {item} with {_force}");
-    }
-}
-
-public class BrickLayer : Hammer {
-	public BrickLayer(): base(10) {}
-	public new void HitWithForce(object item) {
-		Console.WriteLine($"Hit {item} with {_force} with a brick hammer");
-	}
-    public void BreakBrick(Brick brick) {
-        HitWithForce(brick);
-    }
-}
-```
 
 
 ---
