@@ -12,7 +12,7 @@
 
 ### Agenda
 
-* Repitition<br/><!-- .element: class="fragment" data-fragment-index="0" -->
+* Repetition<br/><!-- .element: class="fragment" data-fragment-index="0" -->
 * Files<br/><!-- .element: class="fragment" data-fragment-index="1" -->
 * Streams<br/><!-- .element: class="fragment" data-fragment-index="2" -->
 * Encoding<br/><!-- .element: class="fragment" data-fragment-index="3" -->
@@ -25,7 +25,7 @@
 * A class can inherit from a super (or base) class<br/><!-- .element: class="fragment" data-fragment-index="0" -->
     * but only one
 * Inherits its (the class') functionality<br/><!-- .element: class="fragment" data-fragment-index="1" -->
-* Can access all properties that are public, internal or protected<br/><!-- .element: class="fragment" data-fragment-index="2" -->
+* Can access all properties/methods that are public, internal or protected<br/><!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
@@ -34,7 +34,46 @@
 * Abstract class cannot be instantiated<br/><!-- .element: class="fragment" -->
 * Can have abstract methods<br/><!-- .element: class="fragment" -->
     * methods with no body (and abstract keyword)
-* Methods must be overriden in inheriting classes<br/><!-- .element: class="fragment" -->
+* Methods must be overridden in inheriting classes<br/><!-- .element: class="fragment" -->
+
+----
+
+### Properties
+
+
+```csharp
+public class Road {
+    public bool IsSnowCovered {get; set;}
+    public bool Private {get; private set;}
+}
+```
+
+----
+
+### Backing field
+
+```csharp
+public class Road {
+    ...
+    private bool _isWet;
+    // Note only use backing field from with getter/setter
+    public bool IsWet {
+        get {
+            return _isWet;
+        }
+        set {
+            if (weather.IsRaining())
+                _isWet = value;
+            }
+        }
+
+    }
+
+
+}
+
+```
+
 
 ---
 
@@ -48,7 +87,7 @@
 
 "Provides static methods for the creation, copying, deletion, moving, and opening of a single file, and aids in the creation of FileStream objects."
 
-* static keyword??<br/><!-- .element: class="fragment"  -->
+* <mark>static keyword??</mark><br/><!-- .element: class="fragment"  -->
 
 ----
 

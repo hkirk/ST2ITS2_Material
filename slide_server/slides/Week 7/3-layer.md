@@ -6,8 +6,8 @@
 
 ----
 
-TODO: Exercise UML - return types are missing - is that importent - otherwise  write it?
-TODO: Maybe add a reason for DAL BLL
+<!-- TODO: Exercise UML - return types are missing - is that importent - otherwise  write it?
+TODO: Maybe add a reason for DAL BLL -->
 
 
 ## Agenda

@@ -245,7 +245,6 @@ note:
 
 ### When
 
-* No errors in constructor<br/><!-- .element: class="fragment" -->
 * Catch exceptions as close to where they are thrown<br/><!-- .element: class="fragment" -->
 * If you can't handle exception<br/><!-- .element: class="fragment" -->
     * log and then rethrow
@@ -300,9 +299,11 @@ catch (NoCoffeeException)
 public class NoCoffeeException : Exception
 {
     public int Expected { get; private set; }
+    public NoCoffeeException(int expected) {
+        Expected = expected;
+    }
     public NoCoffeeException(string message, int expected)
-     : base(message)
-    {
+     : base(message) {
         Expected = expected;
     }
 }

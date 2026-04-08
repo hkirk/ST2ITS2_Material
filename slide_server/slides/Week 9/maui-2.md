@@ -6,7 +6,7 @@
 
 ![AU Logo](./../img/aulogo_uk_var2_white.png "AU Logo") <!-- .element style="width: 200px; position: fixed; bottom: 50px; left: 50px" -->
 
-TODO: There are a couple of slides in Week 10 (MVVM) which belong here.
+<!-- TODO: There are a couple of slides in Week 10 (MVVM) which belong here. -->
 
 ----
 
@@ -18,12 +18,11 @@ TODO: There are a couple of slides in Week 10 (MVVM) which belong here.
 
 ### Agenda
 
-* Bindings
-* Collections
-    * ListView
+* Bindings<br/><!-- .element: class="fragment" --> 
+* Collections<br/><!-- .element: class="fragment" --> 
     * CollectionView
-* Navigation
-* Layouts
+* Navigation<br/><!-- .element: class="fragment" --> 
+* Layouts<br/><!-- .element: class="fragment" -->
 
 ---
 
@@ -37,17 +36,24 @@ TODO: There are a couple of slides in Week 10 (MVVM) which belong here.
 
 ## Bindings
 
-* <!-- .element: class="fragment" data-fragment-index="0" --> To update the `Value` property we need to manually create an event handler for all `Controls`
+* <!-- .element: class="fragment" --> The <code>Value</code> property can be read as a 'normal' property<br/>
+* <!-- .element: class="fragment" --> <code>ValueChanged</code> is an event that is triggered
+* 
 ```csharp
 // in code-behind
 private void Slider_OnValueChanged(object sender,
                                    ValueChangedEventArgs e)
 {
-    slider.Value = e.NewValue;
+    // ....
 }
 ```
 
-* <!-- .element: class="fragment" data-fragment-index="1" --> Bindings automates updating<!-- .element: class="fragment" data-fragment-index="1" --> `Value` property - instead of manually updating it through event. <!-- .element: class="fragment" data-fragment-index="1" -->
+----
+
+### Generally
+
+* all values can be updated
+* all values can be accessed
 
 ----
 
@@ -74,7 +80,7 @@ private void Slider_OnValueChanged(object sender,
 
 ----
 
-### Setting binding Target 'manually'
+### Or Setting binding Target 'manually'
 
 * Involves setting
     1. `BindingContext` - meaning the source
@@ -134,7 +140,7 @@ label.SetBinding(
 
 ----
 
-### BindableObject
+### `BindableObject`
 
 * <!-- .element: class="fragment" -->BindableObject is the class that makes this possible
     * `View`, `Page` both inherits from this.
@@ -167,7 +173,7 @@ In MainPage.xaml
 
 ## Collections
 
-* Showing a list of something is a very common UI pattern.<!-- .element: class="fragment" -->
+* Showing a list of something is a very common UI pattern.<br/><!-- .element: class="fragment" -->
 * Think<!-- .element: class="fragment" -->
     * mails, messages, threads, images, videos ....
     * patients, students, sickness, ...
@@ -175,16 +181,14 @@ In MainPage.xaml
 
 ----
 
-## `ListView` and `CollectionView`
+## `CollectionView`
 
-TODO: Not the same. CollectionView has no concept of *Cell, so please show this.
-
-* <!-- .element: class="fragment" -->We will focus on `ListView` and `CollectionView`
+* <!-- .element: class="fragment" -->We will focus on <code>CollectionView</code><br/>
 * Same general pattern is used for<!-- .element: class="fragment" -->
     * Picker, TableView, IndicatorView, CarouselView
 * Showing a collection consists of<!-- .element: class="fragment" -->
-    * <mark>ItemSource</mark> - the List of items to be displayed
-    * <mark>ItemTemplate</mark> - specify a template for showing a single item from the collection
+    * <mark><code>ItemSource</code></mark> - the List of items to be displayed
+    * <mark><code>ItemTemplate</code></mark> - specify a template for showing a single item from the collection
 
 ----
 
@@ -197,66 +201,51 @@ TODO: Not the same. CollectionView has no concept of *Cell, so please show this.
     x:Name="listView"
     ItemsSource="{Binding Elements}" />
 ```
-* or in C# (code-behind)<br/><!-- .element: class="fragment" -->
+* and in C# (code-behind)<br/><!-- .element: class="fragment" -->
 ```csharp
-CollectionView.SetBinding(
-        CollectionView.ItemsSourceProperty,
-        "Elements");
+public List<Type> Elements {get; set;} // Collection in binding context
+public MainPage()
+{
+    InitializeComponent();
+    BindingContext = this;
+    //...
+}
 ```
-* <!-- .element: class="fragment" -->Here 'Elements' is the collection property in the 'BindingContext'
 
 ----
 
 ### Item Template
 
-* ItemTemplate is a property on both CollectionView and ListView<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+* ItemTemplate is a property on CollectionView<br/><!-- .element: class="fragment" data-fragment-index="1" -->
 * The type of this is a<!-- .element: class="fragment" data-fragment-index="2" --> [DataTemplate](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.datatemplate?view=net-maui-8.0)<br/><!-- .element: class="fragment" data-fragment-index="2" -->
-* DataTemplate must reference a <!-- .element: class="fragment" data-fragment-index="3" -->[Cell](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.cell?view=net-maui-8.0)<!-- .element: class="fragment" data-fragment-index="2" -->
-    * TextCell, ImageCell - kinda standard
-    * ViewCell - custom
-
+* ItemTemplate is the template that is displayed for each<br/><!-- .element: class="fragment" data-fragment-index="3" -->
 
 ----
 
-### Cell examples
-
-* TextCell - which holds just text<!-- .element: class="fragment" -->
-```xml
-<DataTemplate>
-    <TextCell Text="{Binding Name}"
-        Detail="{Binding Description}"
-        />
-</DataTemplate>
-```
-* ImageCell - TextCell + Image<!-- .element: class="fragment" -->
-```xml
-<DataTemplate>
-    <ImageCell
-        ImageSource="{Binding Image}"
-        Text="{Binding Name}"
-        Detail="{Binding Description}"
-        />
-</DataTemplate>
-```
-
-----
-
-### ViewCell e.g.
+### DataTemplate
 
 * Can contain more or less what you want
-```xml
-<ViewCell>
-    <Grid Padding="10">
-        ...
-        <Image Grid.RowSpan="2"
-                Source="{Binding ImageUrl}" />
-        <Label Grid.Column="1"
-                Text="{Binding Name}" />
-        <Label Grid.Row="1"
-                Grid.Column="1"
-                Text="{Binding Location}" />
-    </Grid>
-</ViewCell>
+```xml [3,7|]
+<ContentPage
+    ...
+    xmlns:local="clr-namespace:c_sharp_ns"
+>
+<CollectionView>
+    <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="local:Type">
+            <Grid Padding="10">
+                ...
+                <Image Grid.RowSpan="2"
+                        Source="{Binding ImageUrl}" />
+                <Label Grid.Column="1"
+                        Text="{Binding Name}" />
+                <Label Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding Location}" />
+            </Grid>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
 ```
 
 ---
@@ -275,7 +264,7 @@ CollectionView.SetBinding(
 ### Shell Navigation
 
 * URL based (like a browser)<br/><!-- .element: class="fragment" -->
-* Properly more flexible in larger applications<br/><!-- .element: class="fragment" -->
+* More flexible in larger applications<br/><!-- .element: class="fragment" -->
 * Consists of <!-- .element: class="fragment" -->
     * route
     * page
@@ -341,7 +330,7 @@ private async void OnClick(object s,
     * Can be horizontal or vertial
     * Often used as parent layout
     * Should not be nested to complex
-        * then Grid/flex is better
+        * then <code>Grid</code>/<code>FlexLayout</code> is better
 * FlexLayout<br/><!-- .element: class="fragment" -->
     * Can wrap children if there are to many
 
@@ -362,7 +351,7 @@ private async void OnClick(object s,
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition />
     </Grid.ColumnDefinitions>
-    <!-- content here -->
+    <!-- content here (next slide) -->
 </Grid>
 ```
 
@@ -376,7 +365,7 @@ private async void OnClick(object s,
 
 ```xml
 <Grid>
-    <!-- row/colum def here -->
+    <!-- (prev slide) row/colum def here -->
     <Label Text="Column 0, Row 0"
            WidthRequest="200" />
     <Label Grid.Column="1"
@@ -411,3 +400,58 @@ private async void OnClick(object s,
 
 * [Navigation](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/pages/navigationpage?view=net-maui-8.0 "Navigation")
 * [Layouts](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/layouts/?view=net-maui-8.0 "Layouts")
+
+---
+
+## MAUI:  Summary
+
+
+----
+
+<!-- .slide: style="font-size: 32px" -->
+
+## Core Concepts
+
+### Bindings
+- **Target/Source**: Bind UI elements (e.g., `Label`, `Slider`) to properties or events.
+- **XAML/Code**: Use `BindingContext` and `SetBinding()` in code, or `Binding` syntax in XAML.
+- **Flexibility**: Bind to multiple sources or properties per element.
+
+### Collections
+- **CollectionView**: Efficiently display lists using `ItemsSource` (data) and `ItemTemplate` (UI template).
+- **DataTemplate**: Customize how each item is rendered.
+
+----
+
+<!-- .slide: style="font-size: 36px" -->
+
+## Navigation & Layouts
+
+### Navigation
+- **Shell**: URL-based, flexible for larger apps (routes, pages, query parameters).
+- **Navigation Class**: Stack-based; use `PushAsync`/`PopAsync` for page transitions.
+
+### Layouts
+- **StackLayout**: Simple, linear arrangement (horizontal/vertical).
+- **Grid**: Define rows/columns for structured content placement.
+- **AbsoluteLayout**: Position elements at specific coordinates.
+
+----
+
+## Practical Example
+
+```xml
+<!-- Binding Example -->
+<Label Text="{Binding Source={x:Reference slider}, Path=Value}" />
+
+<!-- CollectionView Example -->
+<CollectionView ItemsSource="{Binding Items}">
+  <CollectionView.ItemTemplate>
+    <DataTemplate>
+      <Label Text="{Binding Name}" />
+    </DataTemplate>
+  </CollectionView.ItemTemplate>
+</CollectionView>
+```
+
+**Key Takeaway**: MAUI enables dynamic UIs with bindings, efficient collections, and flexible navigation/layouts.

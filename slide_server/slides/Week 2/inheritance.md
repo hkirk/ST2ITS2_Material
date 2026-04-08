@@ -777,8 +777,73 @@ public class Brightspace {
 
 ---
 
+## Versions control
+
+* Helps with keeping history of projects<br/><!-- .element: class="fragment" -->
+* Make cooporation within projects easier<br/><!-- .element: class="fragment" -->
+* Git is industri standard<br/><!-- .element: class="fragment" -->
+
+----
+
+### Terminology
+
+* Repository <br/><!-- .element: class="fragment" -->
+    * A folder containing a .git folder which tracks changes in the folder <!-- .element: style="font-size:28px" -->
+* Clone<br/><!-- .element: class="fragment" -->
+    * Downloading a repository from somewhere to your computer<!-- .element: style="font-size:28px" -->
+* File stages<br/><!-- .element: class="fragment" -->
+    * Untracked - file not tracked by git<!-- .element: style="font-size:28px" -->
+    * Unmodified - file that git tracks and is not changed since last commit<!-- .element: style="font-size:28px" -->
+    * Modified - file(s) that git tracks and has changed since last commit<!-- .element: style="font-size:28px" -->
+    * Staged - file that has changed and is ready to commit<!-- .element: style="font-size:28px" -->
+* Commit<br/><!-- .element: class="fragment" -->
+    * The action of saving a snapshot of all file that is staged<!-- .element: style="font-size:28px" -->
+    * and A snapshot<!-- .element: style="font-size:28px" -->
+
+----
+
+### Clone repository from Gitlab
+
+* or downloading
+
+```bash
+git clone https://gitlab.au.dk/st2its2/ConditionInheritance.git
+## or 
+git clone git@gitlab.au.dk:st2its2/ConditionInheritance.git
+```
+
+![Gitlab](img/gitlab.png)<br/><!-- .element: class="fragment" -->
+
+----
+
+### Git lifecycle
+
+![Lifecycle](./img/lifecycle.png)
+
+----
+
+### Adding changes to history
+
+
+```bash
+git add YourFileName.cs
+git commit -m "I changed my file because..."
+```
+
+* Two steps
+    1) Add modified/untracked file to stage area
+    2) Commit all files in staged area to repository
+
+----
+
+### In Visual Studio
+
+![VS](./img/vs-git.png)
+
+---
+
 ### Code examples
 
-* [Hammer](https://github.com/hkirk/ST2ITS2_Material/tree/master/source/Inheritance/Bricks)
-* [Peson](https://github.com/hkirk/ST2ITS2_Material/tree/master/source/Inheritance/BS)
+* [Hammer](https://github.com/hkirk/ST2ITS2_Material/tree/master/source/Inheritance/InheritanceApp/Bricks)
+* [Peson](https://github.com/hkirk/ST2ITS2_Material/tree/master/source/Inheritance/InheritanceApp/BS)
 

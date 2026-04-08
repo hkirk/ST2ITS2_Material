@@ -21,23 +21,92 @@
 
 ---
 
+### Zoo maintenance
+
+
+* Want a `MaintenanceSystem` that feeds animals and charges machines
+
+
+```language-plantuml
+@startuml
+
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class Animal <<abstract>> {
+  + string Name
+  + Feed()
+  + Clean()
+}
+
+class Lion {
+  + Roar()
+}
+
+class Elephant {
+  + Trumpet()
+}
+
+class Penguin {
+  + Swim()
+}
+
+class RobotCleaner {
+  + Charge()
+}
+
+Animal <|-- Lion
+Animal <|-- Elephant
+Animal <|-- Penguin
+
+@enduml
+```
+
+
+----
+
+### Feed and Charge
+
+
+
+ 
+```c_sharp
+// How to make this work for BOTH animals and robots?
+foreach (entity entity in zooEntities)
+{
+    if (entity is Animal) 
+    {
+        // Feed entity
+    }
+    else if (entity is RobotCleaner)
+    {
+        // Charge enity
+    } else {
+        // What??
+    }
+}
+```
+
+----
+
 ### Remember abstract classes?
 
 * Define and implement methods<br/><!-- .element: class="fragment" -->
     * some left <mark>un</mark>implemented
     * no instances
 * Possible to reuse code and customize<br/><!-- .element: class="fragment" -->
+* Only inherit from one class<br/><!-- .element: class="fragment" -->
 
 ```csharp
-public abstract class Child {
-    public abstract void Play();
-    public void Eat() {
+public abstract class Animal {
+    public abstract void Feed();
+    public void Clean() {
         // implementation
     }
 }
-public class Girl : Child {
-    public override void Play() {
-        // implementation
+public class Lion : Animal {
+    public override void Feed() {
+        Console.WriteLine("With Meat");
     }
 }
 ```
@@ -45,34 +114,17 @@ public class Girl : Child {
 
 ----
 
-### Abstract class in UML 
+## Inheritance heirachy
 
-```language-plantuml
-@startuml
+* Are abstract classes a solution?<br/><!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->Does an <mark>Is-A</mark> relationship make sense?<br/>
 
-skinparam classAttributeIconSize 0
+---
 
+## Contract
 
-Child <|-- Girl
-
-
-abstract class Child {
-  +{abstract} Play():void 
-  + Eat():void
-}
-
-class Girl {
-  + Play(): void
-}
-
-@enduml
-```
-
-----
-
-## Interfaces
-
-* What if all methods should be abstract?
+* What if we only need a contract?<br/><!-- .element: class="fragment" -->
+* What if all methods should be abstract?<br/><!-- .element: class="fragment" -->
     * meaning only defining the interface
 
 ![bluetooth](./img/bluetooth_pairing.webp "bluetooth")  <!-- .element: style="width: 300px; float: left; margin-left: 100px" class="fragment" -->
@@ -85,13 +137,11 @@ class Girl {
 
 * <!-- .element: class="fragment" -->Special class with <b>no</b> data and <b>only</b> abstract methods
 ```csharp
-public interface IPoint {
-    int X {get; set;}
-    int Y {get; set;}
-    double Distance(Point to);
+public interface ISwimmable {
+    int Speed {get; set;}
+    void Swim();
 }
 ```
-<!-- .element: class="fragment" -->
 * <!-- .element: class="fragment" -->Name starts with an <mark>I</mark> (uppercase i)<br/>
 * Pascal Case in addition to that<br/><!-- .element: class="fragment" -->
     * Upper case begining word + including first
@@ -100,19 +150,16 @@ public interface IPoint {
 
 ## Implementing an interface
 
-```csharp [7-14]
-public interface IPoint {
-    int X {get; set;}
-    int Y {get; set;}
-    double Distance(IPoint to);
+```csharp [6-11]
+public interface ISwimmable {
+    int Speed {get; set;}
+    void Swim();
 }
 
-public class Point : IPoint {
-    public int X {get; set;}
-    public int Y {get; set;}
-    public double Distance(IPoint to) {
-        return Math.Sqrt(Math.Pow(to.X - X, 2) 
-                    + Math.Pow(to.Y - Y, 2));
+public class Duck : ISwimmable {
+    public int Speed {get; set;}
+    public void Swim() {
+        // TODO: let duck swim
     }
 }
 ```
@@ -127,21 +174,19 @@ public class Point : IPoint {
 @startuml
 
 skinparam classAttributeIconSize 0
+hide circle
+
+ISwimmable <|.. Duck
 
 
-IPoint <|.. Point
-
-
-interface IPoint {
-   + X : int {get; set;}
-   + Y : int {get; set;}
-   + Distance(IPoint): double
+interface ISwimmable <<interface>> {
+  + Speed: int {get; set; }
+  + Swim()
 }
 
-class Point {
-   + X : int {get; set;}
-   + Y : int {get; set;}
-   + Distance(IPoint): double
+class Duck {
+   + Speed: int {get; set; }
+  + Swim()
 }
 
 @enduml
@@ -152,14 +197,13 @@ class Point {
 ## Polymorphism
 
 ```csharp
-IPoint point = new Point();
-IPoint point2 = new Point();
-point.Distance(point2);
+ISwimmable duck = new Duck();
+ISwimmable dolphin = new Dolphin();
 //
-List<IPoint> points = new List<IPoint>();
+List<ISwimmable> allCanSwim = new List<ISwimmable>();
 ```
 
-* `IPoint` can reference `Point` or any other class <mark>implementing</mark> the interface `IPoint`
+* `ISwimmable` can reference `Duck` or any other class <mark>implementing</mark> the interface `ISwimmable`
 
 ----
 
@@ -167,9 +211,9 @@ List<IPoint> points = new List<IPoint>();
 
 1. <!-- .element: class="fragment" -->A class can implement <mark>multiple</mark> interfaces<br/>
     * but only <mark>one</mark> class
-1. <!-- .element: class="fragment" -->Abstract classes tends include implementation<br/>
+1. <!-- .element: class="fragment" -->Abstract classes tends to include implementation<br/>
     * interface is only a specification
-        * changed in C# 8.0 - but **not** covered
+        * changed in C# 8.0 - but **ignored** 
 1. <!-- .element: class="fragment" -->Interfaces is a <mark>type</mark><br/>
     * code towards an interface
 1. <!-- .element: class="fragment" -->Specification is often used between teams<br/>
@@ -177,56 +221,77 @@ List<IPoint> points = new List<IPoint>();
 
 ----
 
-### Multiple inheritance
+### Our Animal/Robot problem
 
 ```csharp [4, 14, 15]
-interface IPrintable {
-    void Print();
+interface IMaintainable {
+    void PerformMaintenance();
 }
-public class Point : IPoint, IPrintable {
-    public int X {get; set;}
-    public int Y {get; set;}
-    public double Distance(Point to) {
-        return 0.0;
-    }
-    public void Print() {
-        // Print 
+public class Lion : Animal, IMaintainable { 
+    // All methods from before plus
+    public void PerformMaintenance() {
+        this.Feed();
     }
 }
 // Inherit from class and implement interface
-public class Point: Object, IPoint, IPrintable { }
+public class RobotCleaner: IMaintainable {
+    public void PerformMaintenance() {
+        this.Charge();
+    }
+}
 ```
 
 ----
+
+## Multiple inheritance
 
 ```language-plantuml
 @startuml
 
 skinparam classAttributeIconSize 0
+hide circle
 
+IMaintainable <|.. Duck
+ISwimmable <|.. Duck
 
-IPoint <|.. Point
-IPrintable <|.. Point
-
-interface IPrintable {
-   + Print(): void
+interface IMaintainable <<interface>> {
+  + PerformMaintenance()
+}
+interface ISwimmable <<interface>> {
+  + Speed: int {get; set; }
+  + Swim()
 }
 
-interface IPoint {
-   + X : int {get; set;}
-   + Y : int {get; set;}
-   + Distance(IPoint): double
-}
-
-class Point {
-   + X : int {get; set;}
-   + Y : int {get; set;}
-   + Distance(IPoint): double
-   + Print(): void
+class Duck {
+  + Speed: int {get; set; }
+  + Swim()
+  + PerformMaintenance()
 }
 
 @enduml
 ```
+
+----
+
+## Multiple Inheritance in C#
+
+```csharp [6-11]
+public interface ISwimmable {
+    int Speed {get; set;}
+    void Swim();
+}
+
+public class Duck : ISwimmable, IMaintainable {
+    public int Speed {get; set;}
+    public void Swim() {
+        // TODO: let duck swim
+    }
+    public void PerformMaintenance() {
+        // TODO: Do maintenance
+    }
+}
+```
+
 
 ---
 
@@ -297,10 +362,9 @@ Shape shape = new Circle(); // when can we do this?
 Circle? cirle = shape as Circle; // 1 
 var circle = (Circle) shape; // 2
 ```
-<!-- .element: class="fragment" data-fragment-index="0" -->
 
-1. <!-- .element: class="fragment" data-fragment-index="1" -->'<mark>as</mark>' casts shape to a circle if possible, otherwise null<br/>
-2. <!-- .element: class="fragment" data-fragment-index="2" -->'<mark>(Typename)</mark>' cast the shape to a cicle, or throw an exception<br/>
+* 1\) <!-- .element: class="fragment" data-fragment-index="1" -->'<mark>as</mark>' casts shape to a circle if possible, otherwise null<br/>
+* 2\) <!-- .element: class="fragment" data-fragment-index="2" -->'<mark>(Typename)</mark>' cast the shape to a cicle, or throw an exception<br/>
 
 ----
 

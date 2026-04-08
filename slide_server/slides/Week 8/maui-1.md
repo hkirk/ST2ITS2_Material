@@ -10,12 +10,12 @@
 
 ## Agenda
 
-* What is MAUI
-* Creating a project
+* What is MAUI<br/><!-- .element: class="fragment" -->
+* Creating a project<br/><!-- .element: class="fragment" -->
     * with all the problems :(
-* Event handlers
-* Running a project
-* Controls + Views
+* Event handlers<br/><!-- .element: class="fragment" -->
+* Running a project<br/><!-- .element: class="fragment" -->
+* Controls + Views<br/><!-- .element: class="fragment" -->
 
 
 ---
@@ -23,9 +23,9 @@
 ## MAUI
 
 * Multiplatform App UI<br/><!-- .element: class="fragment" -->
-    * Meaning you can target Android, iOS, Windows, MacOS
+    * Meaning you can target Android, iOS, **Windows**, **MacOS**
 * Everything run on .NET<br/><!-- .element: class="fragment" -->
-    * You write in C# (or F#, VB.NET) and XAML
+    * You write in **C#** (or F#, VB.NET) and **XAML**
 
 ----
 
@@ -35,20 +35,20 @@
 
 ### What and how
 
-* You can write your applicatin .NET and compile to multiple platforms<br/><!-- .element: class="fragment" -->
+* You can write your application .NET and compile to multiple platforms<br/><!-- .element: class="fragment" -->
     * but you need environment for each :(
 * You can write platform specific code<br/><!-- .element: class="fragment" -->
     * but do not need to
-* You do not need to understand how code is transformed to each platform<br/><!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->You do <mark>not</mark> need to understand how code is transformed to each platform<br/>
 
 ---
 
 ## Create a project
 
-* [Prerequisites](https://learn.microsoft.com/en-us/dotnet/maui/get-started/installation?view=net-maui-8.0&tabs=vswin)
+* [Prerequisites](https://learn.microsoft.com/en-us/dotnet/maui/get-started/installation)
     1. open Visual Studio install
-    2. install MAUI develment
-* [Build your first app](https://learn.microsoft.com/en-us/dotnet/maui/get-started/first-app?pivots=devices-windows&view=net-maui-8.0&tabs=vswin)
+    2. install MAUI development
+* [Build your first app](https://learn.microsoft.com/en-us/dotnet/maui/get-started/first-app?pivots=devices-windows)
 * Here you can also find information about Android, iOS
     * we focus on desktop applications
     * meaning 'maui' not 'android' or 'ios'
@@ -87,7 +87,7 @@ public static MauiApp CreateMauiApp()
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BlankMauiExamples"
-             x:Class="BlankMauiExamples.App">
+             x:Class="HelloWorld.App">
              <!--     Code behind file -->
     <Application.Resources>
         <ResourceDictionary>
@@ -121,18 +121,45 @@ XML has
 ## App.xaml.cs - code-behind
 
 ```csharp [1, 3 | 9 | 1,3,9]
-namespace BlankMauiExamples;
+namespace HelloWorld;
 
 public partial class App : Application
 {
     public App()
     {
         InitializeComponent();
+    }
 
-        MainPage = new MainPage();
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Window(new AppShell());
     }
 }
 ```
+
+----
+
+### `AppShell.xaml`
+
+```xml [9-12]
+<Shell
+    x:Class="HelloWorld.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:HelloWorld"
+    Title="HelloWorld">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+</Shell>
+```
+
+note:
+
+- Navigation for the app
 
 ----
 
@@ -142,7 +169,7 @@ public partial class App : Application
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlankMauiExamples.MainPage">
+             x:Class="HelloWorld.MainPage">
 
     <ScrollView BackgroundColor="Blue">
         <VerticalStackLayout ... >
@@ -187,10 +214,10 @@ note:
     HorizontalOptions="Center" />
 ```
 * **`Button`**: Control name/type
-* **`x:Name`**: Name to access C# CounterBtn
+* **`x:Name`**: Name for access from C#
 * **`Text`**: Shown text
 * **SematicProperties**: Accessibility properties
-* **`Clicked`**: Event handler in C#
+* **`Clicked`**: Event handler (method) in C#
 * **`HorizontalOptions`**: Placement
 
 ----
@@ -267,12 +294,12 @@ private void OnCounterClicked(object sender, EventArgs e) {
 
 ## Controls + Views
 
-* MAUI has 3 types of view  s
+* MAUI has 3 types of views
     * Pages<br/><!-- .element: class="fragment" data-fragment-index="1" -->
         * displays an app + render layouts
-    * Layouts <br/><!-- .element: class="fragment" data-fragment-index="1" -->
-        * can render controles
-    * Controls<br/><!-- .element: class="fragment" data-fragment-index="1" -->
+    * Layouts <br/><!-- .element: class="fragment" data-fragment-index="2" -->
+        * can render controls
+    * Controls<br/><!-- .element: class="fragment" data-fragment-index="3" -->
 
 ----
 
@@ -305,10 +332,11 @@ private void OnCounterClicked(object sender, EventArgs e) {
 
 * Many many more - around 50 exists
 * We talk more about styling and layout next week
+* [Controls](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/)
 
 
 ---
 
 ## References
 
-* Learn Windows (https://learn.microsoft.com/en-us/dotnet/maui/?view=net-maui-8.0)
+* Learn Windows (https://learn.microsoft.com/en-us/dotnet/maui/)
