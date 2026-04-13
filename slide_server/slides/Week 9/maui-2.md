@@ -196,10 +196,11 @@ In MainPage.xaml
 
 * This is defined as a binding (which we now know all about :))<br/><!-- .element: class="fragment" -->
 * either in XAML<br/><!-- .element: class="fragment" -->
+
 ```xml
-<ListView
+<CollectionView
     x:Name="listView"
-    ItemsSource="{Binding Elements}" />
+    ItemsSource="{Binding Source={x:Reference Name=MainPageCB}, Path=Elements}" />
 ```
 * and in C# (code-behind)<br/><!-- .element: class="fragment" -->
 ```csharp
@@ -314,6 +315,7 @@ private async void OnClick(object s,
 }
 ```
 
+TODO: How to send data to other view
 
 ---
 
