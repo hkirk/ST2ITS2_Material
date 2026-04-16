@@ -12,9 +12,9 @@
 
 ## Agenda
 
-* Problem
-* MVVM
-* Other GUI Patterns
+* Problem<br/><!-- .element: class="fragment" -->
+* MVVM<br/><!-- .element: class="fragment" -->
+* Other GUI Patterns<br/><!-- .element: class="fragment" -->
 
 ---
 
@@ -25,7 +25,7 @@
 
 ```xml
 // In XAML file
-<ListView ItemsSource="{Binding Monkeys}" />
+<ListView ItemsSource="{Binding Source={x:Reference Name=MyPageRef}, Path=Monkeys}" />
 ```
 
 * Shows a list of selectable items in a MAUI application<br/><!-- .element: class="fragment" -->
@@ -45,16 +45,18 @@
 
 ---
 
-## Problem
+## My favorite example :)
 
 
 ![ECG Monitor](./img/ecg_monitor.webp "") <!-- .element: style="height: 300px" -->
 
-Can we reuse our current both an operation setup and a practitioner consultation? <!-- .element: class="fragment" -->
+- With our current tools, can we make two apps<!-- .element: class="fragment" -->
+    1. for operation setup and
+    2.  a practitioner consultation? 
 
 ----
 
-### Reuse
+### What can we reuse?
 
 * Hopefully we could reuse<br/><!-- .element: class="fragment" -->
     * Data access code
@@ -62,7 +64,7 @@ Can we reuse our current both an operation setup and a practitioner consultation
 * UI Forms and controls<br/><!-- .element: class="fragment" -->
     * We can properly reuse the forms and controls
 * What a about alarms - showing when the presure is to high or to low<br/><!-- .element: class="fragment" --> 
-    * And still have these testable
+    * And still have these testable - *I know we don't have test in this course.*
 
 note: 
 
@@ -72,6 +74,17 @@ Practitionel: 140/90
 Sys: high
 Dia: low
 
+----
+
+## Problem
+
+- We mix up logic and view in the code-behind file<br/><!-- .element: class="fragment" -->
+    - XAML is for design/ux specialist
+    - XAML.cs is for developers
+- We cannot test the Code-Behind file easily<br/><!-- .element: class="fragment" -->
+    - its compiled with the view
+- Hard to reuse, again tightly coupled to the specific view<br/><!-- .element: class="fragment" -->
+
 
 ----
 
@@ -79,7 +92,11 @@ Dia: low
 
 
 
-We need a specific place to keep UI logic.
+- We need a specific place to define UI specific logic.
+- Like:
+    - Alarms<br/><!-- .element: class="fragment" -->
+    - Colors<br/><!-- .element: class="fragment" -->
+    - Messages<br/><!-- .element: class="fragment" -->
 
 
 ---
@@ -163,8 +180,6 @@ public class BMIViewModel : INotifyPropertyChanged {
 ```
 
 Defining a DataContext
-
-TODO: This looks different when ViewModel is in another namespace
 
 ```xaml [4,6-8]
 <?xml version="1.0" encoding="utf-8" ?>
@@ -347,10 +362,10 @@ Executing commands
 
 ![MVC](https://www.martinfowler.com/eaaDev/uiArchs/mvc-deps.gif "MVC")
 
-* **M**ode-**V**iew-**C**ontroller
-* Properly the most cited UI pattern
+* <!-- .element: class="fragment" --><b>M</b>odel-<b>V</b>iew-<b>C</b>ontroller<br/>
+* Properly the most cited UI pattern<br/><!-- .element: class="fragment" -->
     * Most wrongly cited pattern
-* Used when there are a clear seperations between control and view
+* Used when there are a clear seperations between control and view<br/><!-- .element: class="fragment" -->
 
 ----
 
@@ -368,8 +383,8 @@ Executing commands
 
 #### MVP
 
-* **M**ode-**V**iew-**P**resenter
-* Used for the same things as MVVM
+* <!-- .element: class="fragment" --><b>M</b>odel-<b>V</b>iew-<b>P</b>resenter<br/>
+* Used for the same things as MVVM<!-- .element: class="fragment" -->
     * introduced before bindings
     * still used in frameworks without view-bindings.
 
@@ -381,3 +396,44 @@ Executing commands
 * [UI changes](https://xkcd.com/1770/)
 * [BMI calcalator by Poul Ejnar Rovsing](https://pure.au.dk/portal/en/persons/poul-ejnar-rovsing(252c9404-1c55-4a92-bd0c-97a201cd414a).html)
 * [GUI Architectures](https://www.martinfowler.com/eaaDev/uiArchs.html)
+
+
+---
+
+<!-- .slide: style="font-size: 32px" -->
+
+## MVVM: Key Takeaways
+
+- **Separation of Concerns**:
+  - **Model**: Handles data and business logic.
+  - **View**: Defines UI and user interactions.
+  - **ViewModel**: Acts as a bridge between Model and View, exposing data and commands.
+
+- **Data Binding**:
+  - Automatically syncs View and ViewModel.
+  - Supports `OneWay` and `TwoWay` binding modes.
+
+- **Commands**:
+  - Enables user actions (e.g., button clicks) to trigger ViewModel logic.
+  - Uses `ICommand` for decoupled event handling.
+
+----
+
+### Why MVVM?
+
+- **Testability**:
+  - ViewModel logic can be unit-tested independently of the UI.
+- **Reusability**:
+  - ViewModels and Models can be reused across different Views.
+- **Maintainability**:
+  - Clear separation reduces code complexity and eases updates.
+
+----
+
+### MVVM vs. Other Patterns
+
+| Pattern | Key Feature                     | Use Case                     |
+|---------|---------------------------------|------------------------------|
+| **MVVM** | Data binding, ViewModel focus   | Modern UI frameworks (MAUI, WPF) |
+| **MVC**  | Controller mediates View/Model  | Web apps, traditional UIs    |
+| **MVP**  | Presenter updates View directly | Legacy frameworks, no binding |
