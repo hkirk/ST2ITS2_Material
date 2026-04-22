@@ -17,28 +17,25 @@ skinparam shadowing false
 
 class Hospital {
         - HospitalName: string
-        - _listOfStaff: List<HospitalStaff>
+        - _listOfStaff: Collection<HospitalStaff>
 
         + Hospital(hospitalName: string)
         + AddNewStaff(staff: HospitalStaff): void
         + SeeStaff(): void
-        + SeePatientsAssignedToStaff(staff: HospitalStaff): void
-        + AdmitPatient(patient: Patient): bool
+        + GetDoctor(id: string): Doctor
+        + AdmitPatient(firstName: string, lastName: string, ssn: Ssn, diagnosis: string): bool
     }
 
     abstract class HospitalStaff {
-        - StaffId: string
-        # Patients: List<Patient>
+        # StaffId: string
         + FullName: string {get; private set;}
 
         + GetInfo(): StaffInfo
-        + GetAllPatientInfo(): List<Patient>
-        + AddNewPatient(patient: Patient): Patient
     }
 
     class Doctor {
+        # Patients: Collection<Patient>
         + Specialization: ISpecialization {get; private set;}
-
         + AddNewPatient(patient: Patient): Patient {override}
         + GetPatients(): List<Patient>
         + SetSpecialization(specialization: ISpecializatation)
@@ -50,10 +47,16 @@ class Hospital {
       + AssignToSection(section: Section): void
     }
 
-    interface ISpecialization {
-        + Name: string { get; private set;}
+    class Section {
+       + SectionName: string {readonly}
+       + Capacity: int {readonly}
+    } 
 
-        + GetDiagnosis(): List<string>
+    interface ISpecialization {
+        + Name: string { get; set;}
+
+        + GetPossibleDiagnoses(): List<string>
+        + IsSuitableForDiagnosis(diagnosis: string): bool
     }
 
     class Oncologists {}
@@ -62,6 +65,7 @@ class Hospital {
 
     class Patient {
         + Ssn: Ssn {readonly}
+        - age: int
         - FirstName: string;
         - LastName: string;
         + Record: Record {get; private set}
@@ -72,9 +76,8 @@ class Hospital {
     class Record {
         + RecordId: int {readonly}
         + Diagnosis: string {get; private set}
-        - age: int
-        + AssignedDoctor {get; private set}
-        
+        + AssignedDoctor: Doctor? {get; private set}
+        + ValidateDoctorSpecialization(doctor: Doctor): bool
         + ChangeDiagnosis(diagnosis: string)
         + AssignDoctor(doctor: Doctor): void
     }
@@ -82,16 +85,52 @@ class Hospital {
     Hospital "1" --> "0..*" HospitalStaff : _listOfStaff
     HospitalStaff <|-- Doctor
     HospitalStaff <|-- Nurse
+    Hospital "1" --> "0..*" Section
+    
+    Nurse --> Section
 
-    HospitalStaff "1" --> "0..*" Patient : AddNewPatient
+    Doctor "1" --> "0..*" Patient : AddNewPatient
     Doctor "1" --> "1" ISpecialization : Specialization
     ISpecialization <|.. Oncologists
     ISpecialization <|.. Allergist
     ISpecialization <|.. Neurologist
 
-    Patient "1" --> "1" Record : Record
+    Patient *--> "1" Record : Record
 
+note left of HospitalStaff::GetInfo 
+  Class with readonly fields for StaffId and Name
+end note
 
-    note left of Record: Age should be 0 <= age <= 120\nAssigned doctor should have a suitable specilization according to:\nhttps://www.webmd.com/health-insurance/insurance-doctor-types
+note left of Patient::Ssn 
+  Class with Readonly field for Social Security number
+end note
+
+note left of Patient::Ssn 
+  Class with Readonly field for Social Security number
+end note
+
+note left of Record::ValidateDoctorSpecialization
+  Checks if the doctor's specialization is suitable for the patient's diagnosis.
+  Uses ISpecialization.IsSuitableForDiagnosis(diagnosis: string).
+  Assigned doctor should have a suitable specilization according to:
+  https://www.webmd.com/health-insurance/insurance-doctor-types
+  AssignedDoctor should be non-null after admission
+end note
+
+    note left of Patient : Age should be 0 <= age <= 120
+    note left of Hospital::_listOfStaff
+      Collection is a standin for any datatype that holds multiple
+      elements, you choose the one you think is best suited. 
+    end note
+    note left of HospitalStaff::Patients
+      Collection is a standin for any datatype that holds multiple
+      elements, you choose the one you think is best suited.
+    end note
+
+    note left of Hospital::AdmitPatient
+      1. Validates patient's Ssn and creates a new Record.
+      2. Assigns a doctor based on specialization (if available).
+      3. Returns true if successful, false otherwise.
+    end note
 
 @enduml

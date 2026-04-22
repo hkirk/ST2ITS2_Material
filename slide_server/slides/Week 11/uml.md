@@ -63,6 +63,23 @@
 
 ----
 
+### Dependency
+
+![Dependency](./img/dependency.png "Dependency")
+
+* *Dotted line with open arrow*
+* Changes in **supplier** causes changes in **client**
+     * who is client? and supplier?
+* Dependency is not transitive
+* Minimize depencies
+    * Especially between packages\*
+
+\* Groups of classes (like a .NET project)<!-- .element: style="font-size: 26px" -->
+
+<!-- .slide: style="font-size: 36px" -->
+
+----
+
 ### Association
 
 ![Association](./img/association.png "Assocation in UML")
@@ -84,24 +101,6 @@
 * Owner
 * Lifecycle of object is controlled by
 * We **do not** use Aggregation (open diamond)
-
-----
-
-### Dependency
-
-![Dependency](./img/dependency.png "Dependency")
-
-* *Dotted line with open arrow*
-* Changes in **supplier** causes changes in **client**
-     * who is client? and supplier?
-* Dependency is not transitive
-* Minimize depencies
-    * Especially between packages\*
-
-\* Groups of classes (like a .NET project)<!-- .element: style="font-size: 26px" -->
-
-<!-- .slide: style="font-size: 36px" -->
-
 
 ----
 
