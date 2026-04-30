@@ -35,28 +35,25 @@ int result = square(5);
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 List<int> evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
 ```
-<!-- .element: class="fragment" data-fragment-index="1" -->
-* Func<...,TReturn> <!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
-### Action<TIn>
+### Lambda types
 
-* Lambda that do not return anything
+* Lambda that returns a value<!-- .element: class="fragment" data-fragment-index="1" -->
+    * Func<...,TReturn>
+* Lambda that do not return anything<!-- .element: class="fragment" data-fragment-index="2" -->
 ```csharp
 Action<string> printMessage =
     message => Console.WriteLine(message)
 ```
-
-----
-
-### Predicate<TIn>
-
-* Lambda that returns a boolean
+<!-- .element: class="fragment" data-fragment-index="2" -->
+* Lambda that returns a boolean<!-- .element: class="fragment" data-fragment-index="3" -->
 ```csharp
 Predicate<int> isEven =
     number => number % 2 == 0;
 ```
+<!-- .element: class="fragment" data-fragment-index="3" -->
 
 ---
 
@@ -80,15 +77,16 @@ This we have already seen<!-- .element: class="fragment" -->
 ## `List` methods
 
 * [List methods](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-8.0#methods)
-    * Find(Predicate\<T\>): T<br/><!-- .element: class="fragment" -->
-    * ForEach(Action\<T\>): void<br/><!-- .element: class="fragment" -->
+    * ...
+    * Find(Predicate\<T\> p): T<br/><!-- .element: class="fragment" -->
+    * ForEach(Action\<T\> a): void<br/><!-- .element: class="fragment" -->
     * Sort(): void<br/><!-- .element: class="fragment" -->
     * IndexOf(T t): int - Remember equals?<br/><!-- .element: class="fragment" -->
 
 
 ----
 
-### `IReadOnlyList`
+### `IReadOnlyList<T>`
 
 * Sometimes you need a collection that is unchangable (immutable)<br/><!-- .element: class="fragment" -->
     1. clients don't need to change
@@ -104,9 +102,9 @@ IReadOnlyList<int> readOnlyListCopy = ints.AsReadOnly();
 
 ---
 
-## `Queue`
+## `Queue<T>`
 
-![Queue](https://media.istockphoto.com/vectors/tourists-in-queue-air-flight-check-passengers-registration-in-airport-vector-id1260514439?k=6&m=1260514439&s=170667a&w=0&h=2qtAfguE27Petj-ZJTpq9Tvq8fIdpYu-cuyoahOXJLE= "Queue")
+![Queue](./img/queue.avif "Queue")
 
 * Generic collection type (like List\<T\>)<br/><!-- .element: class="fragment" -->
 * First in, First out (FIFO)<br/><!-- .element: class="fragment" -->
@@ -140,9 +138,9 @@ IReadOnlyList<int> readOnlyListCopy = ints.AsReadOnly();
 * Stores only unique values<br/><!-- .element: class="fragment" -->
 * No order<br/><!-- .element: class="fragment" -->
 * Implementations<br/><!-- .element: class="fragment" -->
-    * `HashSet`
-    * `SortedSet`
-    * `FrozenSet`
+    * `HashSet<T>` - based on ([Object.GetHashCode](https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?#system-object-gethashcode)))
+    * `SortedSet<T>` - ([IComparable.Compare](https://learn.microsoft.com/en-us/dotnet/api/system.icomparable.compareto?#system-icomparable-compareto(system-object)))
+    * `FrozenSet<T>` - immutable
 
 ----
 
@@ -150,7 +148,7 @@ IReadOnlyList<int> readOnlyListCopy = ints.AsReadOnly();
 
 * Dynamic size<br/><!-- .element: class="fragment" -->
 * Elements are added/retrived by GetHashCode and Equals<br/><!-- .element: class="fragment" -->
-    * Remember `GetHashCode`? 
+    * Remember [`GetHashCode`](../Week%205/\#/5/6)? 
     * Remember `Equals`?
     * [Object](http://localhost:8010/slides/Week%205/#/4)
 
@@ -160,10 +158,10 @@ IReadOnlyList<int> readOnlyListCopy = ints.AsReadOnly();
 
 ### `HashSet` Methods
 
-* Add, Remove, Contains<br/><!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" --><code>Add(T t)</code>, <code>Remove(T t)</code>, <code>Contains(T t)<code><br/>
 * Set methods<br/><!-- .element: class="fragment" -->
-    * `Overlaps`
-    * `UnionWith`
+    * `Overlaps(IEnumerable<T> other)`
+    * `UnionWith(IEnumerable<T> other)`
     * ....
 
 ----
@@ -192,9 +190,9 @@ public interface IComparable<T> {
 ### IComparable 'rules'
 
 * `int CompareTo(T t)`
-    * Less than zero - This object precedes the object specified by the CompareTo method in the sort order.<br/><!-- .element: class="fragment" -->
-    * Zero - This current instance occurs in the same position in the sort order as the object specified by the CompareTo method argument.<br/><!-- .element: class="fragment" -->
-    * Greater than zero - This current instance follows the object specified by the CompareTo method argument in the sort order.<br/><!-- .element: class="fragment" -->
+    * <!-- .element: class="fragment" --><b>< 0</b> - This object precedes the object specified by the CompareTo method in the sort order.<br/>
+    * <!-- .element: class="fragment" --><b>== 0</b> - This current instance occurs in the same position in the sort order as the object specified by the CompareTo method argument.<br/>
+    * <!-- .element: class="fragment" --><b>> 0</b> - This current instance follows the object specified by the CompareTo method argument in the sort order.<br/>
 
 note:
 
