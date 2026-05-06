@@ -10,9 +10,9 @@
 
 ## Agenda
 
-* Functions<br/><!-- .element: class="fragment" -->
 * Lambda<br/><!-- .element: class="fragment" -->
 * LINQ<br/><!-- .element: class="fragment" -->
+* Functions<br/><!-- .element: class="fragment" -->
 
 ---
 
@@ -25,6 +25,266 @@
     3. <!-- .element: class="fragment" -->seperate <b>what</b> and <b>how</b>
         * simpler code
 
+---
+
+## Lambda
+
+```csharp
+List<int> ints = new List<int>() {
+    1,2,3,4,5,6,7,8,9
+};
+IEnumerable<int> even = ints.Where(myObject.isEven);
+```
+* Sometimes we only need a function once<br/><!-- .element: class="fragment" -->
+* Then we can use anonymous functions (called lambda)<!-- .element: class="fragment" -->
+```csharp
+IEnumerable<int> even = ints.Where((a) => a % 2 == 0);
+```
+
+note:
+
+```csharp
+// Missing code to the code in the slide above
+public class MyClass {
+	public bool isEven(int a) => a % 2 == 0;
+}
+
+MyClass myClass = new MyClass();
+```
+
+----
+
+### Lambda syntax
+
+* Expression <!-- .element: class="fragment" -->
+```csharp
+(input parameters) => expression
+```
+    * returns the result of the expression
+    * used when single expression
+* Statement<!-- .element: class="fragment" -->
+```csharp
+(input paramters) => {
+    // Sequence of statements
+}
+```
+    * any number of statements
+    * in practices a few
+
+----
+
+### Parameters
+
+* Examples on different syntax for parameters
+```csharp
+() => rand.next();         // zero
+(a) => a+3;                // one
+(a, b) => a+b;             // many
+(int a, int b) => a+b;     // typed
+(int a, int b = 2) => a+b; // default
+(a, _) => a+1;             // discarded
+```
+* basicaly all you can do with methods
+
+----
+
+### Return value (and type)
+
+* Most of the time .NET can infer return type
+    * but sometimes type is needed
+```csharp
+var choose = (bool b) => b ? 1 : "two";
+// ^-- fails
+var choose = object (bool b) => b ? 1 : "two"; 
+```
+
+----
+
+<!-- .slide: style="font-size:32px" -->
+
+## Closures
+
+* Where does 'rand'  come from? <!-- .element: class="fragment" data-fragment-index="0" -->
+```csharp
+() => rand.next();
+```
+
+```csharp
+public class MyRandom {
+	
+	public Func<int> RandomNumbers() {
+		Random rand = new Random();
+		return (() => rand.Next(1));
+	}
+}
+```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+* Here our lambda needs access to the<!-- .element: class="fragment" data-fragment-index="1" --> `Random` object later<!-- .element: class="fragment" data-fragment-index="1" -->
+    * this is 'saved' in a closure, for later usage<!-- .element: class="fragment" data-fragment-index="1" -->
+
+----
+
+### Another example
+
+```csharp
+public class MyRandom {
+	private List<int> ints;
+	private Random _rand = new Random();	
+	public Func<int, bool> RandomSelector() {
+		return ((_) => _rand.Next(1) == 0);
+	}
+}
+// Somewhere else
+List<int> ints = new List<int>() {
+    1,2,3,4,5,6,7,8,9
+};
+MyRandom myRandom = new MyRandom();
+ints.Where(myRandom.RandomSelector());
+```
+* Here the compiler must save the `_rand` object for usage somewhere else.
+
+
+---
+
+## LINQ
+
+* Things we 'always' do with lists :) <!-- .element: class="fragment" -->
+    * filtering
+    * projection
+    * sort
+* and some less common usages <!-- .element: class="fragment" -->
+    * set
+    * quantify
+    * partition
+    * group
+
+----
+
+### Query vs method syntax
+
+```csharp [1-5|7-11]
+// Using query expression syntax.
+var query = from word in words
+            group word.ToUpper() by word.Length into gr
+            orderby gr.Key
+            select new { Length = gr.Key, Words = gr };
+
+// Using method-based query syntax.
+var query2 = words.
+    GroupBy(w => w.Length, w => w.ToUpper()).
+    Select(g => new { Length = g.Key, Words = g }).
+    OrderBy(o => o.Length);
+```
+
+* I personally likes method-based best, but that is up to you<!-- .element: class="fragment" -->
+
+note:
+```csharp
+string sentence = "the quick brown fox jumps over the lazy dog";
+string[] words = sentence.Split(' ');
+```
+
+
+----
+
+### Filtering
+
+* We need to get all elements that satisfy some property<!-- .element: class="fragment" -->
+```
+var wordsWithE = words.Where(word => word.Contains('e'));
+var largeWords = words.Where(word => word.Length > 3);
+```
+* <!-- .element: class="fragment" --><code>OfType</code> returns all elements of a specific type
+
+
+note:
+
+```csharp
+words.OfType<Noun>()...
+```
+
+----
+
+<!-- .slide: style="font-size: 32px" -->
+
+### How to read the documentation
+
+
+This could require a few deep breath <!-- .element: class="fragment" data-fragment-index="1" -->
+
+```csharp
+public static System.Collections.Generic.IEnumerable<TSource> Where<TSource>(
+    this System.Collections.Generic.IEnumerable<TSource> source,
+    Func<TSource,bool> predicate);
+```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
+So let us start by cleaning up the types<!-- .element: class="fragment" data-fragment-index="2" -->
+
+```csharp [1-3]
+public static IEnumerable<TSource> Where<TSource>(
+    this IEnumerable<TSource> source,
+    Func<TSource,bool> predicate);
+```
+<!-- .element: class="fragment" data-fragment-index="2" -->
+
+1. <!-- .element: class="fragment" data-fragment-index="3" --> 1) We return something we can iterate over <mark><code>IEnumerable</code></mark>, contaning <mark><code>TSource</code></mark><br/>
+2. <!-- .element: class="fragment" data-fragment-index="4" --> 2) 1st parameter <code>this</code> keyword is the <mark>class</mark> we can call this extension method on
+    * this determines the type of `TSource` 
+3. <!-- .element: class="fragment" data-fragment-index="5" --> 3) 2nd parameter is function from <mark><code>TSource</code></mark> to <mark><code>bool</code></mark>
+
+
+----
+
+### Projection
+
+* <!-- .element: class="fragment" data-fragment-index="1" -->We need to convert elements from <mark>TA -> TB</mark><br/>
+* <!-- .element: class="fragment" data-fragment-index="1" --><code>Select</code> is LINQs projection method
+
+```
+//IEnumerable<TResult> Select<TSource, TResult>(
+//    this IEnumerable<TSource> source,
+//    Func<TSource,int,TResult> selector)
+var wordLength = words.Select(word => word.Length);
+var uppercaseWords = words.Select(word => {
+    return word.Substring(0,1).ToUpper()
+            + word.Substring(1);
+});
+```
+* <!-- .element: class="fragment" data-fragment-index="3" --><code>SelectMany</code> lets you return collection from the lambda<br/>
+* <!-- .element: class="fragment" data-fragment-index="4" --><code>Zip</code> merges lists into list
+
+----
+
+## Sorting
+
+* We saw last week we could use IComparable to sort objects<br/><!-- .element: class="fragment" -->
+* LINQ lets us to this a bit easier<br/><!-- .element: class="fragment" -->
+```csharp
+var sortedBySuffix = words.OrderBy(word =>
+    word.Substring(1));
+var sortedByLength = words.OrderBy(word => word.Length);
+```
+* <!-- .element: class="fragment" --><code>ThenBy</code> second 'parameter' to sortBy<br/>
+* <!-- .element: class="fragment" --><code>Reverse</code><br/>
+* <!-- .element: class="fragment" --><code>*Descending</code> - order is reverse - default is Ascending
+
+----
+
+## Calculations 
+
+* <!-- .element: class="fragment" --><a href="https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sum?view=net-8.0"><code>Sum</code>/<code>Average</code></a> - can sum directly on numeric types, but also with a function
+    * E.g. `Func<TSource, Int>`
+* <!-- .element: class="fragment" -->Count - and count by a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.count?view=net-8.0#system-linq-enumerable-count-1(system-collections-generic-ienumerable((-0))-system-func((-0-system-boolean)))">filter</a><br/>
+* <!-- .element: class="fragment" -->Aggregate - Apply an <a href="https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.aggregate?view=net-8.0">accumulator function</a> over a sequence
+
+```csharp
+public static TAccumulate Aggregate<TSource,TAccumulate> (
+    this IEnumerable<TSource> source,
+    TAccumulate seed,
+    Func<TAccumulate,TSource,TAccumulate> func);
+```
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -113,270 +373,64 @@ Console.WriteLine(func(3));
 
 ---
 
-## Lambda
-
-* Sometimes we only need a function once<!-- .element: class="fragment" -->
-```csharp
-List<int> ints = new List<int>() {
-    1,2,3,4,5,6,7,8,9
-};
-IEnumerable<int> even = ints.Where(myObject.isEven);
-```
-* Then we can use anonymous functions (called lambda)<!-- .element: class="fragment" -->
-```csharp
-IEnumerable<int> even = ints.Where((a) => a % 2 == 0);
-```
-
-note:
-
-```csharp
-// Missing code to the code in the slide above
-public class MyClass {
-	public bool isEven(int a) => a % 2 == 0;
-}
-
-MyClass myClass = new MyClass();
-```
-
-----
-
-### Lambda syntax
-
-* Expression <!-- .element: class="fragment" -->
-```csharp
-(input parameters) => expression
-```
-    * returns the result of the expression
-    * used when single expression
-* Statement<!-- .element: class="fragment" -->
-```csharp
-(input paramters) => {
-    // Sequence of statements
-}
-```
-    * any number of statements
-    * in practices a few
-
-----
-
-### Parameters
-
-* Examples on different syntax for parameters
-```csharp
-() => rand.next();         // zero
-(a) => a+3;                // one
-(a, b) => a+b;             // many
-(int a, int b) => a+b;     // typed
-(int a, int b = 2) => a+b; // default
-(a, _) => a+1;             // discarded
-```
-* basicaly all you can do with methods
-
-----
-
-### Return value (and type)
-
-* Most of the time .NET can infer return type
-    * but sometimes type is needed
-```csharp
-var choose = (bool b) => b ? 1 : "two"; // Gives an error
-var choose = object (bool b) => b ? 1 : "two"; 
-```
-
-----
-
-<!-- .slide: style="font-size:32px" -->
-
-## Closures
-
-* Where does 'rand'  come from? <!-- .element: class="fragment" data-fragment-index="0" -->
-```csharp
-() => rand.next();
-```
-
-
-
-```csharp
-public class MyRandom {
-	
-	public Func<int> RandomNumbers() {
-		Random rand = new Random();
-		return (() => rand.Next(1));
-	}
-}
-```
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-* Here our lambda needs access to the<!-- .element: class="fragment" data-fragment-index="1" --> `Random` object later<!-- .element: class="fragment" data-fragment-index="1" -->
-    * this is 'saved' in a closure, for later usage<!-- .element: class="fragment" data-fragment-index="1" -->
-
-----
-
-### Another example
-
-```csharp
-public class MyRandom {
-	private List<int> ints;
-	private Random _rand = new Random();	
-	public Func<int, bool> RandomSelector() {
-		return ((_) => _rand.Next(1) == 0);
-	}
-}
-// Somewhere else
-List<int> ints = new List<int>() {
-    1,2,3,4,5,6,7,8,9
-};
-MyRandom myRandom = new MyRandom();
-ints.Where(myRandom.RandomSelector());
-```
-* Here the compiler must save the `_rand` object for usage somewhere else.
-
-
----
-
-## LINQ method style
-
-* Things we 'always' do with lists :) <!-- .element: class="fragment" -->
-    * filtering
-    * projection
-    * sort
-* and some less common usages <!-- .element: class="fragment" -->
-    * set
-    * quantify
-    * partition
-    * group
-
-----
-
-### Query vs method syntax
-
-```csharp [1-5|7-11]
-// Using query expression syntax.
-var query = from word in words
-            group word.ToUpper() by word.Length into gr
-            orderby gr.Key
-            select new { Length = gr.Key, Words = gr };
-
-// Using method-based query syntax.
-var query2 = words.
-    GroupBy(w => w.Length, w => w.ToUpper()).
-    Select(g => new { Length = g.Key, Words = g }).
-    OrderBy(o => o.Length);
-```
-
-* I personally likes method-based best, but that is up to you<!-- .element: class="fragment" -->
-
-note:
-```csharp
-string sentence = "the quick brown fox jumps over the lazy dog";
-string[] words = sentence.Split(' ');
-```
-
-
-----
-
-### Filtering
-
-* We need to get all elements that satisfy some property<!-- .element: class="fragment" -->
-```
-var wordsWithE = words.Where(word => word.Contains('e'));
-var largeWords = words.Where(word => word.Length > 3);
-```
-* <!-- .element: class="fragment" --><code>OfType</code> returns all elements of a specific type
-
-
-note:
-
-```csharp
-words.OfType<Noun>()...
-```
-
-----
-
-<!-- .slide: style="font-size: 32px" -->
-
-### How to read the documentation
-
-
-This could require a few deep breath <!-- .element: class="fragment" data-fragment-index="1" -->
-
-```csharp
-public static System.Collections.Generic.IEnumerable<TSource> Where<TSource>(
-    this System.Collections.Generic.IEnumerable<TSource> source,
-    Func<TSource,bool> predicate);
-```
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-So let us start by cleaning up the types<!-- .element: class="fragment" data-fragment-index="2" -->
-
-```csharp [1-3]
-public static IEnumerable<TSource> Where<TSource>(
-    this IEnumerable<TSource> source,
-    Func<TSource,bool> predicate);
-```
-<!-- .element: class="fragment" data-fragment-index="2" -->
-
-1. <!-- .element: class="fragment" data-fragment-index="3" --> 1) We return something we can iterate over (<mark>IEnumerable</mark>), contaning <mark>TSource</mark><br/>
-2. <!-- .element: class="fragment" data-fragment-index="4" --> 2) 1. parameter `this` keyword is the <mark>class</mark> we can call this extension method on
-    * this determines what `TSource` is
-3. <!-- .element: class="fragment" data-fragment-index="5" --> 3) 2. parameter is function from <mark>TSource</mark> to <mark>bool</mark>
-
-
-----
-
-### Projection
-
-* <!-- .element: class="fragment" data-fragment-index="1" -->We need to convert elements from <mark>A -> B</mark>
-
-```
-//IEnumerable<TResult> Select<TSource, TResult>(
-//    this IEnumerable<TSource> source,
-//    Func<TSource,int,TResult> selector)
-var wordLength = words.Select(word => word.Length);
-var uppercaseWords = words.Select(word => {
-    return word.Substring(0,1).ToUpper()
-            + word.Substring(1);
-});
-```
-* <!-- .element: class="fragment" data-fragment-index="3" -->We also have <code>SelectMany</code> lets you return collection from the lambda<br/>
-* <!-- .element: class="fragment" data-fragment-index="4" -->and <code>Zip</code> merges lists
-
-----
-
-## Sorting
-
-* We saw last week we could use IComparable to sort objects<br/><!-- .element: class="fragment" -->
-* LINQ lets us to this a bit easier<br/><!-- .element: class="fragment" -->
-```csharp
-var sortedBySuffix = words.OrderBy(word =>
-    word.Substring(1));
-var sortedByLength = words.OrderBy(word => word.Length);
-```
-* <!-- .element: class="fragment" --><code>ThenBy</code> second 'parameter' to sortBy<br/>
-* <!-- .element: class="fragment" --><code>Reverse</code><br/>
-* <!-- .element: class="fragment" --><code>*Descending</code> - order is reverse - default is Ascending
-
-----
-
-## Suming 
-
-* <!-- .element: class="fragment" --><a href="https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sum?view=net-8.0"><code>Sum</code>/<code>Average</code></a> - can sum directly on numeric types, but also with a function
-    * E.g. `Func<TSource, Int>`
-* <!-- .element: class="fragment" -->Count - and count by a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.count?view=net-8.0#system-linq-enumerable-count-1(system-collections-generic-ienumerable((-0))-system-func((-0-system-boolean)))">filter</a><br/>
-* <!-- .element: class="fragment" -->Aggregate - Apply an <a href="https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.aggregate?view=net-8.0">accumulator function</a> over a sequence
-
-```csharp
-public static TAccumulate Aggregate<TSource,TAccumulate> (
-    this IEnumerable<TSource> source,
-    TAccumulate seed,
-    Func<TAccumulate,TSource,TAccumulate> func);
-```
-<!-- .element: class="fragment" -->
-
----
-
 ## References
 
 
 * [LINQ overview](https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/)
 * [IEnumerable LINQ methods](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable?view=net-8.0)
+
+---
+
+<!-- .slide: data-background="#003d73" -->
+
+# LINQ & Lambda Summary
+
+## Key Concepts
+
+![AU Logo](./../img/aulogo_uk_var2_white.png "AU Logo") <!-- .element style="width: 200px; position: fixed; bottom: 50px; left: 50px" -->
+
+----
+
+## Lambda Expressions
+
+### What They Are
+* Anonymous functions for single-use scenarios
+* Commonly used with LINQ operations
+
+* Syntax Variations
+
+```csharp
+(input) => expression // Expression
+// Statement (multiple lines)  
+(input) => { /* statements */ }
+
+// Parameter examples
+() => rand.Next()           // zero params
+(a) => a + 3               // one param
+(a, b) => a + b            // multiple params
+```
+
+----
+
+### LINQ Fundamentals
+
+- Core Operations
+    - Filtering - Where() - Select elements matching condition
+    - Projection - Select() - Transform elements (TA -> TB)
+    - Sorting - OrderBy() / ThenBy() - Sort sequences
+    - Aggregation - Sum(), Average(), Count(), Aggregate()
+
+----
+
+# Two styles
+
+```csharp
+// Query syntax
+var query = from word in words
+            where word.Length > 3
+            select word;
+
+// Method syntax (preferred by many)
+var query = words.Where(w => w.Length > 3);
+```
+
